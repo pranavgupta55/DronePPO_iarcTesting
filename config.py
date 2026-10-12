@@ -13,7 +13,7 @@ ENV_DIAG = (ENV_WIDTH ** 2 + ENV_HEIGHT ** 2) ** 0.5
 DRONE_SIZE = 10
 
 # --- Target Spawning ---
-TARGET_MARGIN = 100  # targets spawn at least this far from every edge
+TARGET_MARGIN = 10  # targets spawn at least this far from every edge
 # Far-target curriculum: a growing fraction of new targets must be at least FAR_TARGET_MIN_DIST from the drone. The fraction goes from 0 to
 # FAR_TARGET_FRACTION_END over the first TARGET_CURRICULUM_END of the training session; the rest of the targets stay uniform over the arena.
 FAR_TARGET_MIN_DIST = 600.0

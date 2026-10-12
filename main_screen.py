@@ -1,3 +1,5 @@
+import json
+import sys
 import pygame
 import math
 import time
@@ -9,7 +11,7 @@ from text import drawText
 from fontDict import fonts
 from network import NeuralNetwork, draw_network, tanh, tanh_prime
 from ppo import Actor, DroneEnv, RunningNorm, REACH_DIST
-from config import OBS_DIM, ACT_DIM, ENV_WIDTH, ENV_HEIGHT, TIME_STEP_DELTA
+from config import OBS_DIM, ACT_DIM, ENV_WIDTH, ENV_HEIGHT, TIME_STEP_DELTA, THRUSTER_ANGLE_LIMITS
 
 pygame.init()
 
@@ -67,7 +69,8 @@ toggle = True
 click = False
 
 
-RUN_INDEX = 38
+RUN_INDEX = 38  # which runs/run<N>/actor.pt to fly
+EXPERIMENT_RUN = "b003/time_to_wall_barrier_x40_out30"  # a run under experiments/runs/<batch>/<name> to fly instead (its own 1200x800 world and reward scheme); None flies RUN_INDEX
 EPISODE_SECONDS = 500
 
 
@@ -86,29 +89,87 @@ def load_run(run_index):
     return DroneEnv(max_steps=int(EPISODE_SECONDS / TIME_STEP_DELTA), mirror_episodes=False), actor, obs_norm
 
 
-def actor_to_network(actor):
-    """Copies the actor's linear layers into a network.py NeuralNetwork so draw_network can draw it."""
-    linears = [m for m in actor.net if isinstance(m, torch.nn.Linear)]
-    network = NeuralNetwork([OBS_DIM] + [m.out_features for m in linears], tanh, tanh_prime)
-    for dense, linear in zip((layer for layer in network.layers if hasattr(layer, "weights")), linears):
-        dense.weights = linear.weight.detach().numpy().astype(float)
-        dense.bias = linear.bias.detach().numpy().astype(float).reshape(-1, 1)
+def load_experiment_run(name):
+    """Returns a fresh experiments DroneEnv (strict reach rule, no mirroring), the run's (weight, bias) layers, an observation normalizer function and the world size."""
+    experiments_dir = Path(__file__).parent / "experiments"
+    sys.path.insert(0, str(experiments_dir))
+    from core.env import DroneEnv as ExperimentEnv, make_spec, load_scheme, NORM_CLIP
+    from core.config import ENV_WIDTH as exp_width, ENV_HEIGHT as exp_height
+    from evaluate import load_policy
+    run_dir = experiments_dir / "runs" / name
+    spec = make_spec(json.loads((run_dir / "spec.json").read_text()))
+    layers, obs_mean, obs_std = load_policy(run_dir)
+    module, scheme = load_scheme(spec["scheme"], spec["params"])
+    exp_env = ExperimentEnv(spec, module, scheme, max_steps=int(EPISODE_SECONDS / TIME_STEP_DELTA))
+    exp_env.set_ramp(1.0)
+    exp_env.set_eval_mode()
+    if not spec["obs_norm"]:
+        obs_mean, obs_std = np.zeros_like(obs_mean), np.ones_like(obs_std)
+    return exp_env, layers, (lambda o: np.clip((o - obs_mean) / obs_std, -NORM_CLIP, NORM_CLIP)), exp_width, exp_height
+
+
+def layers_to_network(layers):
+    """Copies (weight, bias) layers into a network.py NeuralNetwork so draw_network can draw it."""
+    network = NeuralNetwork([layers[0][0].shape[1]] + [w.shape[0] for w, _ in layers], tanh, tanh_prime)
+    for dense, (weight, bias) in zip((layer for layer in network.layers if hasattr(layer, "weights")), layers):
+        dense.weights = np.asarray(weight, dtype=float)
+        dense.bias = np.asarray(bias, dtype=float).reshape(-1, 1)
     return network
 
 
-env, actor, obs_norm = load_run(RUN_INDEX)
+GAUGE_OUTER, GAUGE_INNER, GAUGE_GAP, GAUGE_MARGIN = 56, 18, 20, 12  # thruster gauge: outer / inner radius, gap between the two sectors, distance from the screen's corner (px)
+
+
+def draw_thruster_gauge(surface, drone):
+    """Top right: one downward-facing annulus sector per thruster covering its swivel range (left thruster on the left), with a red line along the thruster's
+    current direction relative to the drone body; the line runs from the inner arc out to a radius proportional to the thruster's force (the outer arc is full force)."""
+    right_center_x = screen_width - GAUGE_MARGIN - GAUGE_OUTER  # the right sector reaches one outer radius to the right of its center
+    center_y = GAUGE_MARGIN
+    centers = [(right_center_x - GAUGE_OUTER - GAUGE_GAP, center_y), (right_center_x, center_y)]
+    for (center_x, center_y_), (low, high), angle, force in zip(centers, THRUSTER_ANGLE_LIMITS, drone.thruster_angles, drone.thruster_forces):
+        steps = 24
+        angles = [low + (high - low) * i / steps for i in range(steps + 1)]
+        outer = [(center_x + GAUGE_OUTER * math.cos(a), center_y_ + GAUGE_OUTER * math.sin(a)) for a in angles]
+        inner = [(center_x + GAUGE_INNER * math.cos(a), center_y_ + GAUGE_INNER * math.sin(a)) for a in angles]
+        pygame.draw.lines(surface, Endesga.white, False, outer, 1)
+        pygame.draw.lines(surface, Endesga.white, False, inner, 1)
+        pygame.draw.line(surface, Endesga.white, outer[0], inner[0], 1)
+        pygame.draw.line(surface, Endesga.white, outer[-1], inner[-1], 1)
+        length = GAUGE_INNER + force * (GAUGE_OUTER - GAUGE_INNER)
+        pygame.draw.line(surface, Endesga.debug_red, (center_x + GAUGE_INNER * math.cos(angle), center_y_ + GAUGE_INNER * math.sin(angle)),
+                         (center_x + length * math.cos(angle), center_y_ + length * math.sin(angle)), 4)
+
+
+if EXPERIMENT_RUN:
+    env, layers, normalize, WORLD_W, WORLD_H = load_experiment_run(EXPERIMENT_RUN)
+
+    def policy(o):
+        x = normalize(o)
+        for weight, bias in layers[:-1]:
+            x = np.tanh(weight @ x + bias)
+        return layers[-1][0] @ x + layers[-1][1]  # the mean action, no sampling noise
+else:
+    env, actor, obs_norm = load_run(RUN_INDEX)
+    WORLD_W, WORLD_H = ENV_WIDTH, ENV_HEIGHT
+    layers = [(m.weight.detach().numpy(), m.bias.detach().numpy()) for m in actor.net if isinstance(m, torch.nn.Linear)]
+
+    def policy(o):
+        with torch.no_grad():
+            return actor.net(torch.as_tensor(o if obs_norm is None else obs_norm.normalize(o), dtype=torch.float32)).numpy()  # the mean action, no sampling noise
 obs = env.reset()
-world = pygame.Surface((ENV_WIDTH, ENV_HEIGHT))
-view_scale = min(screen_width / ENV_WIDTH, screen_height / ENV_HEIGHT, 1.0)  # shrink the world to fit the screen, never enlarge it
-world_size = (int(ENV_WIDTH * view_scale), int(ENV_HEIGHT * view_scale))
+world = pygame.Surface((WORLD_W, WORLD_H))
+view_scale = min(screen_width / WORLD_W, screen_height / WORLD_H, 1.0)  # shrink the world to fit the screen, never enlarge it
+world_size = (int(WORLD_W * view_scale), int(WORLD_H * view_scale))
 world_offset = ((screen_width - world_size[0]) // 2, (screen_height - world_size[1]) // 2)
 
 # The weights are fixed, so draw the network once onto its own surface (thousands of lines) and blit it every frame
-network = actor_to_network(actor)
+network = layers_to_network(layers)
 dense_layers = [layer for layer in network.layers if hasattr(layer, "weights")]
 tallest_layer = max(max(layer.weights.shape) for layer in dense_layers)
 network_surface = pygame.Surface((20 + 60 * len(dense_layers), 200), pygame.SRCALPHA)
 draw_network(network, network_surface, (10, 100), Endesga.network_green, Endesga.network_red, spacing_x=60, spacing_y=min(3, 180 / tallest_layer))
+network_bounds = network_surface.get_bounding_rect()  # where the drawing actually is, so its top left corner can sit at the screen's corner margin
+network_corner = (GAUGE_MARGIN - network_bounds.x, GAUGE_MARGIN - network_bounds.y)
 physics_accumulator = 0.0
 
 # ---------------- Main Game Loop
@@ -150,9 +211,7 @@ while running:
     env.target = mouse_target
     obs = env.observe()
     while physics_accumulator >= TIME_STEP_DELTA:
-        with torch.no_grad():
-            action = actor.net(torch.as_tensor(obs if obs_norm is None else obs_norm.normalize(obs), dtype=torch.float32)).numpy()  # the mean action, no sampling noise
-        obs, _, terminated, truncated = env.step(action)
+        obs, _, terminated, truncated = env.step(policy(obs))
         if terminated or truncated:
             env.reset()
         env.target = mouse_target  # a reach or a reset spawns a random target; the mouse overrides it
@@ -177,7 +236,8 @@ while running:
             drawText(screenUI, Endesga.debug_red, montserratRegularAdaptive, 5, screen_height - (30 + 25 * i), string, Endesga.black, 0, antiAliasing=False)
 
         # ---------------- Network
-        screenUI.blit(network_surface, (0, 0))
+        screenUI.blit(network_surface, network_corner)
+        draw_thruster_gauge(screenUI, env.drone)
     pygame.mouse.set_visible(False)
     pygame.draw.circle(screenUI, Endesga.black, (mx + 1, my + 1), 2, 1)
     pygame.draw.circle(screenUI, Endesga.white, (mx, my), 2, 1)

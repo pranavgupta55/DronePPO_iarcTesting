@@ -21,3 +21,6 @@ Reference: plain `time_shaping` (weight 2000) gave 7.0 and 0.4 reaches on two se
 - Untried: learning-rate, epoch-length, target-spawn and far-target settings were left at defaults.
 - Gate thresholds were never recalibrated against trained policies; tilt gates may be too loose.
 - `results.csv.bak` is the file before the column repair (two columns were added for the outward overlay).
+
+## Note: target margin changed
+After this search the target margin (min distance of a target from every wall) was changed from 100 px to 10 px in the training default, the fixed evaluation and the project config. All results above used the 100 px margin, so new runs are not directly comparable to them.

@@ -23,7 +23,7 @@ DEFAULTS = {
     "gamma": 0.99, "gae_lambda": 0.95, "clip": 0.2, "update_epochs": 4, "num_minibatches": 16, "init_log_std": -0.5,
     "reward_scaling": True, "obs_norm": True, "mirror": True, "torch_threads": 1,
     "reach_reward": 10000.0, "crash_penalty": 6000.0, "outward_w": 0.0, "outward_target": 0.5235987755982988,
-    "far_target_min_dist": 400.0, "far_target_fraction_end": 0.7, "curriculum_end": 0.5, "target_margin": 100.0, "ramp_end": 0.5,
+    "far_target_min_dist": 400.0, "far_target_fraction_end": 0.7, "curriculum_end": 0.5, "target_margin": 10.0, "ramp_end": 0.5,
     "reach_speed": [50.0, 20.0], "reach_ang": [2.0, 0.5], "reach_hold": [1, 25],
 }
 NON_HYPER_KEYS = ("name", "seed", "scheme", "params")
@@ -103,7 +103,7 @@ class DroneEnv:
     def set_eval_mode(self):
         """Strict reach rule, uniform targets, no mirroring (the fixed evaluation protocol)."""
         self.reach_speed, self.reach_ang_speed, self.reach_hold = STRICT_REACH_SPEED, STRICT_REACH_ANG, STRICT_REACH_HOLD
-        self.far_fraction, self.mirror_episodes, self.target_margin = 0.0, False, 100.0
+        self.far_fraction, self.mirror_episodes, self.target_margin = 0.0, False, 10.0
 
     def reset(self):
         d = self.drone

@@ -1,5 +1,5 @@
 """Fixed evaluation of a trained run: python3 evaluate.py <run_dir>  (or evaluate(run_dir) -> dict; also writes <run_dir>/eval.json).
-Protocol: 30 episodes x 2048 steps, fixed seeds, mean action, no mirroring, strict reach rule, uniform targets (margin 100)."""
+Protocol: 30 episodes x 2048 steps, fixed seeds, mean action, no mirroring, strict reach rule, uniform targets (margin 10)."""
 import json
 import math
 import multiprocessing as mp
