@@ -1,0 +1,16 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b000/appvel_default/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b000/appvel_default
+epoch  25/300    19s | eps 291 | ret   -6364.4 | len    113 | reaches   2 | pi 0.0315 | v 0.1098
+epoch  50/300    36s | eps 169 | ret   -6514.3 | len    194 | reaches   0 | pi 0.0214 | v 0.1250
+epoch  75/300    54s | eps 14 | ret   -6321.3 | len   2259 | reaches   0 | pi 0.0195 | v 0.0113
+epoch 100/300    71s | eps 10 | ret   -3164.8 | len   3237 | reaches   1 | pi 0.0048 | v 0.0355
+epoch 125/300    89s | eps  8 | ret   -2141.7 | len   4096 | reaches   0 | pi 0.0165 | v 0.0003
+epoch 150/300   107s | eps  8 | ret   -2083.0 | len   4096 | reaches   0 | pi -0.0419 | v 0.0006
+epoch 175/300   125s | eps  8 | ret    2534.5 | len   3641 | reaches   4 | pi 0.0432 | v 0.0132
+epoch 200/300   143s | eps  8 | ret    2482.0 | len   3631 | reaches   4 | pi 0.0039 | v 0.1034
+epoch 225/300   161s | eps  9 | ret    5498.5 | len   3659 | reaches   7 | pi -0.0292 | v 0.2539
+epoch 250/300   179s | eps  8 | ret    9480.6 | len   4096 | reaches   9 | pi -0.0260 | v 0.1806
+epoch 275/300   197s | eps  8 | ret   13332.3 | len   4096 | reaches  12 | pi -0.0111 | v 0.3411
+epoch 300/300   214s | eps  8 | ret    6973.7 | len   4096 | reaches   7 | pi -0.0180 | v 0.1851
+done {"epochs": 300, "wall_seconds": 213.6, "final_return": 6884.051407651516, "final_length": 4074.9875, "final_reaches_per_epoch": 7.0}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b000/appvel_default
+{"reaches_per_ep": 0.26666666666666666, "steps_per_reach": 1250.25, "crash_rate": 0.0, "mean_speed": 11.108654023861103, "mean_abs_tilt_deg": 1.2566933254846169, "hover_tilt_frac": 0.001293936224896751, "tilt_streak_frac": 0.0, "rock_rate": 0.0146484375, "mean_abs_ang_vel": 0.033724206705340445, "outward_frac": 0.0, "mean_outward_deg": -28.726980237218083, "tier": 2, "score": 0.008, "eval_seconds": 1.2}

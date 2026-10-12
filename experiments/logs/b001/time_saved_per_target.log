@@ -1,0 +1,24 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/time_saved_per_target/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/time_saved_per_target
+epoch  25/300    94s | eps 304 | ret   -6296.8 | len    107 | reaches   2 | pi 0.0078 | v 0.1068
+epoch  50/300   187s | eps 189 | ret   -6415.1 | len    174 | reaches   0 | pi -0.0226 | v 0.1082
+epoch  75/300   286s | eps 12 | ret   -4017.4 | len   2954 | reaches   0 | pi 0.0023 | v 0.0317
+epoch 100/300   382s | eps  8 | ret    -626.8 | len   4096 | reaches   0 | pi -0.0070 | v 0.0006
+epoch 125/300   469s | eps  8 | ret     767.2 | len   4096 | reaches   1 | pi -0.0050 | v 0.0455
+
+TIMEOUT after 480s
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/time_saved_per_target/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/time_saved_per_target
+epoch  25/300    56s | eps 304 | ret   -6296.8 | len    107 | reaches   2 | pi 0.0078 | v 0.1068
+epoch  50/300   110s | eps 189 | ret   -6415.1 | len    174 | reaches   0 | pi -0.0226 | v 0.1082
+epoch  75/300   162s | eps 12 | ret   -4017.4 | len   2954 | reaches   0 | pi 0.0023 | v 0.0317
+epoch 100/300   215s | eps  8 | ret    -626.8 | len   4096 | reaches   0 | pi -0.0070 | v 0.0006
+epoch 125/300   269s | eps  8 | ret     767.2 | len   4096 | reaches   1 | pi -0.0050 | v 0.0455
+epoch 150/300   320s | eps  8 | ret     834.4 | len   4096 | reaches   1 | pi -0.0370 | v 0.0663
+epoch 175/300   345s | eps  8 | ret     820.6 | len   4096 | reaches   1 | pi -0.0049 | v 0.0404
+epoch 200/300   371s | eps  9 | ret    6117.0 | len   3826 | reaches   7 | pi 0.0008 | v 0.1250
+epoch 225/300   397s | eps  8 | ret    5851.1 | len   4096 | reaches   5 | pi -0.0117 | v 0.1003
+epoch 250/300   422s | eps  8 | ret    5857.2 | len   4096 | reaches   5 | pi -0.0035 | v 0.1266
+epoch 275/300   448s | eps  8 | ret    5200.9 | len   3750 | reaches   5 | pi -0.0048 | v 0.2031
+epoch 300/300   473s | eps  8 | ret    8399.6 | len   4096 | reaches   7 | pi -0.0024 | v 0.1554
+done {"epochs": 300, "wall_seconds": 473.3, "final_return": 7877.209801881219, "final_length": 4096.0, "final_reaches_per_epoch": 6.6}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/time_saved_per_target
+{"reaches_per_ep": 0.3, "steps_per_reach": 1372.6666666666667, "crash_rate": 0.03333333333333333, "mean_speed": 12.446251150302375, "mean_abs_tilt_deg": 1.231743635057277, "hover_tilt_frac": 0.0014400598466429773, "tilt_streak_frac": 0.0, "rock_rate": 0.01648478454386601, "mean_abs_ang_vel": 0.03340725444535459, "outward_frac": 0.0, "mean_outward_deg": -28.841382708619598, "tier": 0, "score": 0.003, "eval_seconds": 4.3}

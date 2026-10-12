@@ -1,0 +1,155 @@
+{
+ "batch": "b001",
+ "specs": [
+  {
+   "name": "action_chatter_at_low_speed",
+   "scheme": "action_chatter_at_low_speed",
+   "seed": 1
+  },
+  {
+   "name": "altitude_floor_gravity_barrier",
+   "scheme": "altitude_floor_gravity_barrier",
+   "seed": 1
+  },
+  {
+   "name": "bang_bang_thrust_bonus",
+   "scheme": "bang_bang_thrust_bonus",
+   "seed": 1
+  },
+  {
+   "name": "crash_cost_scaled_by_remaining_value",
+   "scheme": "crash_cost_scaled_by_remaining_value",
+   "seed": 1
+  },
+  {
+   "name": "curriculum_time_baseline",
+   "scheme": "curriculum_time_baseline",
+   "seed": 1
+  },
+  {
+   "name": "damping_energy_dissipation",
+   "scheme": "damping_energy_dissipation",
+   "seed": 1
+  },
+  {
+   "name": "entry_speed_fly_through",
+   "scheme": "entry_speed_fly_through",
+   "seed": 1
+  },
+  {
+   "name": "hover_only_gate_penalty",
+   "scheme": "hover_only_gate_penalty",
+   "seed": 1
+  },
+  {
+   "name": "lagrangian_crash_budget",
+   "scheme": "lagrangian_crash_budget",
+   "seed": 1
+  },
+  {
+   "name": "lexicographic_priority_scalarisation",
+   "scheme": "lexicographic_priority_scalarisation",
+   "seed": 1
+  },
+  {
+   "name": "lyapunov_time_potential",
+   "scheme": "lyapunov_time_potential",
+   "seed": 1
+  },
+  {
+   "name": "multiplicative_safety_gate",
+   "scheme": "multiplicative_safety_gate",
+   "seed": 1
+  },
+  {
+   "name": "nozzle_alignment_potential",
+   "scheme": "nozzle_alignment_potential",
+   "seed": 1
+  },
+  {
+   "name": "nozzle_annealed_curriculum",
+   "scheme": "nozzle_annealed_curriculum",
+   "seed": 1
+  },
+  {
+   "name": "progress_coverage_bonus",
+   "scheme": "progress_coverage_bonus",
+   "seed": 1
+  },
+  {
+   "name": "progress_per_effort",
+   "scheme": "progress_per_effort",
+   "seed": 1
+  },
+  {
+   "name": "reward_bucket_normalisation",
+   "scheme": "reward_bucket_normalisation",
+   "seed": 1
+  },
+  {
+   "name": "self_record_split_bonus",
+   "scheme": "self_record_split_bonus",
+   "seed": 1
+  },
+  {
+   "name": "settle_bonus_in_hold",
+   "scheme": "settle_bonus_in_hold",
+   "seed": 1
+  },
+  {
+   "name": "speed_gated_highpass_wobble",
+   "scheme": "speed_gated_highpass_wobble",
+   "seed": 1
+  },
+  {
+   "name": "stage_gated_reward_mixture",
+   "scheme": "stage_gated_reward_mixture",
+   "seed": 1
+  },
+  {
+   "name": "survival_clearance_bonus",
+   "scheme": "survival_clearance_bonus",
+   "seed": 1
+  },
+  {
+   "name": "switching_curve_margin",
+   "scheme": "switching_curve_margin",
+   "seed": 1
+  },
+  {
+   "name": "thrust_asymmetry_at_hover",
+   "scheme": "thrust_asymmetry_at_hover",
+   "seed": 1
+  },
+  {
+   "name": "thrust_to_target_projection",
+   "scheme": "thrust_to_target_projection",
+   "seed": 1
+  },
+  {
+   "name": "thrust_weighted_nozzle_alignment",
+   "scheme": "thrust_weighted_nozzle_alignment",
+   "seed": 1
+  },
+  {
+   "name": "time_saved_per_target",
+   "scheme": "time_saved_per_target",
+   "seed": 1
+  },
+  {
+   "name": "time_to_wall_barrier",
+   "scheme": "time_to_wall_barrier",
+   "seed": 1
+  },
+  {
+   "name": "viability_hinge",
+   "scheme": "viability_hinge",
+   "seed": 1
+  },
+  {
+   "name": "zero_crossing_rocking_counter",
+   "scheme": "zero_crossing_rocking_counter",
+   "seed": 1
+  }
+ ]
+}

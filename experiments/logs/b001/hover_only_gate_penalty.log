@@ -1,0 +1,26 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/hover_only_gate_penalty/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/hover_only_gate_penalty
+epoch  25/300    46s | eps 296 | ret   -6390.8 | len    110 | reaches   1 | pi 0.0253 | v 0.1653
+epoch  50/300   120s | eps 196 | ret   -6428.0 | len    167 | reaches   0 | pi 0.0027 | v 0.1314
+epoch  75/300   197s | eps 12 | ret   -6534.7 | len   2465 | reaches   0 | pi 0.0129 | v 0.0352
+epoch 100/300   270s | eps  8 | ret   -2407.8 | len   4096 | reaches   0 | pi -0.0216 | v 0.0005
+epoch 125/300   344s | eps  8 | ret   -2195.8 | len   4096 | reaches   0 | pi -0.0086 | v 0.0005
+epoch 150/300   403s | eps  8 | ret   -2119.7 | len   4096 | reaches   0 | pi -0.0093 | v 0.0001
+epoch 175/300   458s | eps  8 | ret   -2082.4 | len   4096 | reaches   0 | pi -0.0294 | v 0.0001
+
+TIMEOUT after 480s
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/hover_only_gate_penalty/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/hover_only_gate_penalty
+epoch  25/300    29s | eps 296 | ret   -6390.8 | len    110 | reaches   1 | pi 0.0253 | v 0.1653
+epoch  50/300    54s | eps 196 | ret   -6428.0 | len    167 | reaches   0 | pi 0.0027 | v 0.1314
+epoch  75/300    80s | eps 12 | ret   -6534.7 | len   2465 | reaches   0 | pi 0.0129 | v 0.0352
+epoch 100/300   105s | eps  8 | ret   -2407.8 | len   4096 | reaches   0 | pi -0.0216 | v 0.0005
+epoch 125/300   131s | eps  8 | ret   -2195.8 | len   4096 | reaches   0 | pi -0.0086 | v 0.0005
+epoch 150/300   156s | eps  8 | ret   -2119.7 | len   4096 | reaches   0 | pi -0.0093 | v 0.0001
+epoch 175/300   182s | eps  8 | ret   -2082.4 | len   4096 | reaches   0 | pi -0.0294 | v 0.0001
+epoch 200/300   208s | eps  8 | ret   -2067.2 | len   4096 | reaches   0 | pi 0.0085 | v 0.0000
+epoch 225/300   233s | eps  8 | ret   -2069.5 | len   4096 | reaches   0 | pi -0.0120 | v 0.0000
+epoch 250/300   258s | eps  8 | ret   -2063.7 | len   4096 | reaches   0 | pi 0.0007 | v 0.0000
+epoch 275/300   284s | eps  8 | ret   -2061.1 | len   4096 | reaches   0 | pi 0.0256 | v 0.0000
+epoch 300/300   310s | eps  9 | ret   -2622.2 | len   3892 | reaches   0 | pi -0.0157 | v 0.0008
+done {"epochs": 300, "wall_seconds": 309.6, "final_return": -2114.826817996711, "final_length": 4075.622222222222, "final_reaches_per_epoch": 0.0}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/hover_only_gate_penalty
+{"reaches_per_ep": 0.0, "steps_per_reach": 61440.0, "crash_rate": 0.0, "mean_speed": 12.183340699520867, "mean_abs_tilt_deg": 13.05591825439108, "hover_tilt_frac": 0.31285406235152224, "tilt_streak_frac": 0.218115234375, "rock_rate": 0.020345052083333336, "mean_abs_ang_vel": 0.04991316976495731, "outward_frac": 0.0, "mean_outward_deg": -18.316583352133758, "tier": 1, "score": 0.0, "eval_seconds": 4.3}

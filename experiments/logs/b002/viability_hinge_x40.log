@@ -1,0 +1,16 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b002/viability_hinge_x40/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b002/viability_hinge_x40
+epoch  25/300    53s | eps 285 | ret   -6420.7 | len    115 | reaches   2 | pi 0.0020 | v 0.2329
+epoch  50/300   105s | eps 46 | ret   -4993.3 | len    737 | reaches   1 | pi -0.0053 | v 0.0605
+epoch  75/300   156s | eps  8 | ret  148814.0 | len   4096 | reaches  77 | pi 0.0076 | v 0.3687
+epoch 100/300   205s | eps  9 | ret  193894.5 | len   3783 | reaches 114 | pi -0.0180 | v 0.0995
+epoch 125/300   230s | eps  9 | ret  196414.3 | len   3729 | reaches 116 | pi -0.0048 | v 0.0417
+epoch 150/300   254s | eps 10 | ret  195637.7 | len   3659 | reaches 127 | pi -0.0255 | v 0.0286
+epoch 175/300   279s | eps 10 | ret  198568.4 | len   3486 | reaches 130 | pi -0.0273 | v 0.0238
+epoch 200/300   303s | eps  9 | ret  195260.5 | len   3531 | reaches 115 | pi -0.0001 | v 0.0207
+epoch 225/300   328s | eps  8 | ret  235991.0 | len   4096 | reaches 123 | pi 0.0074 | v 0.0204
+epoch 250/300   352s | eps 12 | ret  176335.4 | len   3076 | reaches 140 | pi -0.0050 | v 0.0191
+epoch 275/300   376s | eps 10 | ret  184014.5 | len   3072 | reaches 121 | pi -0.0115 | v 0.0230
+epoch 300/300   401s | eps 10 | ret  194978.2 | len   3304 | reaches 130 | pi -0.0004 | v 0.0223
+done {"epochs": 300, "wall_seconds": 401.2, "final_return": 219215.6488523934, "final_length": 3676.987196969697, "final_reaches_per_epoch": 129.0}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b002/viability_hinge_x40
+{"reaches_per_ep": 8.4, "steps_per_reach": 223.33333333333334, "crash_rate": 0.1, "mean_speed": 96.78221264945257, "mean_abs_tilt_deg": 7.248051350379421, "hover_tilt_frac": 0.017891549683457197, "tilt_streak_frac": 0.0, "rock_rate": 0.10831889081455805, "mean_abs_ang_vel": 0.20624350214853693, "outward_frac": 0.0, "mean_outward_deg": -28.882626480467216, "tier": 0, "score": 0.084, "eval_seconds": 3.9}

@@ -1,0 +1,25 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/self_record_split_bonus/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/self_record_split_bonus
+epoch  25/300    72s | eps 309 | ret   -6265.0 | len    106 | reaches   1 | pi -0.0069 | v 0.1248
+epoch  50/300   140s | eps 212 | ret   -6374.4 | len    154 | reaches   0 | pi -0.0155 | v 0.1408
+epoch  75/300   209s | eps 120 | ret   -6261.6 | len    272 | reaches   0 | pi -0.0085 | v 0.0691
+epoch 100/300   271s | eps 12 | ret   -4060.8 | len   2742 | reaches   0 | pi 0.0074 | v 0.0125
+epoch 125/300   334s | eps 10 | ret    -788.0 | len   3410 | reaches   1 | pi -0.0093 | v 0.1694
+epoch 150/300   405s | eps  8 | ret    2081.9 | len   4096 | reaches   2 | pi 0.0067 | v 0.0095
+
+TIMEOUT after 480s
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/self_record_split_bonus/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/self_record_split_bonus
+epoch  25/300    56s | eps 309 | ret   -6265.0 | len    106 | reaches   1 | pi -0.0069 | v 0.1248
+epoch  50/300   109s | eps 212 | ret   -6374.4 | len    154 | reaches   0 | pi -0.0155 | v 0.1408
+epoch  75/300   162s | eps 120 | ret   -6261.6 | len    272 | reaches   0 | pi -0.0085 | v 0.0691
+epoch 100/300   215s | eps 12 | ret   -4060.8 | len   2742 | reaches   0 | pi 0.0074 | v 0.0125
+epoch 125/300   268s | eps 10 | ret    -788.0 | len   3410 | reaches   1 | pi -0.0093 | v 0.1694
+epoch 150/300   316s | eps  8 | ret    2081.9 | len   4096 | reaches   2 | pi 0.0067 | v 0.0095
+epoch 175/300   341s | eps  8 | ret    -378.7 | len   4096 | reaches   0 | pi 0.0067 | v 0.0005
+epoch 200/300   367s | eps  8 | ret    9846.1 | len   4096 | reaches   8 | pi -0.0079 | v 0.2443
+epoch 225/300   392s | eps  8 | ret    3502.1 | len   4096 | reaches   3 | pi -0.0399 | v 0.1166
+epoch 250/300   416s | eps  8 | ret     835.5 | len   4096 | reaches   1 | pi -0.0250 | v 0.0326
+epoch 275/300   442s | eps  8 | ret    2101.7 | len   4096 | reaches   2 | pi 0.0174 | v 0.0035
+epoch 300/300   467s | eps  8 | ret     771.6 | len   4096 | reaches   1 | pi 0.0193 | v 0.0247
+done {"epochs": 300, "wall_seconds": 466.7, "final_return": 773.935863922035, "final_length": 4083.1875, "final_reaches_per_epoch": 1.0}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/self_record_split_bonus
+{"reaches_per_ep": 0.03333333333333333, "steps_per_reach": 431.0, "crash_rate": 0.0, "mean_speed": 12.943203844339536, "mean_abs_tilt_deg": 7.924238244639061, "hover_tilt_frac": 0.06891498321182778, "tilt_streak_frac": 0.0625, "rock_rate": 0.0146484375, "mean_abs_ang_vel": 0.0306965805606508, "outward_frac": 0.0, "mean_outward_deg": -22.951099552584857, "tier": 2, "score": 0.001, "eval_seconds": 4.3}

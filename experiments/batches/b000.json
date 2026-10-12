@@ -1,0 +1,7 @@
+{"batch": "b000", "specs": [
+ {"name": "ts_default", "scheme": "time_shaping", "seed": 1},
+ {"name": "ts_default_s2", "scheme": "time_shaping", "seed": 2},
+ {"name": "appvel_default", "scheme": "approach_velocity", "seed": 1},
+ {"name": "outward_default", "scheme": "outward_bonus", "seed": 1},
+ {"name": "outward_strong", "scheme": "outward_bonus", "params": {"outward_w": 20.0}, "seed": 1}
+]}

@@ -1,0 +1,34 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/damping_energy_dissipation/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/damping_energy_dissipation
+epoch  25/300    11s | eps 289 | ret   -6359.9 | len    113 | reaches   3 | pi -0.0103 | v 0.1680
+epoch  50/300    21s | eps 164 | ret   -6437.7 | len    200 | reaches   0 | pi 0.0163 | v 0.0882
+epoch  75/300    31s | eps 11 | ret   -6636.1 | len   2820 | reaches   0 | pi -0.0123 | v 0.0599
+epoch 100/300    41s | eps  8 | ret   -2435.7 | len   4096 | reaches   0 | pi 0.0039 | v 0.0009
+epoch 125/300    51s | eps  8 | ret   -2239.4 | len   4096 | reaches   0 | pi 0.0091 | v 0.0004
+epoch 150/300    88s | eps  8 | ret   -2159.3 | len   4096 | reaches   0 | pi 0.0031 | v 0.0002
+epoch 175/300   140s | eps  8 | ret   -2122.5 | len   4096 | reaches   0 | pi -0.0176 | v 0.0002
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/damping_energy_dissipation/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/damping_energy_dissipation
+epoch  25/300    42s | eps 289 | ret   -6359.9 | len    113 | reaches   3 | pi -0.0103 | v 0.1680
+epoch  50/300   114s | eps 164 | ret   -6437.7 | len    200 | reaches   0 | pi 0.0163 | v 0.0882
+epoch  75/300   187s | eps 11 | ret   -6636.1 | len   2820 | reaches   0 | pi -0.0123 | v 0.0599
+epoch 100/300   258s | eps  8 | ret   -2435.7 | len   4096 | reaches   0 | pi 0.0039 | v 0.0009
+epoch 125/300   333s | eps  8 | ret   -2239.4 | len   4096 | reaches   0 | pi 0.0091 | v 0.0004
+epoch 150/300   393s | eps  8 | ret   -2159.3 | len   4096 | reaches   0 | pi 0.0031 | v 0.0002
+epoch 175/300   449s | eps  8 | ret   -2122.5 | len   4096 | reaches   0 | pi -0.0176 | v 0.0002
+
+TIMEOUT after 480s
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/damping_energy_dissipation/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/damping_energy_dissipation
+epoch  25/300   986s | eps 289 | ret   -6359.9 | len    113 | reaches   3 | pi -0.0103 | v 0.1680
+epoch  50/300  1036s | eps 164 | ret   -6437.7 | len    200 | reaches   0 | pi 0.0163 | v 0.0882
+epoch  75/300  1088s | eps 11 | ret   -6636.1 | len   2820 | reaches   0 | pi -0.0123 | v 0.0599
+epoch 100/300  1138s | eps  8 | ret   -2435.7 | len   4096 | reaches   0 | pi 0.0039 | v 0.0009
+epoch 125/300  1189s | eps  8 | ret   -2239.4 | len   4096 | reaches   0 | pi 0.0091 | v 0.0004
+epoch 150/300  1239s | eps  8 | ret   -2159.3 | len   4096 | reaches   0 | pi 0.0031 | v 0.0002
+epoch 175/300  1290s | eps  8 | ret   -2122.5 | len   4096 | reaches   0 | pi -0.0176 | v 0.0002
+epoch 200/300  1339s | eps  8 | ret   -2103.3 | len   4096 | reaches   0 | pi -0.0179 | v 0.0000
+epoch 225/300  1390s | eps  8 | ret   -2109.9 | len   4096 | reaches   0 | pi -0.0028 | v 0.0001
+epoch 250/300  1439s | eps  8 | ret   -2137.9 | len   4096 | reaches   0 | pi -0.0449 | v 0.0007
+epoch 275/300  1490s | eps  8 | ret    -860.3 | len   4096 | reaches   1 | pi 0.0217 | v 0.0024
+epoch 300/300  1540s | eps  8 | ret   -2125.2 | len   4096 | reaches   0 | pi -0.0024 | v 0.0010
+done {"epochs": 300, "wall_seconds": 1540.1, "final_return": -2875.1355626709455, "final_length": 3846.698888888889, "final_reaches_per_epoch": 0.0}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/damping_energy_dissipation
+{"reaches_per_ep": 0.0, "steps_per_reach": 61440.0, "crash_rate": 0.0, "mean_speed": 28.808292603914655, "mean_abs_tilt_deg": 16.022909375451775, "hover_tilt_frac": 0.622420496460971, "tilt_streak_frac": 0.5192220052083333, "rock_rate": 0.006510416666666667, "mean_abs_ang_vel": 0.04274631110075208, "outward_frac": 0.0, "mean_outward_deg": -14.872447698971971, "tier": 1, "score": 0.0, "eval_seconds": 4.2}

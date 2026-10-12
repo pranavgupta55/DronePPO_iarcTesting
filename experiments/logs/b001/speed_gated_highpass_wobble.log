@@ -1,0 +1,25 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/speed_gated_highpass_wobble/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/speed_gated_highpass_wobble
+epoch  25/300    73s | eps 303 | ret   -6419.1 | len    108 | reaches   1 | pi 0.0194 | v 0.1539
+epoch  50/300   142s | eps 202 | ret   -6439.2 | len    162 | reaches   1 | pi -0.0048 | v 0.1104
+epoch  75/300   212s | eps 40 | ret   -6759.3 | len    826 | reaches   1 | pi -0.0204 | v 0.0640
+epoch 100/300   274s | eps  8 | ret   -5606.1 | len   3869 | reaches   0 | pi -0.0263 | v 0.0120
+epoch 125/300   337s | eps  8 | ret   -2204.1 | len   4096 | reaches   0 | pi -0.0313 | v 0.0009
+epoch 150/300   409s | eps  8 | ret    -881.8 | len   4096 | reaches   1 | pi 0.0210 | v 0.0024
+
+TIMEOUT after 480s
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/speed_gated_highpass_wobble/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/speed_gated_highpass_wobble
+epoch  25/300    56s | eps 303 | ret   -6419.1 | len    108 | reaches   1 | pi 0.0194 | v 0.1539
+epoch  50/300   109s | eps 202 | ret   -6439.2 | len    162 | reaches   1 | pi -0.0048 | v 0.1104
+epoch  75/300   163s | eps 40 | ret   -6759.3 | len    826 | reaches   1 | pi -0.0204 | v 0.0640
+epoch 100/300   215s | eps  8 | ret   -5606.1 | len   3869 | reaches   0 | pi -0.0263 | v 0.0120
+epoch 125/300   268s | eps  8 | ret   -2204.1 | len   4096 | reaches   0 | pi -0.0313 | v 0.0009
+epoch 150/300   317s | eps  8 | ret    -881.8 | len   4096 | reaches   1 | pi 0.0210 | v 0.0024
+epoch 175/300   342s | eps  8 | ret   -2105.9 | len   4096 | reaches   0 | pi 0.0040 | v 0.0002
+epoch 200/300   367s | eps  8 | ret   -2090.8 | len   4096 | reaches   0 | pi 0.0132 | v 0.0001
+epoch 225/300   392s | eps  8 | ret   -2091.5 | len   4096 | reaches   0 | pi -0.0013 | v 0.0000
+epoch 250/300   417s | eps  8 | ret   -2085.5 | len   4096 | reaches   0 | pi -0.0329 | v 0.0000
+epoch 275/300   442s | eps  8 | ret   -2078.6 | len   4096 | reaches   0 | pi 0.0513 | v 0.0000
+epoch 300/300   468s | eps  8 | ret   -2087.8 | len   4096 | reaches   0 | pi -0.0166 | v 0.0000
+done {"epochs": 300, "wall_seconds": 467.8, "final_return": -2127.9209834165913, "final_length": 4052.4333333333334, "final_reaches_per_epoch": 0.0}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/speed_gated_highpass_wobble
+{"reaches_per_ep": 0.0, "steps_per_reach": 61440.0, "crash_rate": 0.0, "mean_speed": 10.888286959302842, "mean_abs_tilt_deg": 0.8963528261183018, "hover_tilt_frac": 0.0013215027373985274, "tilt_streak_frac": 0.0, "rock_rate": 0.009765625, "mean_abs_ang_vel": 0.06141969455624183, "outward_frac": 0.0, "mean_outward_deg": -29.807331699489602, "tier": 2, "score": 0.0, "eval_seconds": 3.9}

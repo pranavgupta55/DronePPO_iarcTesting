@@ -1,0 +1,27 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/progress_coverage_bonus/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/progress_coverage_bonus
+epoch  25/300    64s | eps 295 | ret   -6325.8 | len    111 | reaches   1 | pi 0.0229 | v 0.1438
+epoch  50/300   123s | eps 187 | ret   -6397.5 | len    174 | reaches   0 | pi -0.0028 | v 0.1244
+epoch  75/300   181s | eps 13 | ret   -6855.6 | len   2743 | reaches   0 | pi 0.0193 | v 0.0557
+epoch 100/300   238s | eps  9 | ret   -4144.6 | len   3350 | reaches   0 | pi -0.0253 | v 0.0062
+epoch 125/300   294s | eps  8 | ret     228.4 | len   4096 | reaches   2 | pi 0.0039 | v 0.0600
+epoch 150/300   352s | eps  8 | ret     330.5 | len   4096 | reaches   2 | pi 0.0148 | v 0.0427
+epoch 175/300   414s | eps  8 | ret   -2093.2 | len   4096 | reaches   0 | pi 0.0146 | v 0.0052
+epoch 200/300   477s | eps  8 | ret   -2087.7 | len   4096 | reaches   0 | pi -0.0159 | v 0.0003
+
+TIMEOUT after 480s
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/progress_coverage_bonus/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/progress_coverage_bonus
+epoch  25/300    56s | eps 295 | ret   -6325.8 | len    111 | reaches   1 | pi 0.0229 | v 0.1438
+epoch  50/300   110s | eps 187 | ret   -6397.5 | len    174 | reaches   0 | pi -0.0028 | v 0.1244
+epoch  75/300   164s | eps 13 | ret   -6855.6 | len   2743 | reaches   0 | pi 0.0193 | v 0.0557
+epoch 100/300   215s | eps  9 | ret   -4144.6 | len   3350 | reaches   0 | pi -0.0253 | v 0.0062
+epoch 125/300   266s | eps  8 | ret     228.4 | len   4096 | reaches   2 | pi 0.0039 | v 0.0600
+epoch 150/300   311s | eps  8 | ret     330.5 | len   4096 | reaches   2 | pi 0.0148 | v 0.0427
+epoch 175/300   337s | eps  8 | ret   -2093.2 | len   4096 | reaches   0 | pi 0.0146 | v 0.0052
+epoch 200/300   363s | eps  8 | ret   -2087.7 | len   4096 | reaches   0 | pi -0.0159 | v 0.0003
+epoch 225/300   388s | eps  8 | ret    -819.5 | len   4096 | reaches   1 | pi -0.0209 | v 0.0407
+epoch 250/300   415s | eps  9 | ret   -1993.8 | len   3519 | reaches   1 | pi 0.0025 | v 0.0186
+epoch 275/300   440s | eps  8 | ret   -2060.1 | len   4096 | reaches   0 | pi 0.0162 | v 0.0002
+epoch 300/300   466s | eps  8 | ret    -804.8 | len   4096 | reaches   1 | pi -0.0014 | v 0.0442
+done {"epochs": 300, "wall_seconds": 466.5, "final_return": -1136.216105581199, "final_length": 4027.1444444444446, "final_reaches_per_epoch": 0.9}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/progress_coverage_bonus
+{"reaches_per_ep": 0.0, "steps_per_reach": 61440.0, "crash_rate": 0.0, "mean_speed": 7.699996529215557, "mean_abs_tilt_deg": 0.672990105660714, "hover_tilt_frac": 0.0011569876875787875, "tilt_streak_frac": 0.0, "rock_rate": 0.010579427083333334, "mean_abs_ang_vel": 0.028461018148169037, "outward_frac": 0.0, "mean_outward_deg": -29.643846944866365, "tier": 2, "score": 0.0, "eval_seconds": 4.2}

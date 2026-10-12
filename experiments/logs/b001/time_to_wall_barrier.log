@@ -1,0 +1,24 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/time_to_wall_barrier/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/time_to_wall_barrier
+epoch  25/300    94s | eps 304 | ret   -6331.5 | len    108 | reaches   2 | pi -0.0026 | v 0.1327
+epoch  50/300   187s | eps 213 | ret   -6428.4 | len    154 | reaches   0 | pi 0.0100 | v 0.1244
+epoch  75/300   286s | eps 99 | ret   -6331.4 | len    325 | reaches   0 | pi 0.0029 | v 0.0794
+epoch 100/300   383s | eps 11 | ret   -4056.5 | len   3139 | reaches   0 | pi 0.0023 | v 0.0452
+epoch 125/300   470s | eps  9 | ret   -1833.3 | len   3521 | reaches   0 | pi -0.0039 | v 0.0106
+
+TIMEOUT after 480s
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/time_to_wall_barrier/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/time_to_wall_barrier
+epoch  25/300    57s | eps 304 | ret   -6331.5 | len    108 | reaches   2 | pi -0.0026 | v 0.1327
+epoch  50/300   112s | eps 213 | ret   -6428.4 | len    154 | reaches   0 | pi 0.0100 | v 0.1244
+epoch  75/300   166s | eps 99 | ret   -6331.4 | len    325 | reaches   0 | pi 0.0029 | v 0.0794
+epoch 100/300   221s | eps 11 | ret   -4056.5 | len   3139 | reaches   0 | pi 0.0023 | v 0.0452
+epoch 125/300   274s | eps  9 | ret   -1833.3 | len   3521 | reaches   0 | pi -0.0039 | v 0.0106
+epoch 150/300   324s | eps  8 | ret    1344.0 | len   3871 | reaches   2 | pi -0.0235 | v 0.1268
+epoch 175/300   350s | eps  8 | ret    7271.7 | len   4096 | reaches   6 | pi 0.0220 | v 0.1476
+epoch 200/300   376s | eps  8 | ret    8571.9 | len   4096 | reaches   7 | pi 0.0399 | v 0.0912
+epoch 225/300   402s | eps  8 | ret    3449.4 | len   4096 | reaches   3 | pi 0.0149 | v 0.0377
+epoch 250/300   428s | eps  9 | ret    6277.1 | len   3623 | reaches   7 | pi 0.0027 | v 0.2166
+epoch 275/300   453s | eps  8 | ret   16178.8 | len   4096 | reaches  13 | pi 0.0010 | v 0.2731
+epoch 300/300   479s | eps  8 | ret   12446.9 | len   4096 | reaches  10 | pi -0.0333 | v 0.3931
+done {"epochs": 300, "wall_seconds": 479.5, "final_return": 12818.213042982346, "final_length": 4045.2555555555555, "final_reaches_per_epoch": 10.7}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/time_to_wall_barrier
+{"reaches_per_ep": 0.3333333333333333, "steps_per_reach": 811.8, "crash_rate": 0.0, "mean_speed": 12.864660563940514, "mean_abs_tilt_deg": 5.694749350308579, "hover_tilt_frac": 0.025900981586300782, "tilt_streak_frac": 0.022314453125, "rock_rate": 0.016276041666666668, "mean_abs_ang_vel": 0.03632196089721169, "outward_frac": 0.0, "mean_outward_deg": -24.275266371105275, "tier": 2, "score": 0.009999999999999998, "eval_seconds": 4.5}

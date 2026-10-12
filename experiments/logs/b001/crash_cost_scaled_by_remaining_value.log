@@ -1,0 +1,24 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/crash_cost_scaled_by_remaining_value/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/crash_cost_scaled_by_remaining_value
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/crash_cost_scaled_by_remaining_value/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/crash_cost_scaled_by_remaining_value
+epoch  25/300    15s | eps 305 | ret   -6315.0 | len    107 | reaches   2 | pi 0.0085 | v 0.1225
+epoch  50/300    29s | eps 206 | ret   -6413.2 | len    159 | reaches   0 | pi 0.0022 | v 0.1216
+epoch  75/300    44s | eps 21 | ret   -7049.5 | len   1565 | reaches   0 | pi 0.0114 | v 0.0567
+epoch 100/300    59s | eps  8 | ret   -2424.0 | len   4096 | reaches   0 | pi -0.0128 | v 0.0041
+epoch 125/300    74s | eps  8 | ret   -2193.9 | len   4096 | reaches   0 | pi 0.0108 | v 0.0011
+epoch 150/300    89s | eps  8 | ret   -2143.0 | len   4096 | reaches   0 | pi 0.0134 | v 0.0003
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/crash_cost_scaled_by_remaining_value/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/crash_cost_scaled_by_remaining_value
+epoch  25/300    11s | eps 305 | ret   -6315.0 | len    107 | reaches   2 | pi 0.0085 | v 0.1225
+epoch  50/300    21s | eps 206 | ret   -6413.2 | len    159 | reaches   0 | pi 0.0022 | v 0.1216
+epoch  75/300    31s | eps 21 | ret   -7049.5 | len   1565 | reaches   0 | pi 0.0114 | v 0.0567
+epoch 100/300    41s | eps  8 | ret   -2424.0 | len   4096 | reaches   0 | pi -0.0128 | v 0.0041
+epoch 125/300    51s | eps  8 | ret   -2193.9 | len   4096 | reaches   0 | pi 0.0108 | v 0.0011
+epoch 150/300    61s | eps  8 | ret   -2143.0 | len   4096 | reaches   0 | pi 0.0134 | v 0.0003
+epoch 175/300    72s | eps  8 | ret   -2107.1 | len   4096 | reaches   0 | pi -0.0295 | v 0.0001
+epoch 200/300    82s | eps  8 | ret   -2081.4 | len   4096 | reaches   0 | pi -0.0056 | v 0.0002
+epoch 225/300    92s | eps  8 | ret   -2076.6 | len   4096 | reaches   0 | pi 0.0004 | v 0.0000
+epoch 250/300   103s | eps  8 | ret   -2076.3 | len   4096 | reaches   0 | pi -0.0070 | v 0.0001
+epoch 275/300   114s | eps  8 | ret   -2070.4 | len   4096 | reaches   0 | pi -0.0016 | v 0.0000
+epoch 300/300   126s | eps  8 | ret   -2068.8 | len   4096 | reaches   0 | pi 0.0210 | v 0.0000
+done {"epochs": 300, "wall_seconds": 126.0, "final_return": -1563.364295327911, "final_length": 4096.0, "final_reaches_per_epoch": 0.4}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/crash_cost_scaled_by_remaining_value
+{"reaches_per_ep": 0.03333333333333333, "steps_per_reach": 748.0, "crash_rate": 0.0, "mean_speed": 14.913204453757356, "mean_abs_tilt_deg": 0.45974802280315147, "hover_tilt_frac": 0.0013342991117380198, "tilt_streak_frac": 0.0, "rock_rate": 0.009765625, "mean_abs_ang_vel": 0.017135206642370466, "outward_frac": 0.0, "mean_outward_deg": -29.56926344537817, "tier": 2, "score": 0.001, "eval_seconds": 0.7}

@@ -1,0 +1,18 @@
+{
+ "epochs": 300,
+ "wall_seconds": 435.0,
+ "last": {
+  "epoch": 300,
+  "time": 434.95,
+  "episodes": 9,
+  "mean_return": 216713.39950448196,
+  "mean_length": 3655.6666666666665,
+  "total_reaches": 82,
+  "pi_loss": -0.01870388351380825,
+  "v_loss": 0.04947585240006447,
+  "actor_lr": 2.999999999999999e-05
+ },
+ "final_return": 201278.34549600547,
+ "final_length": 3819.0688888888885,
+ "final_reaches_per_epoch": 71.2
+}

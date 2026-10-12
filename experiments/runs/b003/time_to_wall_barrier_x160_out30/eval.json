@@ -1,0 +1,16 @@
+{
+ "reaches_per_ep": 6.2,
+ "steps_per_reach": 290.10752688172045,
+ "crash_rate": 0.0,
+ "mean_speed": 66.21687446563058,
+ "mean_abs_tilt_deg": 4.703267843367123,
+ "hover_tilt_frac": 0.0028886866368564757,
+ "tilt_streak_frac": 0.0,
+ "rock_rate": 0.039876302083333336,
+ "mean_abs_ang_vel": 0.08576835720342534,
+ "outward_frac": 0.9907063802083333,
+ "mean_outward_deg": 30.92880512806767,
+ "tier": 3,
+ "score": 6.2,
+ "eval_seconds": 4.2
+}

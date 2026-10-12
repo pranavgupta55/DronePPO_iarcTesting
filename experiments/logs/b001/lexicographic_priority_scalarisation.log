@@ -1,0 +1,26 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/lexicographic_priority_scalarisation/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/lexicographic_priority_scalarisation
+epoch  25/300    64s | eps 299 | ret   -6318.1 | len    110 | reaches   1 | pi 0.0067 | v 0.1202
+epoch  50/300   128s | eps 196 | ret   -6558.1 | len    167 | reaches   0 | pi 0.0293 | v 0.1314
+epoch  75/300   188s | eps 110 | ret   -6566.1 | len    300 | reaches   0 | pi -0.0194 | v 0.0422
+epoch 100/300   248s | eps  8 | ret   -2453.7 | len   4096 | reaches   0 | pi -0.0108 | v 0.0016
+epoch 125/300   305s | eps  8 | ret   -2061.7 | len   4096 | reaches   0 | pi -0.0244 | v 0.0598
+epoch 150/300   363s | eps  8 | ret   -2835.5 | len   4096 | reaches   0 | pi -0.0088 | v 0.0003
+epoch 175/300   422s | eps  8 | ret   -3351.8 | len   4096 | reaches   0 | pi 0.0037 | v 0.0001
+
+TIMEOUT after 480s
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/lexicographic_priority_scalarisation/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/lexicographic_priority_scalarisation
+epoch  25/300    55s | eps 299 | ret   -6318.1 | len    110 | reaches   1 | pi 0.0067 | v 0.1202
+epoch  50/300   108s | eps 196 | ret   -6558.1 | len    167 | reaches   0 | pi 0.0293 | v 0.1314
+epoch  75/300   161s | eps 110 | ret   -6566.1 | len    300 | reaches   0 | pi -0.0194 | v 0.0422
+epoch 100/300   213s | eps  8 | ret   -2453.7 | len   4096 | reaches   0 | pi -0.0108 | v 0.0016
+epoch 125/300   265s | eps  8 | ret   -2061.7 | len   4096 | reaches   0 | pi -0.0244 | v 0.0598
+epoch 150/300   317s | eps  8 | ret   -2835.5 | len   4096 | reaches   0 | pi -0.0088 | v 0.0003
+epoch 175/300   369s | eps  8 | ret   -3351.8 | len   4096 | reaches   0 | pi 0.0037 | v 0.0001
+epoch 200/300   422s | eps  8 | ret   -3589.5 | len   4096 | reaches   0 | pi -0.0267 | v 0.0002
+epoch 225/300   469s | eps  8 | ret   -3434.2 | len   4096 | reaches   0 | pi -0.0139 | v 0.0001
+epoch 250/300   494s | eps  8 | ret   -3373.6 | len   4096 | reaches   0 | pi -0.0114 | v 0.0002
+epoch 275/300   519s | eps  8 | ret   -3391.5 | len   4096 | reaches   0 | pi -0.0057 | v 0.0001
+epoch 300/300   544s | eps  9 | ret   -4011.7 | len   3752 | reaches   0 | pi 0.0167 | v 0.0536
+done {"epochs": 300, "wall_seconds": 544.4, "final_return": -3715.724764559645, "final_length": 3992.9444444444443, "final_reaches_per_epoch": 0.0}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/lexicographic_priority_scalarisation
+{"reaches_per_ep": 0.0, "steps_per_reach": 48518.0, "crash_rate": 0.36666666666666664, "mean_speed": 24.777677334796795, "mean_abs_tilt_deg": 0.5645058343872661, "hover_tilt_frac": 0.0023143277929728594, "tilt_streak_frac": 0.0, "rock_rate": 0.1112988993775506, "mean_abs_ang_vel": 0.04466252367997668, "outward_frac": 0.0, "mean_outward_deg": -29.732818180357818, "tier": 0, "score": 0.0, "eval_seconds": 3.9}

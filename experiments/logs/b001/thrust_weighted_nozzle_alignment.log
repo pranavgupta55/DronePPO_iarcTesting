@@ -1,0 +1,24 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/thrust_weighted_nozzle_alignment/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/thrust_weighted_nozzle_alignment
+epoch  25/300    94s | eps 309 | ret   -6256.2 | len    106 | reaches   2 | pi -0.0390 | v 0.1191
+epoch  50/300   187s | eps 192 | ret   -6434.2 | len    170 | reaches   0 | pi -0.0427 | v 0.1523
+epoch  75/300   286s | eps 73 | ret   -6689.6 | len    454 | reaches   0 | pi -0.0123 | v 0.2127
+epoch 100/300   383s | eps  8 | ret   -2394.0 | len   4096 | reaches   0 | pi -0.0172 | v 0.0009
+epoch 125/300   470s | eps  8 | ret   -1965.5 | len   4096 | reaches   0 | pi -0.0233 | v 0.0003
+
+TIMEOUT after 480s
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/thrust_weighted_nozzle_alignment/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/thrust_weighted_nozzle_alignment
+epoch  25/300    56s | eps 309 | ret   -6256.2 | len    106 | reaches   2 | pi -0.0390 | v 0.1191
+epoch  50/300   113s | eps 192 | ret   -6434.2 | len    170 | reaches   0 | pi -0.0427 | v 0.1523
+epoch  75/300   168s | eps 73 | ret   -6689.6 | len    454 | reaches   0 | pi -0.0123 | v 0.2127
+epoch 100/300   222s | eps  8 | ret   -2394.0 | len   4096 | reaches   0 | pi -0.0172 | v 0.0009
+epoch 125/300   277s | eps  8 | ret   -1965.5 | len   4096 | reaches   0 | pi -0.0233 | v 0.0003
+epoch 150/300   325s | eps  9 | ret   -3862.9 | len   3482 | reaches   0 | pi -0.0044 | v 0.0038
+epoch 175/300   351s | eps  8 | ret   -2578.3 | len   4018 | reaches   0 | pi -0.0109 | v 0.0003
+epoch 200/300   377s | eps  8 | ret   -1854.5 | len   4096 | reaches   0 | pi 0.0082 | v 0.0000
+epoch 225/300   402s | eps  8 | ret   -1851.7 | len   4096 | reaches   0 | pi -0.0231 | v 0.0001
+epoch 250/300   427s | eps  8 | ret   -1841.5 | len   4096 | reaches   0 | pi -0.0106 | v 0.0000
+epoch 275/300   453s | eps  8 | ret   -2579.3 | len   4058 | reaches   0 | pi 0.0267 | v 0.0049
+epoch 300/300   478s | eps 11 | ret   -3122.8 | len   3245 | reaches   0 | pi 0.0006 | v 0.0053
+done {"epochs": 300, "wall_seconds": 477.6, "final_return": -1816.1470340605924, "final_length": 3885.611363636364, "final_reaches_per_epoch": 0.4}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/thrust_weighted_nozzle_alignment
+{"reaches_per_ep": 0.0, "steps_per_reach": 61440.0, "crash_rate": 0.0, "mean_speed": 6.035747263652123, "mean_abs_tilt_deg": 4.533531034669131, "hover_tilt_frac": 0.0014052886839985605, "tilt_streak_frac": 0.0, "rock_rate": 0.008951822916666668, "mean_abs_ang_vel": 0.019878584359720224, "outward_frac": 0.0, "mean_outward_deg": -25.68729389279913, "tier": 2, "score": 0.0, "eval_seconds": 4.2}

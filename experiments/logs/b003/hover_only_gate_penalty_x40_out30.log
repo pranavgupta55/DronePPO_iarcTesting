@@ -1,0 +1,16 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b003/hover_only_gate_penalty_x40_out30/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b003/hover_only_gate_penalty_x40_out30
+epoch  25/300    51s | eps 277 | ret   -5263.3 | len    118 | reaches   1 | pi -0.0037 | v 0.1627
+epoch  50/300    99s | eps 86 | ret     806.6 | len    375 | reaches   0 | pi -0.0491 | v 0.1262
+epoch  75/300   150s | eps  9 | ret  110504.5 | len   3594 | reaches  13 | pi 0.0095 | v 0.2077
+epoch 100/300   203s | eps  8 | ret  175989.5 | len   4096 | reaches  43 | pi -0.0209 | v 0.2549
+epoch 125/300   253s | eps  8 | ret  182992.8 | len   3906 | reaches  51 | pi 0.0112 | v 0.1467
+epoch 150/300   304s | eps  9 | ret  215350.3 | len   3879 | reaches  82 | pi -0.0021 | v 0.0979
+epoch 175/300   356s | eps  9 | ret  189140.3 | len   3670 | reaches  67 | pi 0.0015 | v 0.0944
+epoch 200/300   406s | eps 10 | ret  221788.9 | len   3578 | reaches 102 | pi 0.0319 | v 0.0591
+epoch 225/300   458s | eps 10 | ret  239744.2 | len   3500 | reaches 117 | pi -0.0267 | v 0.0261
+epoch 250/300   509s | eps  8 | ret  289023.6 | len   3853 | reaches 120 | pi 0.0012 | v 0.0183
+epoch 275/300   561s | eps  8 | ret  313294.4 | len   4096 | reaches 130 | pi -0.0009 | v 0.0156
+epoch 300/300   613s | eps 10 | ret  246626.7 | len   3201 | reaches 130 | pi 0.0265 | v 0.0169
+done {"epochs": 300, "wall_seconds": 613.2, "final_return": 276570.73931241524, "final_length": 3580.636818181818, "final_reaches_per_epoch": 132.7}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b003/hover_only_gate_penalty_x40_out30
+{"reaches_per_ep": 8.6, "steps_per_reach": 218.30620155038758, "crash_rate": 0.13333333333333333, "mean_speed": 97.7817696694375, "mean_abs_tilt_deg": 8.23983763617008, "hover_tilt_frac": 0.023772078393418824, "tilt_streak_frac": 0.0, "rock_rate": 0.15139026728792745, "mean_abs_ang_vel": 0.24440532848028204, "outward_frac": 0.997880536257969, "mean_outward_deg": 29.101200391540267, "tier": 0, "score": 0.086, "eval_seconds": 3.1}

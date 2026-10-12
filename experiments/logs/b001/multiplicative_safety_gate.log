@@ -1,0 +1,26 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/multiplicative_safety_gate/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/multiplicative_safety_gate
+epoch  25/300    64s | eps 315 | ret   -6322.6 | len    104 | reaches   1 | pi 0.0048 | v 0.1086
+epoch  50/300   127s | eps 188 | ret   -6523.4 | len    175 | reaches   0 | pi -0.0446 | v 0.1216
+epoch  75/300   187s | eps 77 | ret   -6544.2 | len    433 | reaches   0 | pi 0.0040 | v 0.0732
+epoch 100/300   248s | eps 12 | ret   -3419.5 | len   3033 | reaches   1 | pi -0.0303 | v 0.0474
+epoch 125/300   304s | eps  8 | ret   -2131.3 | len   4096 | reaches   0 | pi -0.0303 | v 0.0005
+epoch 150/300   363s | eps  8 | ret   -2106.2 | len   4096 | reaches   0 | pi 0.0519 | v 0.0004
+epoch 175/300   422s | eps  8 | ret   -4095.4 | len   3616 | reaches   0 | pi -0.0092 | v 0.0029
+
+TIMEOUT after 480s
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/multiplicative_safety_gate/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/multiplicative_safety_gate
+epoch  25/300    56s | eps 315 | ret   -6322.6 | len    104 | reaches   1 | pi 0.0048 | v 0.1086
+epoch  50/300   108s | eps 188 | ret   -6523.4 | len    175 | reaches   0 | pi -0.0446 | v 0.1216
+epoch  75/300   160s | eps 77 | ret   -6544.2 | len    433 | reaches   0 | pi 0.0040 | v 0.0732
+epoch 100/300   211s | eps 12 | ret   -3419.5 | len   3033 | reaches   1 | pi -0.0303 | v 0.0474
+epoch 125/300   264s | eps  8 | ret   -2131.3 | len   4096 | reaches   0 | pi -0.0303 | v 0.0005
+epoch 150/300   295s | eps  8 | ret   -2106.2 | len   4096 | reaches   0 | pi 0.0519 | v 0.0004
+epoch 175/300   320s | eps  8 | ret   -4095.4 | len   3616 | reaches   0 | pi -0.0092 | v 0.0029
+epoch 200/300   346s | eps  9 | ret   -3318.0 | len   3909 | reaches   0 | pi -0.0125 | v 0.0019
+epoch 225/300   371s | eps  8 | ret   -2082.2 | len   4096 | reaches   0 | pi -0.0162 | v 0.0002
+epoch 250/300   396s | eps  8 | ret   -2085.1 | len   4096 | reaches   0 | pi -0.0426 | v 0.0001
+epoch 275/300   420s | eps  8 | ret   -2062.7 | len   4096 | reaches   0 | pi -0.0166 | v 0.0001
+epoch 300/300   446s | eps  8 | ret   -2068.1 | len   4096 | reaches   0 | pi -0.0202 | v 0.0001
+done {"epochs": 300, "wall_seconds": 445.9, "final_return": -2769.328167916187, "final_length": 3976.0944444444444, "final_reaches_per_epoch": 0.0}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/multiplicative_safety_gate
+{"reaches_per_ep": 0.0, "steps_per_reach": 59747.0, "crash_rate": 0.06666666666666667, "mean_speed": 14.573084508797475, "mean_abs_tilt_deg": 12.026307310288797, "hover_tilt_frac": 0.3034629688463623, "tilt_streak_frac": 0.24779486836159137, "rock_rate": 0.02008469044470852, "mean_abs_ang_vel": 0.03351452740314585, "outward_frac": 0.0, "mean_outward_deg": -19.066973572613733, "tier": 0, "score": 0.0, "eval_seconds": 4.2}

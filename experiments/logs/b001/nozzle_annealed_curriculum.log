@@ -1,0 +1,26 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/nozzle_annealed_curriculum/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/nozzle_annealed_curriculum
+epoch  25/300    65s | eps 295 | ret   -6278.4 | len    111 | reaches   1 | pi -0.0142 | v 0.1555
+epoch  50/300   125s | eps 151 | ret   -6370.8 | len    218 | reaches   0 | pi -0.0316 | v 0.1345
+epoch  75/300   183s | eps  8 | ret   -2474.7 | len   4096 | reaches   0 | pi -0.0140 | v 0.0011
+epoch 100/300   241s | eps  8 | ret   -2085.3 | len   4096 | reaches   0 | pi 0.0139 | v 0.0004
+epoch 125/300   298s | eps  8 | ret   -2023.0 | len   4096 | reaches   0 | pi -0.0138 | v 0.0005
+epoch 150/300   358s | eps 10 | ret   -2930.7 | len   3332 | reaches   0 | pi 0.0001 | v 0.0033
+epoch 175/300   422s | eps  8 | ret   -2047.5 | len   4096 | reaches   0 | pi -0.0259 | v 0.0002
+
+TIMEOUT after 480s
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/nozzle_annealed_curriculum/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/nozzle_annealed_curriculum
+epoch  25/300    57s | eps 295 | ret   -6278.4 | len    111 | reaches   1 | pi -0.0142 | v 0.1555
+epoch  50/300   111s | eps 151 | ret   -6370.8 | len    218 | reaches   0 | pi -0.0316 | v 0.1345
+epoch  75/300   164s | eps  8 | ret   -2474.7 | len   4096 | reaches   0 | pi -0.0140 | v 0.0011
+epoch 100/300   219s | eps  8 | ret   -2085.3 | len   4096 | reaches   0 | pi 0.0139 | v 0.0004
+epoch 125/300   274s | eps  8 | ret   -2023.0 | len   4096 | reaches   0 | pi -0.0138 | v 0.0005
+epoch 150/300   319s | eps 10 | ret   -2930.7 | len   3332 | reaches   0 | pi 0.0001 | v 0.0033
+epoch 175/300   344s | eps  8 | ret   -2047.5 | len   4096 | reaches   0 | pi -0.0259 | v 0.0002
+epoch 200/300   370s | eps  8 | ret   -2060.5 | len   4096 | reaches   0 | pi -0.0329 | v 0.0002
+epoch 225/300   394s | eps  8 | ret   -2059.9 | len   4096 | reaches   0 | pi -0.0084 | v 0.0001
+epoch 250/300   419s | eps  8 | ret   -2061.5 | len   4096 | reaches   0 | pi -0.0575 | v 0.0000
+epoch 275/300   445s | eps 12 | ret   -4401.5 | len   2779 | reaches   0 | pi -0.0048 | v 0.1498
+epoch 300/300   471s | eps  9 | ret   -2576.2 | len   3796 | reaches   0 | pi 0.0115 | v 0.0307
+done {"epochs": 300, "wall_seconds": 470.6, "final_return": -2479.6448397456547, "final_length": 3892.647222222222, "final_reaches_per_epoch": 0.0}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/nozzle_annealed_curriculum
+{"reaches_per_ep": 0.0, "steps_per_reach": 61440.0, "crash_rate": 0.0, "mean_speed": 11.702467821423399, "mean_abs_tilt_deg": 1.927103283315137, "hover_tilt_frac": 0.0016683537659805796, "tilt_streak_frac": 0.002978515625, "rock_rate": 0.013020833333333334, "mean_abs_ang_vel": 0.021310940252142228, "outward_frac": 0.0, "mean_outward_deg": -28.196825817503857, "tier": 2, "score": 0.0, "eval_seconds": 4.3}

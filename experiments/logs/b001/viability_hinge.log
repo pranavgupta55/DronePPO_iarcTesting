@@ -1,0 +1,26 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/viability_hinge/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/viability_hinge
+epoch  25/300    71s | eps 293 | ret   -6317.2 | len    112 | reaches   1 | pi -0.0164 | v 0.1345
+epoch  50/300   138s | eps 196 | ret   -6436.2 | len    167 | reaches   0 | pi -0.0218 | v 0.1084
+epoch  75/300   204s | eps 37 | ret   -6502.5 | len    858 | reaches   0 | pi -0.0246 | v 0.0570
+epoch 100/300   271s | eps  9 | ret   -1573.8 | len   3771 | reaches   1 | pi 0.0177 | v 0.0654
+epoch 125/300   337s | eps  8 | ret    9704.2 | len   4096 | reaches   8 | pi 0.0085 | v 0.1711
+epoch 150/300   403s | eps  8 | ret    3404.3 | len   4096 | reaches   3 | pi 0.0083 | v 0.0319
+epoch 175/300   469s | eps  8 | ret    8536.7 | len   4096 | reaches   7 | pi -0.0072 | v 0.2288
+
+TIMEOUT after 480s
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/viability_hinge/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/viability_hinge
+epoch  25/300    57s | eps 293 | ret   -6317.2 | len    112 | reaches   1 | pi -0.0164 | v 0.1345
+epoch  50/300   111s | eps 196 | ret   -6436.2 | len    167 | reaches   0 | pi -0.0218 | v 0.1084
+epoch  75/300   167s | eps 37 | ret   -6502.5 | len    858 | reaches   0 | pi -0.0246 | v 0.0570
+epoch 100/300   222s | eps  9 | ret   -1573.8 | len   3771 | reaches   1 | pi 0.0177 | v 0.0654
+epoch 125/300   276s | eps  8 | ret    9704.2 | len   4096 | reaches   8 | pi 0.0085 | v 0.1711
+epoch 150/300   329s | eps  8 | ret    3404.3 | len   4096 | reaches   3 | pi 0.0083 | v 0.0319
+epoch 175/300   354s | eps  8 | ret    8536.7 | len   4096 | reaches   7 | pi -0.0072 | v 0.2288
+epoch 200/300   379s | eps  8 | ret    6055.3 | len   4096 | reaches   5 | pi -0.0025 | v 0.1088
+epoch 225/300   403s | eps  8 | ret   17467.7 | len   4096 | reaches  14 | pi -0.0191 | v 0.4246
+epoch 250/300   428s | eps  8 | ret   17527.2 | len   4096 | reaches  14 | pi 0.0532 | v 0.1257
+epoch 275/300   453s | eps  9 | ret   19345.3 | len   3874 | reaches  18 | pi -0.0142 | v 0.4178
+epoch 300/300   478s | eps 10 | ret   12696.7 | len   3556 | reaches  14 | pi 0.0040 | v 0.2997
+done {"epochs": 300, "wall_seconds": 477.9, "final_return": 10959.855112058014, "final_length": 3716.597777777778, "final_reaches_per_epoch": 11.0}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/viability_hinge
+{"reaches_per_ep": 0.36666666666666664, "steps_per_reach": 829.0, "crash_rate": 0.1, "mean_speed": 13.30650159261592, "mean_abs_tilt_deg": 2.3067232283525727, "hover_tilt_frac": 0.002210868555503948, "tilt_streak_frac": 0.008024442653773839, "rock_rate": 0.020984421165726564, "mean_abs_ang_vel": 0.0644544643258324, "outward_frac": 0.0, "mean_outward_deg": -27.988312478547172, "tier": 0, "score": 0.0036666666666666666, "eval_seconds": 3.7}

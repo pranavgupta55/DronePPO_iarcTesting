@@ -1,0 +1,24 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/thrust_asymmetry_at_hover/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/thrust_asymmetry_at_hover
+epoch  25/300    98s | eps 309 | ret   -6330.2 | len    106 | reaches   1 | pi -0.0157 | v 0.1105
+epoch  50/300   187s | eps 197 | ret   -6420.5 | len    167 | reaches   0 | pi -0.0189 | v 0.1297
+epoch  75/300   277s | eps 48 | ret   -6665.3 | len    674 | reaches   0 | pi 0.0311 | v 0.1291
+epoch 100/300   355s | eps  8 | ret   -2965.9 | len   3762 | reaches   0 | pi 0.0006 | v 0.0071
+epoch 125/300   446s | eps  8 | ret   -2125.5 | len   4096 | reaches   0 | pi 0.0358 | v 0.0004
+
+TIMEOUT after 480s
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/thrust_asymmetry_at_hover/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/thrust_asymmetry_at_hover
+epoch  25/300    56s | eps 309 | ret   -6330.2 | len    106 | reaches   1 | pi -0.0157 | v 0.1105
+epoch  50/300   110s | eps 197 | ret   -6420.5 | len    167 | reaches   0 | pi -0.0189 | v 0.1297
+epoch  75/300   165s | eps 48 | ret   -6665.3 | len    674 | reaches   0 | pi 0.0311 | v 0.1291
+epoch 100/300   218s | eps  8 | ret   -2965.9 | len   3762 | reaches   0 | pi 0.0006 | v 0.0071
+epoch 125/300   271s | eps  8 | ret   -2125.5 | len   4096 | reaches   0 | pi 0.0358 | v 0.0004
+epoch 150/300   326s | eps  8 | ret   -2072.9 | len   4096 | reaches   0 | pi -0.0354 | v 0.0002
+epoch 175/300   353s | eps  8 | ret   -2072.9 | len   4096 | reaches   0 | pi 0.0215 | v 0.0002
+epoch 200/300   379s | eps  9 | ret   -2554.7 | len   3740 | reaches   0 | pi -0.0034 | v 0.0021
+epoch 225/300   408s | eps  8 | ret   -2069.3 | len   4096 | reaches   0 | pi 0.0059 | v 0.0001
+epoch 250/300   434s | eps  8 | ret   -2065.0 | len   4096 | reaches   0 | pi -0.0016 | v 0.0001
+epoch 275/300   460s | eps  8 | ret   -2055.7 | len   4096 | reaches   0 | pi -0.0122 | v 0.0000
+epoch 300/300   486s | eps  8 | ret   -2060.3 | len   4096 | reaches   0 | pi 0.0077 | v 0.0000
+done {"epochs": 300, "wall_seconds": 485.8, "final_return": -2062.0877681258667, "final_length": 4096.0, "final_reaches_per_epoch": 0.0}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/thrust_asymmetry_at_hover
+{"reaches_per_ep": 0.0, "steps_per_reach": 61440.0, "crash_rate": 0.0, "mean_speed": 12.116247934927229, "mean_abs_tilt_deg": 0.7336203309076393, "hover_tilt_frac": 0.0014562647754137116, "tilt_streak_frac": 0.0, "rock_rate": 0.025227864583333336, "mean_abs_ang_vel": 0.05472087038150959, "outward_frac": 0.0, "mean_outward_deg": -29.80818404730808, "tier": 2, "score": 0.0, "eval_seconds": 4.1}

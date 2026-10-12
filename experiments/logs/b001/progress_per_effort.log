@@ -1,0 +1,27 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/progress_per_effort/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/progress_per_effort
+epoch  25/300    64s | eps 296 | ret   -6313.3 | len    110 | reaches   1 | pi 0.0050 | v 0.1170
+epoch  50/300   123s | eps 204 | ret   -6426.6 | len    161 | reaches   0 | pi -0.0178 | v 0.0938
+epoch  75/300   181s | eps 62 | ret   -6122.5 | len    531 | reaches   1 | pi 0.0103 | v 0.0515
+epoch 100/300   238s | eps  9 | ret   -4061.1 | len   3524 | reaches   0 | pi -0.0132 | v 0.0729
+epoch 125/300   294s | eps  8 | ret     649.8 | len   4096 | reaches   1 | pi 0.0111 | v 0.0282
+epoch 150/300   352s | eps  8 | ret   -1230.8 | len   3918 | reaches   0 | pi 0.0135 | v 0.0257
+epoch 175/300   414s | eps  8 | ret     793.9 | len   4096 | reaches   1 | pi -0.0201 | v 0.0624
+epoch 200/300   477s | eps  8 | ret    -464.6 | len   4096 | reaches   0 | pi -0.0566 | v 0.0635
+
+TIMEOUT after 480s
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/progress_per_effort/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/progress_per_effort
+epoch  25/300    56s | eps 296 | ret   -6313.3 | len    110 | reaches   1 | pi 0.0050 | v 0.1170
+epoch  50/300   104s | eps 204 | ret   -6426.6 | len    161 | reaches   0 | pi -0.0178 | v 0.0938
+epoch  75/300   157s | eps 62 | ret   -6122.5 | len    531 | reaches   1 | pi 0.0103 | v 0.0515
+epoch 100/300   212s | eps  9 | ret   -4061.1 | len   3524 | reaches   0 | pi -0.0132 | v 0.0729
+epoch 125/300   265s | eps  8 | ret     649.8 | len   4096 | reaches   1 | pi 0.0111 | v 0.0282
+epoch 150/300   318s | eps  8 | ret   -1230.8 | len   3918 | reaches   0 | pi 0.0135 | v 0.0257
+epoch 175/300   354s | eps  8 | ret     793.9 | len   4096 | reaches   1 | pi -0.0201 | v 0.0624
+epoch 200/300   379s | eps  8 | ret    -464.6 | len   4096 | reaches   0 | pi -0.0566 | v 0.0635
+epoch 225/300   405s | eps  8 | ret    -430.1 | len   4096 | reaches   0 | pi -0.0132 | v 0.0003
+epoch 250/300   430s | eps  8 | ret    -436.1 | len   4096 | reaches   0 | pi 0.0517 | v 0.0050
+epoch 275/300   456s | eps  9 | ret   -1063.5 | len   3841 | reaches   0 | pi 0.0031 | v 0.0267
+epoch 300/300   481s | eps  8 | ret    -429.6 | len   4096 | reaches   0 | pi -0.0108 | v 0.0001
+done {"epochs": 300, "wall_seconds": 480.9, "final_return": -302.44511632515724, "final_length": 4096.0, "final_reaches_per_epoch": 0.1}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b001/progress_per_effort
+{"reaches_per_ep": 0.0, "steps_per_reach": 61440.0, "crash_rate": 0.0, "mean_speed": 12.823519491911984, "mean_abs_tilt_deg": 0.8621172596516762, "hover_tilt_frac": 0.0012343297974927675, "tilt_streak_frac": 0.0, "rock_rate": 0.01220703125, "mean_abs_ang_vel": 0.03314119666211269, "outward_frac": 0.0, "mean_outward_deg": -29.12841585895402, "tier": 2, "score": 0.0, "eval_seconds": 4.4}
