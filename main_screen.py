@@ -67,8 +67,8 @@ toggle = True
 click = False
 
 
-RUN_INDEX = 12  # which runs/run<N>/actor.pt to fly
-EPISODE_SECONDS = 500  # time limit before the drone is reset
+RUN_INDEX = 38
+EPISODE_SECONDS = 500
 
 
 def load_run(run_index):

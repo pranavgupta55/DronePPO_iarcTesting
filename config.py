@@ -7,8 +7,8 @@ TIME_STEP_DELTA = 1.0 / PHYSICS_FPS
 GRAVITY = 50.0 * METERS_PER_PIXEL
 
 # --- Environment Dimensions ---
-ENV_WIDTH = 1500
-ENV_HEIGHT = 1000
+ENV_WIDTH = 1200
+ENV_HEIGHT = 800
 ENV_DIAG = (ENV_WIDTH ** 2 + ENV_HEIGHT ** 2) ** 0.5
 DRONE_SIZE = 10
 
@@ -46,46 +46,42 @@ INITIAL_MAX_LINEAR_VEL = 20.0
 INITIAL_MAX_ANGULAR_VEL = math.radians(60)
 
 # --- Rewards (per step unless noted) ---
-DISTANCE_REWARD = 0.3  # times (1 - distance_to_target / ENV_DIAG), so it is linear in distance
-VELOCITY_REWARD = 1.0  # times the drone's speed toward the target divided by VELOCITY_REFERENCE (clipped to +/-1), so it pays for actually approaching, not just drifting the right way
-VELOCITY_REFERENCE = 100.0  # px/s of approach speed that earns the full velocity reward
-ZONE_REWARD = 0.5  # while within REACH_DIST of the target
-OUTWARD_REWARD = 1.5  # max reward for pointing the thruster nozzles outwards (left one bottom-left, right one bottom-right); each nozzle scores 1 - |outward angle - OUTWARD_TARGET| / OUTWARD_TARGET, so 0 at neutral and negative when pointing inward
+TIME_SHAPING_REWARD = 2000.0  # times the drop in the estimated time-optimal time to reach the target (seconds), as potential-based shaping, so bang-bang is the best way to fly
+TIME_PENALTY = 0.5  # per step, so reaching sooner is always better
+TIME_OPTIMAL_ACCEL = MAX_THRUSTER_FORCE  # px/s^2 the estimate assumes the drone can accelerate and brake at (both thrusters full, same direction)
+OUTWARD_REWARD = 0  # max reward for pointing the thruster nozzles outwards (left one bottom-left, right one bottom-right); each nozzle scores 1 - |outward angle - OUTWARD_TARGET| / OUTWARD_TARGET, so 0 at neutral and negative when pointing inward
 OUTWARD_TARGET = math.pi / 6  # nozzle angle from straight down that earns the max; peaked rather than "as far as possible" so it doesn't reward pinning the angle at its limit
 # The caps on the level reward and the tilt penalty move over the training session: strict at the start, so the drone first learns to fly
 # level, then relaxed so it can tilt to move fast. They reach their END values REWARD_RAMP_END of the way through the session.
 REWARD_RAMP_END = 0.5
 # Tilt penalty: per step, -weight * |body angle| / pi. The weight starts at TILT_PENALTY_MIN each episode, ramps up slowly while the
 # drone stays non-level (|angle| > LEVEL_ANGLE), up to the cap, and falls quickly back toward the minimum once it is level again.
-LEVEL_ANGLE = math.radians(10)
+LEVEL_ANGLE = math.radians(45)
 TILT_PENALTY_MIN = 0.005
 TILT_PENALTY_MAX_START = 4.0
 TILT_PENALTY_MAX_END = 2.0
 TILT_PENALTY_RAMP_STEPS = 1800  # non-level steps for the weight to climb from the minimum to the cap
 # Tilting is only needed to move fast, so the tilt penalty is multiplied by (1 + SLOW_TILT_EXTRA * (1 - speed / SLOW_TILT_SPEED)) while slower than SLOW_TILT_SPEED.
-SLOW_TILT_EXTRA = 2.0
+SLOW_TILT_EXTRA = 0
 SLOW_TILT_SPEED = 100.0  # px/s
-TILT_PENALTY_DECAY = 0.8  # weight is multiplied by this each level step (about 7% of its value after 12 steps)
+TILT_PENALTY_DECAY = 0  # weight is multiplied by this each level step (about 7% of its value after 12 steps)
 # Level reward: per step while level, +weight * (1 - |angle| / LEVEL_ANGLE), so exactly level pays the most. The weight ramps up
 # (a long level streak pays more) and is multiplied by LEVEL_REWARD_DECAY each non-level step.
-LEVEL_REWARD_MAX_START = 1.0
-LEVEL_REWARD_MAX_END = 0.25
-LEVEL_REWARD_RAMP_STEPS = 300  # level steps for the weight to climb from 0 to the cap
-LEVEL_REWARD_DECAY = 0.5
+LEVEL_REWARD_MAX_START = 0
+LEVEL_REWARD_MAX_END = 0
+LEVEL_REWARD_RAMP_STEPS = 300 # level steps for the weight to climb from 0 to the cap
+LEVEL_REWARD_DECAY = 0
 # Angular velocity penalty: per step, -weight * (|angular velocity| - deadband) while the spin (rad/s) is above the deadband.
-ANGULAR_VELOCITY_PENALTY = 0.1
+ANGULAR_VELOCITY_PENALTY = 0.5
 ANGULAR_VELOCITY_DEADBAND = 0.3
 # Smoothness penalties, kept small and phased in late in the session (from 0 at SMOOTHNESS_RAMP_START of the way through to full at
 # SMOOTHNESS_RAMP_END), so the drone first learns to fly well and only then to fly smoothly.
 SMOOTHNESS_RAMP_START = 0.3
 SMOOTHNESS_RAMP_END = 0.7
 ACTION_CHANGE_PENALTY = 0.2  # times the mean |action - previous action|
-ANGULAR_ACCEL_PENALTY = 0.2  # times |change in angular velocity| per step (rad/s)
-LATERAL_VELOCITY_PENALTY = 0.3  # times min((lateral speed - LATERAL_VELOCITY_DEADBAND) / LATERAL_VELOCITY_REFERENCE, 2): speed perpendicular to the line to the target
-LATERAL_VELOCITY_DEADBAND = 20.0  # px/s
-LATERAL_VELOCITY_REFERENCE = 100.0  # px/s
-REACH_REWARD = 1000.0  # once per target reached (about 1000 steps of the standing rewards, so reaching has to beat hovering)
-CRASH_PENALTY = 300.0  # once, when the drone leaves the world
+ANGULAR_ACCEL_PENALTY = 0  # times |change in angular velocity| per step (rad/s)
+REACH_REWARD = 10000.0  # once per target reached (about 1000 steps of the standing rewards, so reaching has to beat hovering)
+CRASH_PENALTY = 6000.0  # once, when the drone leaves the world
 
 # --- Target Reach Conditions ---
 REACH_DIST = 20.0  # center-to-target distance below which the target counts as reached

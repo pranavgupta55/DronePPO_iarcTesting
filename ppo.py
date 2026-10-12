@@ -17,12 +17,12 @@ from torch.distributions import Normal
 from drone import Drone
 from config import (OBS_DIM, ACT_DIM, ENV_WIDTH, ENV_HEIGHT, ENV_DIAG, DRONE_SIZE, GRAVITY, TIME_STEP_DELTA, MAX_THRUSTER_FORCE,
                     THRUSTER_NEUTRAL_ANGLE, TARGET_MARGIN, REACH_DIST, REACH_SPEED_START, REACH_SPEED_END, REACH_ANGULAR_SPEED_START, REACH_ANGULAR_SPEED_END, REACH_HOLD_STEPS_START, REACH_HOLD_STEPS_END,
-                    DISTANCE_REWARD, VELOCITY_REWARD, VELOCITY_REFERENCE, ZONE_REWARD, OUTWARD_REWARD, OUTWARD_TARGET, REACH_REWARD, CRASH_PENALTY,
-                    SMOOTHNESS_RAMP_START, SMOOTHNESS_RAMP_END, ACTION_CHANGE_PENALTY, ANGULAR_ACCEL_PENALTY, LATERAL_VELOCITY_PENALTY, LATERAL_VELOCITY_DEADBAND,
-                    LATERAL_VELOCITY_REFERENCE, REWARD_RAMP_END, FAR_TARGET_MIN_DIST, FAR_TARGET_FRACTION_END, TARGET_CURRICULUM_END, SLOW_TILT_EXTRA, SLOW_TILT_SPEED, LEVEL_ANGLE, TILT_PENALTY_MIN, TILT_PENALTY_MAX_START, TILT_PENALTY_MAX_END, TILT_PENALTY_RAMP_STEPS, TILT_PENALTY_DECAY,
+                    TIME_SHAPING_REWARD, TIME_PENALTY, TIME_OPTIMAL_ACCEL, OUTWARD_REWARD, OUTWARD_TARGET, REACH_REWARD, CRASH_PENALTY,
+                    SMOOTHNESS_RAMP_START, SMOOTHNESS_RAMP_END, ACTION_CHANGE_PENALTY, ANGULAR_ACCEL_PENALTY,
+                    REWARD_RAMP_END, FAR_TARGET_MIN_DIST, FAR_TARGET_FRACTION_END, TARGET_CURRICULUM_END, SLOW_TILT_EXTRA, SLOW_TILT_SPEED, LEVEL_ANGLE, TILT_PENALTY_MIN, TILT_PENALTY_MAX_START, TILT_PENALTY_MAX_END, TILT_PENALTY_RAMP_STEPS, TILT_PENALTY_DECAY,
                     LEVEL_REWARD_MAX_START, LEVEL_REWARD_MAX_END, LEVEL_REWARD_RAMP_STEPS, LEVEL_REWARD_DECAY, ANGULAR_VELOCITY_PENALTY, ANGULAR_VELOCITY_DEADBAND)
 
-EPOCHS = 400
+EPOCHS = 250
 STEPS_PER_EPOCH = 4096  # steps each environment takes per epoch (the epoch's total is this times NUM_ENVS)
 SAVE_EVERY = 20  # epochs between checkpoints
 SNAPSHOT_EVERY = 500  # epochs between kept snapshots of the model (the checkpoint files are overwritten, the snapshots are not)
@@ -101,6 +101,7 @@ class DroneEnv:
         self.tilt_weight = TILT_PENALTY_MIN
         self.level_weight = 0.0
         self.spawn_target()
+        self.potential = -self.time_to_go()
         return self.observe()
 
     def set_ramp(self, progress):
@@ -118,6 +119,20 @@ class DroneEnv:
         """The drone's observation plus the tilt penalty weight (scaled to 0-1), so the policy can see how long it has been tilted."""
         obs = self.drone.get_observation(self.target, (self.tilt_weight / TILT_PENALTY_MAX_START,))
         return mirror_obs(obs) if self.mirrored else obs
+
+    def time_to_go(self):
+        """The least time the drone could need to reach the target and stop on it, if it could accelerate at TIME_OPTIMAL_ACCEL straight along the line to the
+        target: accelerate (bang), then brake (bang), with the switch where the remaining distance equals the braking distance. Overshooting is brake, then come back."""
+        shell = self.drone.shell
+        to_x, to_y = self.target[0] - float(shell.center[0]), self.target[1] - float(shell.center[1])
+        dist = math.hypot(to_x, to_y)
+        vel_x, vel_y = (float(shell.vel[0, 0]) + float(shell.vel[1, 0])) / 2, (float(shell.vel[0, 1]) + float(shell.vel[1, 1])) / 2
+        speed = (vel_x * to_x + vel_y * to_y) / (dist + 1e-8)  # velocity component toward the target (negative when moving away)
+        accel = TIME_OPTIMAL_ACCEL
+        if dist >= speed * abs(speed) / (2 * accel):  # not yet past the switching point
+            peak = math.sqrt(accel * dist + speed * speed / 2)  # speed at the switch
+            return (2 * peak - speed) / accel
+        return speed / accel + 2 * math.sqrt((speed * speed / (2 * accel) - dist) / accel)  # will overshoot: brake to a stop, then return
 
     def spawn_target(self):
         """Uniform over the arena, except that far_fraction of the time the target must be at least FAR_TARGET_MIN_DIST from the drone
@@ -147,12 +162,7 @@ class DroneEnv:
         to_target_x, to_target_y = self.target[0] - float(shell.center[0]), self.target[1] - float(shell.center[1])
         dist = math.hypot(to_target_x, to_target_y)
         vel_x, vel_y = (float(shell.vel[0, 0]) + float(shell.vel[1, 0])) / 2, (float(shell.vel[0, 1]) + float(shell.vel[1, 1])) / 2
-        reward = DISTANCE_REWARD * (1 - dist / ENV_DIAG)
-        approach_speed = (vel_x * to_target_x + vel_y * to_target_y) / (dist + 1e-8)  # velocity component toward the target, px/s
-        reward += VELOCITY_REWARD * max(-1.0, min(1.0, approach_speed / VELOCITY_REFERENCE))
-        if dist < REACH_DIST:
-            reward += ZONE_REWARD
-
+        reward = -TIME_PENALTY
         # Outwardness: positive when the left nozzle points bottom-left and the right nozzle points bottom-right
         left_out = self.drone.thruster_angles[0] - THRUSTER_NEUTRAL_ANGLE
         right_out = THRUSTER_NEUTRAL_ANGLE - self.drone.thruster_angles[1]
@@ -178,11 +188,9 @@ class DroneEnv:
         if self.prev_action is not None:
             smoothness += ACTION_CHANGE_PENALTY * float(np.abs(action - self.prev_action).mean())
         self.prev_action = action
-        if dist > 2 * REACH_DIST:  # the direction to the target is only meaningful away from it
-            lateral_speed = abs(vel_x * to_target_y - vel_y * to_target_x) / dist
-            smoothness += LATERAL_VELOCITY_PENALTY * min(max(0.0, lateral_speed - LATERAL_VELOCITY_DEADBAND) / LATERAL_VELOCITY_REFERENCE, 2.0)
         reward -= self.smooth_scale * smoothness
 
+        reached = False
         calm = dist < REACH_DIST and self.drone.shell.linear_velocity_magnitude < self.reach_speed and abs(self.drone.shell.angular_velocity) < self.reach_ang_speed
         self.hold_steps = self.hold_steps + 1 if calm else 0
         if self.hold_steps >= self.reach_hold:
@@ -190,6 +198,12 @@ class DroneEnv:
             reward += REACH_REWARD
             self.reaches += 1
             self.spawn_target()
+            reached = True
+
+        # Time-optimal shaping: pays the drop in the estimated time to reach the target (a finished target has none left). Undiscounted, so it telescopes and standing still far away earns nothing
+        potential = 0.0 if reached else -self.time_to_go()
+        reward += TIME_SHAPING_REWARD * (potential - self.potential)
+        self.potential = -self.time_to_go() if reached else potential
 
         x, y = self.drone.shell.center
         terminated = not (0 <= x <= ENV_WIDTH and 0 <= y <= ENV_HEIGHT)
