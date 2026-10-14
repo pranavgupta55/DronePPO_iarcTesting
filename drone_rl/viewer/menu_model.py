@@ -22,6 +22,27 @@ STATS = [
 ]
 STAT_KEYS = [s[0] for s in STATS]
 
+# one line on what each stat measures (shown under the histogram titles and next to the sort options)
+STAT_INFO = {
+    "reaches_per_min": "waypoints reached per minute of flight, random courses",
+    "crash_rate": "share of random-course flights that end by leaving the world",
+    "leg_s_median": "median seconds to reach one waypoint (strict reach rule)",
+    "mean_speed": "average speed while flying, px/s",
+    "score": "reaches/min if all three gates pass, else scaled down",
+    "fixed_reached_frac": "share of waypoints reached on the 5 fixed courses",
+    "robust.noise05.reached_frac": "share of waypoints reached with action noise 0.05",
+    "tilt_frac": "share of time tilted more than 15 degrees",
+    "nozzle_use_deg": "average nozzle swing away from straight down, degrees",
+    "mean_thrust": "average total thruster force, 0 to 2 (hover is about 0.17)",
+    "train.epochs": "training epochs (PPO) the run went through",
+    "train.wall_seconds": "wall-clock seconds the training took",
+    "model.params": "number of weights and biases in the network",
+}
+
+
+def describe(key):
+    return STAT_INFO.get(key, key)
+
 # histograms: how many of the runs shown in the current tab to include (the first N in the order the tab shows them), and which stats make up each page of the panel
 HIST_RANGES = [10, 20, 50, 100, None]  # None = all
 HIST_PAGES = [["reaches_per_min", "crash_rate", "leg_s_median", "mean_speed", "tilt_frac", "nozzle_use_deg"],
@@ -223,11 +244,29 @@ class MenuModel:
         return order
 
     # ---- cursor
-    def move(self, delta):
-        """Moves the cursor by delta rows, looping: past the last row comes the first and the other way round."""
+    def move(self, delta, stop_at_edge=False, repeating=False):
+        """Moves the cursor by delta rows, looping: past the last row comes the first and the other way round.
+        With stop_at_edge (Shift+arrow, 10 rows) a move that would cross an end stops on that end's row first; a fresh press while already on it loops to the other end,
+        a held key's repeat stays put."""
         n = len(self.entries())
-        if n:
-            self.cursor = (self.cursor + delta) % n
+        if not n:
+            return
+        target = self.cursor + delta
+        if not stop_at_edge or 0 <= target < n:
+            self.cursor = target % n
+            return
+        end = n - 1 if delta > 0 else 0
+        if self.cursor != end:
+            self.cursor = end
+        elif not repeating:
+            self.cursor = 0 if delta > 0 else n - 1
+
+    def tag_options(self, limit=6):
+        """Labels for the tag filter chips: 'all' plus the most common tags, always including the selected one. Returns (labels, selected index)."""
+        tags = self.available_tags()[:limit]
+        if self.tag and self.tag not in tags:
+            tags = tags[:-1] + [self.tag] if tags else [self.tag]
+        return ["all"] + tags, 0 if self.tag is None else 1 + tags.index(self.tag)
 
     def clamp(self, visible):
         n = len(self.entries())

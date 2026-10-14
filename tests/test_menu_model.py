@@ -108,3 +108,32 @@ def test_histogram_bins_and_ranges():
     m.set_tab(TABS.index("Best"))
     m.hist_range = 1
     assert m.hist_label() == "first 20 shown"
+
+
+def test_shift_moves_stop_on_the_edge_before_looping():
+    rows = [row(f"r{i}", created=f"2026-10-01T10:{i:02d}:00") for i in range(25)]
+    m = MenuModel(rows, [])
+    m.set_tab(TABS.index("Newest"))
+    m.cursor = 20
+    m.move(10, stop_at_edge=True)
+    assert m.cursor == 24  # would cross the bottom: stops on the last row
+    m.move(10, stop_at_edge=True)
+    assert m.cursor == 0  # a fresh press on the last row loops to the first
+    m.cursor = 24
+    m.move(10, stop_at_edge=True, repeating=True)
+    assert m.cursor == 24  # a held key's repeat stays on the edge
+    m.cursor = 3
+    m.move(-10, stop_at_edge=True)
+    assert m.cursor == 0
+    m.move(-10, stop_at_edge=True)
+    assert m.cursor == 24
+
+
+def test_option_chips_and_stat_descriptions():
+    from drone_rl.viewer.menu_model import HIST_PAGES, STAT_INFO
+    m = MenuModel(ROWS, [])
+    assert m.tag_options() == (["all", "t", "x"], 0)
+    m.tag = "x"
+    assert m.tag_options() == (["all", "t", "x"], 2)
+    for key in set(STAT_KEYS) | {k for page in HIST_PAGES for k in page}:
+        assert len(STAT_INFO[key].split()) >= 4, key  # every stat has a real sentence
