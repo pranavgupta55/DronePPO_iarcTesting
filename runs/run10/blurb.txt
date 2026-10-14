@@ -1,0 +1,2 @@
+Bigger world, 128x3 net
+Moves to a 1500x1000 world with a 128x128x128 network and a far-target curriculum. Outward reward 1.5. 1000 epochs.

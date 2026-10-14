@@ -1,0 +1,2 @@
+Overnight, 75,000 epochs
+Runs 75,000 epochs (about 9 hours) with run11's end learning rate (0.33x) and 4096-step episodes. Snapshots every 500 epochs.

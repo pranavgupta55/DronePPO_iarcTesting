@@ -1,0 +1,2 @@
+Network 18-16-8-4, 400 epochs
+Network 18-16-8-4 for 400 epochs, with the learning rate decayed linearly to 0.1x. Run15 used exponential decay to 0.33x.

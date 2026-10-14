@@ -1,0 +1,2 @@
+Small net, fast decay
+Shrinks the network to 18-16-16-4 and runs 300 epochs with the learning rate decayed exponentially to 0.01x. Run13 used 128-wide layers.

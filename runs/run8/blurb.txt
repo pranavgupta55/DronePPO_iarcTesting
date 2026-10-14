@@ -1,0 +1,2 @@
+Outward reward x10
+Outward reward raised 10x to 5.0, plus a ramp that relaxes the level and tilt caps over the run. 300 epochs.

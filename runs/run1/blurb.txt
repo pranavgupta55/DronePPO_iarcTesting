@@ -1,0 +1,2 @@
+Split learning rates
+New runs folder. Separate actor and critic learning rates, the actor rate decays to 0.33x, tilt weight added as an input. 500 epochs.

@@ -1,0 +1,2 @@
+Time-optimal shaping
+Time-to-go potential shaping in a 750x500 world, 250 epochs. Got 9.4 reaches per episode at 102 px/s.

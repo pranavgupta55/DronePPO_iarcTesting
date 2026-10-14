@@ -1,0 +1,2 @@
+Rebalanced rewards
+Rebalances rewards so reaching beats standing still: reach 500, crash 100, approach speed scored per 100 px/s. 100 epochs.

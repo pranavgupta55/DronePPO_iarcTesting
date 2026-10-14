@@ -1,0 +1,2 @@
+Normalization, 8 envs
+Adds observation and reward normalization, 8 parallel environments (32,768 steps per epoch) and an angular-velocity penalty. 200 epochs.

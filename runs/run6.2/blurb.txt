@@ -1,0 +1,2 @@
+Resume run6, outward only
+Resumes run6 for 300 epochs with thruster angles limited to the outward side only.

@@ -1,0 +1,2 @@
+Rigid-body physics fix
+First run after the drone.py fix that projects point velocities onto a rigid body each step. Default settings, 400 epochs.

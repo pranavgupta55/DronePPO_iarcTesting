@@ -1,0 +1,2 @@
+Resume run8, range to +90
+Resumes run8 for 200 epochs with thruster range -15 to +90, outward reward 2.0 and a higher tilt penalty.

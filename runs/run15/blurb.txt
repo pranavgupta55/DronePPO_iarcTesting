@@ -1,0 +1,2 @@
+Same net, decay to 0.33x
+Same 18-16-16-4 network as run14, with the learning rate decayed exponentially to 0.33x instead of 0.01x. 300 epochs.

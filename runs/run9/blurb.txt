@@ -1,0 +1,2 @@
+Outward 1.0, slow-tilt penalty
+Outward reward 1.0, 30 degrees inward allowed, and an extra tilt penalty when slow. New 500-epoch run.

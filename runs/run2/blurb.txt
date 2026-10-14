@@ -1,0 +1,2 @@
+Level reward
+Adds the level reward. Steps per epoch go from 2048 to 4096 and episodes from 512 to 2048 steps. 100 epochs.

@@ -1,0 +1,2 @@
+Learning rate to 0.01x
+2000 epochs with the learning rate decayed exponentially to 0.01x. Run12 ran 75,000 epochs with decay to 0.33x.

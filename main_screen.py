@@ -7,11 +7,11 @@ import random
 from pathlib import Path
 import numpy as np
 import torch
-from text import drawText
+from text import drawText, wrapText
 from fontDict import fonts
 from network import NeuralNetwork, draw_network, tanh, tanh_prime
 from ppo import Actor, DroneEnv, RunningNorm, REACH_DIST
-from config import OBS_DIM, ACT_DIM, ENV_WIDTH, ENV_HEIGHT, TIME_STEP_DELTA, THRUSTER_ANGLE_LIMITS
+from config import OBS_DIM, ACT_DIM, ENV_WIDTH, ENV_HEIGHT, TIME_STEP_DELTA, THRUSTER_ANGLE_LIMITS, TARGET_MARGIN
 
 pygame.init()
 
@@ -70,7 +70,8 @@ click = False
 
 
 RUN_INDEX = 38  # which runs/run<N>/actor.pt to fly
-EXPERIMENT_RUN = "b003/time_to_wall_barrier_x40_out30"  # a run under experiments/runs/<batch>/<name> to fly instead (its own 1200x800 world and reward scheme); None flies RUN_INDEX
+EXPERIMENT_RUN = "b015/t4_warm60"  # "bc/bc_feat" is the pure imitation network, "b011/ft_gentle_lr1e-05" its PPO fine-tune; a run under experiments/runs/<batch>/<name> to fly instead (the world is the experiments one, 2400x1600); "bc/bc_feat" is the network imitating the bang-bang controller; None flies RUN_INDEX
+BANG_BANG = False  # fly the hand-written bang-bang controller (experiments/bangbang_controller.py, nozzles neutral) instead of a trained network; uses the 1200x800 experiment world
 EPISODE_SECONDS = 500
 
 
@@ -117,6 +118,28 @@ def layers_to_network(layers):
     return network
 
 
+def draw_drone(surface, drone, scale):
+    """Same picture as Drone.draw, with the positions scaled into the zoomed-out view (line widths and marker sizes stay in screen pixels)."""
+    points = [(float(point[0]) * scale, float(point[1]) * scale) for point in drone.shell.points]
+    pygame.draw.line(surface, Endesga.white, points[0], points[1], 2)
+    for point, angle in zip(points, drone.thruster_angles):
+        absolute = angle + drone.shell.angle
+        pygame.draw.circle(surface, Endesga.debug_red, point, 3)
+        pygame.draw.line(surface, Endesga.debug_red, point, (point[0] + 10 * math.cos(absolute), point[1] + 10 * math.sin(absolute)), 2)
+
+
+def run_label():
+    """(short name, blurb) of the model being flown: the first line of its blurb.txt, then the rest. Runs without a blurb show their path."""
+    if BANG_BANG:
+        return "Bang-bang controller", "Hand-written controller, not a trained network. Flips, thrusts hard, flips back to brake."
+    run_dir = Path(__file__).parent / "experiments" / "runs" / EXPERIMENT_RUN if EXPERIMENT_RUN else Path(__file__).parent / "runs" / f"run{RUN_INDEX}"
+    label = EXPERIMENT_RUN or f"run{RUN_INDEX}"
+    if (run_dir / "blurb.txt").exists():
+        lines = (run_dir / "blurb.txt").read_text().strip().splitlines()
+        return f"{label}: {lines[0]}", " ".join(lines[1:])
+    return label, "(no blurb)"
+
+
 GAUGE_OUTER, GAUGE_INNER, GAUGE_GAP, GAUGE_MARGIN = 56, 18, 20, 12  # thruster gauge: outer / inner radius, gap between the two sectors, distance from the screen's corner (px)
 
 
@@ -140,7 +163,14 @@ def draw_thruster_gauge(surface, drone):
                          (center_x + length * math.cos(angle), center_y_ + length * math.sin(angle)), 4)
 
 
-if EXPERIMENT_RUN:
+if BANG_BANG:
+    env, layers, normalize, WORLD_W, WORLD_H = load_experiment_run("b003/time_to_wall_barrier_x40_out30")  # only for its environment; the network is not used
+    layers = None
+    from bangbang_controller import control as bang_bang_control, DEFAULTS as BANG_BANG_PARAMS
+
+    def policy(o):
+        return bang_bang_control(env, BANG_BANG_PARAMS)
+elif EXPERIMENT_RUN:
     env, layers, normalize, WORLD_W, WORLD_H = load_experiment_run(EXPERIMENT_RUN)
 
     def policy(o):
@@ -157,20 +187,23 @@ else:
         with torch.no_grad():
             return actor.net(torch.as_tensor(o if obs_norm is None else obs_norm.normalize(o), dtype=torch.float32)).numpy()  # the mean action, no sampling noise
 obs = env.reset()
-world = pygame.Surface((WORLD_W, WORLD_H))
 view_scale = min(screen_width / WORLD_W, screen_height / WORLD_H, 1.0)  # shrink the world to fit the screen, never enlarge it
 world_size = (int(WORLD_W * view_scale), int(WORLD_H * view_scale))
+world = pygame.Surface(world_size)  # drawn at screen size directly (a zoomed-out world is never rendered at full size, so the frame rate doesn't depend on the world size)
 world_offset = ((screen_width - world_size[0]) // 2, (screen_height - world_size[1]) // 2)
 
 # The weights are fixed, so draw the network once onto its own surface (thousands of lines) and blit it every frame
-network = layers_to_network(layers)
-dense_layers = [layer for layer in network.layers if hasattr(layer, "weights")]
-tallest_layer = max(max(layer.weights.shape) for layer in dense_layers)
-network_surface = pygame.Surface((20 + 60 * len(dense_layers), 200), pygame.SRCALPHA)
-draw_network(network, network_surface, (10, 100), Endesga.network_green, Endesga.network_red, spacing_x=60, spacing_y=min(3, 180 / tallest_layer))
-network_bounds = network_surface.get_bounding_rect()  # where the drawing actually is, so its top left corner can sit at the screen's corner margin
-network_corner = (GAUGE_MARGIN - network_bounds.x, GAUGE_MARGIN - network_bounds.y)
+network_surface, network_corner = None, (0, 0)
+if layers is not None:
+    network = layers_to_network(layers)
+    dense_layers = [layer for layer in network.layers if hasattr(layer, "weights")]
+    tallest_layer = max(max(layer.weights.shape) for layer in dense_layers)
+    network_surface = pygame.Surface((20 + 60 * len(dense_layers), 200), pygame.SRCALPHA)
+    draw_network(network, network_surface, (10, 100), Endesga.network_green, Endesga.network_red, spacing_x=60, spacing_y=min(3, 180 / tallest_layer))
+    network_bounds = network_surface.get_bounding_rect()  # where the drawing actually is, so its top left corner can sit at the screen's corner margin
+    network_corner = (GAUGE_MARGIN - network_bounds.x, GAUGE_MARGIN - network_bounds.y)
 physics_accumulator = 0.0
+run_name, run_blurb = run_label()
 
 # ---------------- Main Game Loop
 last_time = time.time()
@@ -208,6 +241,7 @@ while running:
     # ---------------- Drone (fixed physics timestep; dt is in frame units, so dt / fps is real seconds)
     physics_accumulator = min(physics_accumulator + dt / fps, 0.25)
     mouse_target = np.array([(mx - world_offset[0]) / view_scale, (my - world_offset[1]) / view_scale])  # the mouse is the target, in world coordinates
+    mouse_target = np.clip(mouse_target, TARGET_MARGIN, [WORLD_W - TARGET_MARGIN, WORLD_H - TARGET_MARGIN])  # a target in or beyond a wall is outside what the drone was built for (it flew into the wall and crashed)
     env.target = mouse_target
     obs = env.observe()
     while physics_accumulator >= TIME_STEP_DELTA:
@@ -221,9 +255,9 @@ while running:
     world.fill(Endesga.my_blue)
     if toggle:
         pygame.draw.rect(world, Endesga.black, world.get_rect(), 1)  # world bounds
-        pygame.draw.circle(world, Endesga.cream, env.target, REACH_DIST, 1)
-    env.drone.draw(pygame, world, Endesga.white, Endesga.debug_red, 10)
-    screen2.blit(world if view_scale == 1.0 else pygame.transform.smoothscale(world, world_size), world_offset)
+        pygame.draw.circle(world, Endesga.cream, env.target * view_scale, max(REACH_DIST * view_scale, 3), 1)
+    draw_drone(world, env.drone, view_scale)
+    screen2.blit(world, world_offset)
 
     # ---------------- Updating Screen
     if toggle:
@@ -236,8 +270,14 @@ while running:
             drawText(screenUI, Endesga.debug_red, montserratRegularAdaptive, 5, screen_height - (30 + 25 * i), string, Endesga.black, 0, antiAliasing=False)
 
         # ---------------- Network
-        screenUI.blit(network_surface, network_corner)
+        if network_surface is not None:
+            screenUI.blit(network_surface, network_corner)
         draw_thruster_gauge(screenUI, env.drone)
+        label_font, blurb_font = fonts["bold20"], fonts["regular16"]
+        blurb_lines, _ = wrapText(blurb_font, run_blurb, 460)
+        y = screen_height - 12 - len(blurb_lines) * blurb_font.get_height() * 1.1 - label_font.get_height() * 1.2
+        drawText(screenUI, Endesga.white, label_font, screen_width - 12, y, run_name, Endesga.black, 1, justify="right")
+        drawText(screenUI, Endesga.greyL, blurb_font, screen_width - 12, y + label_font.get_height() * 1.2, run_blurb, Endesga.black, 1, wrap=True, maxLen=460, justify="right")
     pygame.mouse.set_visible(False)
     pygame.draw.circle(screenUI, Endesga.black, (mx + 1, my + 1), 2, 1)
     pygame.draw.circle(screenUI, Endesga.white, (mx, my), 2, 1)

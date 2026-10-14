@@ -1,0 +1,2 @@
+Thruster range -15 to 60
+Thruster angles range from 15 degrees inward to 60 degrees outward. New 500-epoch run.

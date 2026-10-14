@@ -1,0 +1,2 @@
+Run5 settings, 500 epochs
+Same settings as run5, trained for 500 epochs instead of 100.

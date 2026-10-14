@@ -1,0 +1,2 @@
+Steeper outward reward
+Level weight 1.0, tilt cap 3.0, crash penalty 300, outward reward peaked at 30 degrees and negative when pointing inward. 100 epochs.

@@ -1,0 +1,2 @@
+Stricter reach, 4096 steps
+Reach reward 1000, a 25-step hold, tighter speed and spin limits for reaching, and 4096-step episodes. 300 epochs.
