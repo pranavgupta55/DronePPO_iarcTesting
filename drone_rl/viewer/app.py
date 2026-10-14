@@ -121,8 +121,7 @@ def main():
     rows = flyable_rows()
     if not rows:
         sys.exit("no flyable runs in runs/ (train one with python3 -m drone_rl batch ...)")
-    order = [r["id"] for r in rows]  # newest first
-    current = order[0]
+    current = rows[0]["id"]  # newest
     if len(sys.argv) > 1:
         current = registry.find_run(sys.argv[1]).name
     pygame.init()
@@ -131,6 +130,10 @@ def main():
     screen_width, screen_height = screen.get_size()
     surface_ui = pygame.Surface((screen_width, screen_height)).convert_alpha()
     session = open_session(current)
+    menu = MenuView(registry.load_index(), current)
+    menu.model.set_tab(2)  # Newest
+    menu.model.focus(current)
+    menu_open = False
     view_scale, world, world_offset = 1.0, None, (0, 0)
 
     def layout():
@@ -151,15 +154,32 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            if menu_open:
+                action = menu.handle(event)
+                if action and action[0] == "close":
+                    menu_open = False
+                elif action and action[0] == "load":
+                    current = action[1]
+                    session = open_session(current)
+                    menu.model.current_id = current
+                    layout()
+                    accumulator, menu_open = 0.0, False
+                continue
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     running = False
                 elif event.key == pygame.K_SPACE:
                     hud = not hud
+                elif event.key == pygame.K_TAB:
+                    menu.model.current_id = current
+                    menu.model.focus(current)
+                    menu_open = True
                 elif event.key in (pygame.K_LEFT, pygame.K_RIGHT):
+                    order = menu.model.flyable_order() or [current]  # the list as the menu currently shows it (tab, sort, tag filter)
                     step = -1 if event.key == pygame.K_LEFT else 1
                     current = order[(order.index(current) + step) % len(order)] if current in order else order[0]
                     session = open_session(current)
+                    menu.model.current_id = current
                     layout()
                     accumulator = 0.0
         env = session.env
@@ -198,6 +218,8 @@ def main():
         pygame.draw.circle(surface_ui, Endesga.black, (mx + 1, my + 1), 2, 1)
         pygame.draw.circle(surface_ui, Endesga.white, (mx, my), 2, 1)
         screen.blit(surface_ui, (0, 0))
+        if menu_open:
+            menu.draw(screen)
         pygame.display.update()
         clock.tick(FPS)
     pygame.quit()

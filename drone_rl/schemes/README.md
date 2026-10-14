@@ -1,6 +1,6 @@
 # Reward scheme plugins
 
-A scheme is a module `schemes/<name>.py`. The spec's `"scheme": "<name>"` and `"params": {...}` select it; workers import it by name, so it must be
+A scheme is a module `drone_rl/schemes/<name>.py`. The spec's `"scheme": "<name>"` and `"params": {...}` select it; workers import it by name, so it must be
 importable (`from schemes.x import ...` works) and its `Scheme` constructible from `params` alone. Params missing from the spec should fall back to
 defaults kept in the module (`DEFAULTS` dict). Validate with `python3 -m drone_rl check-scheme <name> '{"param": 1}'`.
 

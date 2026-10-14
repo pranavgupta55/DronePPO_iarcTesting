@@ -1,0 +1,201 @@
+"""The data side of the run menu (no pygame): tabs, ordering, grouping, branch tree, tag filter, favorites. menu.py draws it and handles the keys.
+Rows are the flat dicts of runs/index.json (registry.index_row / archive_rows)."""
+from datetime import datetime
+
+TABS = ["Groups", "Tree", "Newest", "Best", "Favorites"]
+
+# (key, header, width, format, higher is better); the Best tab sorts by one of these and S cycles through them
+STATS = [
+    ("reaches_per_min", "reach/min", 9, "{:.1f}", True),
+    ("crash_rate", "crash %", 8, "{:.0%}", False),
+    ("leg_s_median", "leg s", 7, "{:.2f}", False),
+    ("mean_speed", "speed", 7, "{:.0f}", True),
+    ("score", "score", 7, "{:.1f}", True),
+    ("fixed_reached_frac", "fixed ok", 9, "{:.0%}", True),
+    ("robust.noise05.reached_frac", "noisy ok", 9, "{:.0%}", True),
+    ("tilt_frac", "tilt %", 7, "{:.0%}", False),
+    ("nozzle_use_deg", "nozzle°", 8, "{:.1f}", True),
+    ("mean_thrust", "thrust", 7, "{:.2f}", True),
+    ("train.epochs", "epochs", 7, "{:.0f}", True),
+    ("train.wall_seconds", "train s", 8, "{:.0f}", False),
+    ("model.params", "params", 7, "{:.0f}", False),
+]
+STAT_KEYS = [s[0] for s in STATS]
+
+
+def fmt_date(row):
+    stamp = row.get("created") or row.get("finished")
+    if not stamp:
+        return "built-in"
+    try:
+        text = datetime.fromisoformat(stamp).strftime("%m-%d %H:%M")
+    except ValueError:
+        return "?"
+    return "~" + text if row.get("archived") else text
+
+
+def fmt_stat(row, key):
+    for k, _, _, fmt, _ in STATS:
+        if k == key:
+            value = row.get(key)
+            if row.get("archived") and key == "reaches_per_min":
+                value = None
+            return "-" if value is None else fmt.format(value)
+    return "-"
+
+
+def value(row, key):
+    v = row.get(key)
+    return v if isinstance(v, (int, float)) and not isinstance(v, bool) else None
+
+
+class MenuModel:
+    def __init__(self, rows, favorites, current_id=None):
+        self.rows = rows
+        self.by_id = {r["id"]: r for r in rows}
+        self.favorites = list(favorites)
+        self.current_id = current_id
+        self.tab = 0
+        self.stat = 0  # index into STAT_KEYS for the Best tab
+        self.descending = True
+        self.show_archived = False
+        self.tag = None
+        self.collapsed = set()  # group names / run ids folded away
+        self.cursor = 0
+        self.top = 0
+
+    # ---- state changes
+    def set_tab(self, index):
+        self.tab = index % len(TABS)
+        self.cursor = self.top = 0
+
+    def cycle_stat(self):
+        self.stat = (self.stat + 1) % len(STATS)
+        self.descending = STATS[self.stat][4]
+
+    def cycle_tag(self):
+        tags = self.available_tags()
+        if not tags:
+            self.tag = None
+        elif self.tag not in tags:
+            self.tag = tags[0]
+        else:
+            nxt = tags.index(self.tag) + 1
+            self.tag = tags[nxt] if nxt < len(tags) else None
+        self.cursor = self.top = 0
+
+    def available_tags(self):
+        count = {}
+        for r in self._base_rows():
+            for t in r.get("tags", []):
+                count[t] = count.get(t, 0) + 1
+        return sorted(count, key=lambda t: (-count[t], t))
+
+    def toggle_favorite(self, run_id):
+        self.favorites = [f for f in self.favorites if f != run_id] if run_id in self.favorites else self.favorites + [run_id]
+
+    # ---- ordering
+    def _base_rows(self):
+        rows = [r for r in self.rows if self.show_archived or not r.get("archived")]
+        return [r for r in rows if r.get("status") in ("ok", "archived") or r.get("archived")]
+
+    def _filtered(self):
+        rows = self._base_rows()
+        return [r for r in rows if self.tag is None or self.tag in r.get("tags", [])]
+
+    @staticmethod
+    def _newest_key(r):
+        return r.get("created") or r.get("finished") or ""
+
+    def entries(self):
+        """Display rows in order: {"kind": "header"|"run", "row", "depth", "label", "id"}; headers carry group stats and can be collapsed."""
+        rows = self._filtered()
+        tab = TABS[self.tab]
+        if tab == "Newest":
+            return [self._run(r, 0) for r in sorted(rows, key=self._newest_key, reverse=True)]
+        if tab == "Favorites":
+            favs = [self.by_id[f] for f in self.favorites if f in self.by_id and self.by_id[f] in rows]
+            return [self._run(r, 0) for r in favs]
+        if tab == "Best":
+            key = STAT_KEYS[self.stat]
+            have = [r for r in rows if value(r, key) is not None]
+            sign = 1 if self.descending else -1  # ties (e.g. many runs with 0% crashes) fall back to the better reaches per minute
+            return [self._run(r, 0) for r in sorted(have, key=lambda r: (-sign * value(r, key), -(value(r, "reaches_per_min") or 0)))]
+        if tab == "Groups":
+            groups = {}
+            for r in rows:
+                groups.setdefault(r.get("group") or "(no group)", []).append(r)
+            out = []
+            for name, members in sorted(groups.items(), key=lambda kv: max(self._newest_key(r) for r in kv[1]), reverse=True):
+                out.append({"kind": "header", "id": name, "row": None, "depth": 0, "label": f"{name}  ({len(members)})", "members": members})
+                if name not in self.collapsed:
+                    out += [self._run(r, 1) for r in sorted(members, key=self._newest_key)]
+            return out
+        return self._tree_entries(rows)
+
+    def _run(self, row, depth):
+        return {"kind": "run", "id": row["id"], "row": row, "depth": depth, "label": row.get("name", row["id"])}
+
+    def _tree_entries(self, rows):
+        ids = {r["id"] for r in rows}
+        children = {}
+        roots = []
+        for r in sorted(rows, key=self._newest_key):
+            parent = r.get("parent")
+            if parent in ids:
+                children.setdefault(parent, []).append(r)
+            else:
+                roots.append(r)
+        out = []
+
+        def walk(row, depth):
+            kids = children.get(row["id"], [])
+            entry = self._run(row, depth)
+            entry["kids"] = len(kids)
+            out.append(entry)
+            if row["id"] not in self.collapsed:
+                for kid in kids:
+                    walk(kid, depth + 1)
+
+        for root in sorted(roots, key=self._newest_key, reverse=True):
+            walk(root, 0)
+        return out
+
+    def flyable_order(self):
+        """Run ids in the order shown, flyable ones only (what Left/Right step through outside the menu)."""
+        seen, order = set(), []
+        for e in self.entries():
+            if e["kind"] == "run" and e["row"].get("flyable") and not e["row"].get("archived") and e["id"] not in seen:
+                seen.add(e["id"])
+                order.append(e["id"])
+        return order
+
+    # ---- cursor
+    def clamp(self, visible):
+        n = len(self.entries())
+        self.cursor = max(0, min(self.cursor, n - 1))
+        if self.cursor < self.top:
+            self.top = self.cursor
+        if self.cursor >= self.top + visible:
+            self.top = self.cursor - visible + 1
+        self.top = max(0, min(self.top, max(0, n - visible)))
+
+    def selected(self):
+        entries = self.entries()
+        return entries[self.cursor] if entries and 0 <= self.cursor < len(entries) else None
+
+    def toggle_collapse(self, collapse):
+        e = self.selected()
+        if not e:
+            return
+        if e["kind"] == "header":
+            (self.collapsed.add if collapse else self.collapsed.discard)(e["id"])
+        elif TABS[self.tab] == "Tree" and e.get("kids"):
+            (self.collapsed.add if collapse else self.collapsed.discard)(e["id"])
+
+    def focus(self, run_id):
+        for i, e in enumerate(self.entries()):
+            if e["kind"] == "run" and e["id"] == run_id:
+                self.cursor = i
+                return True
+        return False

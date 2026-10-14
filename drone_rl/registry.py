@@ -177,7 +177,8 @@ def archive_rows(root=None):
                 t, tx = split_blurb((d / "blurb.txt").read_text())
                 title, text = f"{d.name}: {t}", tx
             stamp = (d / "epochs.csv").stat().st_mtime if (d / "epochs.csv").exists() else (d / "actor.pt").stat().st_mtime
-            row = {"id": f"archive/{family.name}/{d.name}", "name": d.name, "title": title, "blurb": text, "group": "legacy runs (original trainer)" if family.name == "runs" else f"legacy runs ({family.name})",
+            suffix = {"runs": "", "runsPreAngleControl": " (pre angle control)", "runsPreLevelEncouragement": " (pre level reward)"}.get(family.name, f" ({family.name})")
+            row = {"id": f"archive/{family.name}/{d.name}", "name": d.name + suffix, "title": title, "blurb": text, "group": "legacy runs (original trainer)" if family.name == "runs" else f"legacy runs ({family.name})",
                    "parent": None, "kind": "ppo", "status": "archived", "created": None, "finished": datetime.fromtimestamp(stamp).astimezone().isoformat(timespec="seconds"),
                    "tags": ["legacy", "archive", f"folder:{family.name}"], "world": None, "flyable": False, "archived": True}
             if (d / "epochs.csv").exists():

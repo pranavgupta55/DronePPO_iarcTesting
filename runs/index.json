@@ -34193,7 +34193,7 @@
  },
  {
   "id": "archive/runsPreLevelEncouragement/run2",
-  "name": "run2",
+  "name": "run2 (pre level reward)",
   "title": "run2",
   "blurb": "No description recorded.",
   "group": "legacy runs (runsPreLevelEncouragement)",
@@ -34218,7 +34218,7 @@
  },
  {
   "id": "archive/runsPreLevelEncouragement/run1",
-  "name": "run1",
+  "name": "run1 (pre level reward)",
   "title": "run1",
   "blurb": "No description recorded.",
   "group": "legacy runs (runsPreLevelEncouragement)",
@@ -34243,7 +34243,7 @@
  },
  {
   "id": "archive/runsPreAngleControl/run7",
-  "name": "run7",
+  "name": "run7 (pre angle control)",
   "title": "run7",
   "blurb": "No description recorded.",
   "group": "legacy runs (runsPreAngleControl)",
@@ -34268,7 +34268,7 @@
  },
  {
   "id": "archive/runsPreAngleControl/run6",
-  "name": "run6",
+  "name": "run6 (pre angle control)",
   "title": "run6",
   "blurb": "No description recorded.",
   "group": "legacy runs (runsPreAngleControl)",
@@ -34293,7 +34293,7 @@
  },
  {
   "id": "archive/runsPreAngleControl/run5",
-  "name": "run5",
+  "name": "run5 (pre angle control)",
   "title": "run5",
   "blurb": "No description recorded.",
   "group": "legacy runs (runsPreAngleControl)",
@@ -34318,7 +34318,7 @@
  },
  {
   "id": "archive/runsPreAngleControl/run4",
-  "name": "run4",
+  "name": "run4 (pre angle control)",
   "title": "run4",
   "blurb": "No description recorded.",
   "group": "legacy runs (runsPreAngleControl)",
@@ -34343,7 +34343,7 @@
  },
  {
   "id": "archive/runsPreAngleControl/run3",
-  "name": "run3",
+  "name": "run3 (pre angle control)",
   "title": "run3",
   "blurb": "No description recorded.",
   "group": "legacy runs (runsPreAngleControl)",
@@ -34368,7 +34368,7 @@
  },
  {
   "id": "archive/runsPreAngleControl/run2",
-  "name": "run2",
+  "name": "run2 (pre angle control)",
   "title": "run2",
   "blurb": "No description recorded.",
   "group": "legacy runs (runsPreAngleControl)",
@@ -34393,7 +34393,7 @@
  },
  {
   "id": "archive/runsPreAngleControl/run1",
-  "name": "run1",
+  "name": "run1 (pre angle control)",
   "title": "run1",
   "blurb": "No description recorded.",
   "group": "legacy runs (runsPreAngleControl)",
