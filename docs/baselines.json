@@ -1,0 +1,14 @@
+{
+ "bang-bang-controller": {
+  "reaches_per_min": 21.50217,
+  "crash_rate": 0.0,
+  "leg_s_median": 2.83,
+  "mean_speed": 362.38561
+ },
+ "bc_feat": {
+  "reaches_per_min": 15.87302,
+  "crash_rate": 0.25,
+  "leg_s_median": 3.24,
+  "mean_speed": 316.07215
+ }
+}

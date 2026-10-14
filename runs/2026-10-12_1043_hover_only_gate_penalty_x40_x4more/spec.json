@@ -1,0 +1,72 @@
+{
+ "name": "hover_only_gate_penalty_x40_x4more",
+ "seed": 1,
+ "scheme": "hover_only_gate_penalty",
+ "params": {
+  "shaping_w": 16000.0
+ },
+ "blurb": "Hover-only gate x160, no out\nTests shaping_w 16000, four times the x40 weight of 4000, with outward_w at 0. Branches from b002 x40.",
+ "group": "outward reward and higher weights",
+ "tags": [
+  "weight-sweep",
+  "outward-reward"
+ ],
+ "parent": "2026-10-12_0819_hover_only_gate_penalty_x40",
+ "kind": "ppo",
+ "epochs": 300,
+ "steps_per_epoch": 16384,
+ "episode_length": 4096,
+ "num_envs": 2,
+ "hidden": [
+  16,
+  8
+ ],
+ "pi_lr": 0.0003,
+ "vf_lr": 0.001,
+ "lr_decay_end": 0.1,
+ "lr_schedule": "linear",
+ "gamma": 0.99,
+ "gae_lambda": 0.95,
+ "clip": 0.2,
+ "update_epochs": 4,
+ "num_minibatches": 16,
+ "init_log_std": -0.5,
+ "reward_scaling": true,
+ "obs_norm": true,
+ "mirror": true,
+ "torch_threads": 1,
+ "reach_reward": 10000.0,
+ "crash_penalty": 6000.0,
+ "outward_w": 0.0,
+ "force_rate": 0.005,
+ "approach_w": 0.0,
+ "approach_ref": 300.0,
+ "thrust_w": 0.0,
+ "gravity_scale": 1.0,
+ "outward_target": 0.5235987755982988,
+ "world": [
+  1200,
+  800
+ ],
+ "far_target_min_dist": 400.0,
+ "far_target_fraction_end": 0.7,
+ "curriculum_end": 0.5,
+ "target_margin": 100.0,
+ "ramp_end": 0.5,
+ "angle_rate": 0.05235987755982988,
+ "init_from": null,
+ "critic_warmup_epochs": 0,
+ "freeze_obs_norm": false,
+ "reach_speed": [
+  50.0,
+  20.0
+ ],
+ "reach_ang": [
+  2.0,
+  0.5
+ ],
+ "reach_hold": [
+  1,
+  25
+ ]
+}

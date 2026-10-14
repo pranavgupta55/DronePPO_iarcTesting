@@ -1,0 +1,22 @@
+{
+ "batch": "example",
+ "group": "example group",
+ "tags": ["example"],
+ "parent": "t2_frozen_lr0.0001",
+ "specs": [
+  {
+   "name": "example_lr3e-4",
+   "blurb": "Example, lr 3e-4\nShows the spec format: a name, a two-line blurb, tags and a group; only the changes from the parent run need to be written.",
+   "scheme": "bangbang_features",
+   "params": {"approach_w": 40.0},
+   "init_from": "bc_feat",
+   "force_rate": 0.5,
+   "mirror": false,
+   "freeze_obs_norm": true,
+   "init_log_std": -4.0,
+   "pi_lr": 0.0003,
+   "epochs": 100,
+   "critic_warmup_epochs": 15
+  }
+ ]
+}

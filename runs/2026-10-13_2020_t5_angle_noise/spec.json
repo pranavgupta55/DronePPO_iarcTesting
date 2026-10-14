@@ -1,0 +1,77 @@
+{
+ "name": "t5_angle_noise",
+ "seed": 1,
+ "scheme": "bangbang_features",
+ "params": {
+  "approach_w": 40.0
+ },
+ "blurb": "Angle exploration noise\nt2 with the nozzle outputs given noise std 0.37 (log std -1) while the force outputs keep -4. Tests whether PPO finds a use for the nozzles.",
+ "group": "nozzle use tests",
+ "tags": [
+  "ppo-finetune",
+  "nozzles"
+ ],
+ "parent": "2026-10-13_1918_t2_frozen_lr0.0001",
+ "kind": "ppo-finetune",
+ "epochs": 100,
+ "steps_per_epoch": 16384,
+ "episode_length": 4096,
+ "num_envs": 2,
+ "hidden": [
+  16,
+  8
+ ],
+ "pi_lr": 0.0001,
+ "vf_lr": 0.001,
+ "lr_decay_end": 0.1,
+ "lr_schedule": "linear",
+ "gamma": 0.99,
+ "gae_lambda": 0.95,
+ "clip": 0.1,
+ "update_epochs": 2,
+ "num_minibatches": 16,
+ "init_log_std": [
+  -4.0,
+  -4.0,
+  -1.0,
+  -1.0
+ ],
+ "reward_scaling": true,
+ "obs_norm": true,
+ "mirror": false,
+ "torch_threads": 1,
+ "reach_reward": 10000.0,
+ "crash_penalty": 6000.0,
+ "outward_w": 0.0,
+ "force_rate": 0.5,
+ "approach_w": 0.0,
+ "approach_ref": 300.0,
+ "thrust_w": 0.0,
+ "gravity_scale": 1.0,
+ "outward_target": 0.5235987755982988,
+ "world": [
+  2400,
+  1600
+ ],
+ "far_target_min_dist": 400.0,
+ "far_target_fraction_end": 0.0,
+ "curriculum_end": 0.5,
+ "target_margin": 10.0,
+ "ramp_end": 0.001,
+ "angle_rate": 0.05235987755982988,
+ "init_from": "2026-10-12_1823_bc_feat",
+ "critic_warmup_epochs": 15,
+ "freeze_obs_norm": true,
+ "reach_speed": [
+  20.0,
+  20.0
+ ],
+ "reach_ang": [
+  0.5,
+  0.5
+ ],
+ "reach_hold": [
+  25,
+  25
+ ]
+}
