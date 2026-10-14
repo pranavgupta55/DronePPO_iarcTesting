@@ -54,5 +54,5 @@ The code is one package (`drone_rl`, see README.md). Run folders are now `runs/<
 original measurements are kept under `legacy.eval` in its meta.json. World size is a per-run spec setting: runs b000-b007 were trained and are now evaluated in 1200x800,
 everything later in 2400x1600. Every run is (re)evaluated with the standard evaluation (`drone_rl/evaluation.py`): five fixed courses (long legs, short hops, wall hugging,
 reversals, close precision), four random courses of 12 waypoints, and robustness cases (action noise 0.02 / 0.05, wild start states). Headline numbers are now reaches per
-minute and the crash rate on the random courses, plus median/90th percentile time per waypoint; they are not comparable with the old reaches-per-episode numbers above
+minute and the crash rate on the random courses, plus median/90th percentile time to target (TtT, seconds from a waypoint appearing to a strict reach); they are not comparable with the old reaches-per-episode numbers above
 (different protocol), but the ordering of runs mostly is.

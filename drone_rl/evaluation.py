@@ -151,8 +151,8 @@ def _legs_stats(eps, prefix):
     n_points = sum(e["n_waypoints"] for e in eps)
     out = {f"{prefix}reached_frac": len(reached) / max(n_points, 1),
            f"{prefix}crash_rate": float(np.mean([e["crashed"] for e in eps])),
-           f"{prefix}leg_s_median": float(np.median(times)) if len(times) else None,
-           f"{prefix}leg_s_p90": float(np.percentile(times, 90)) if len(times) else None,
+           f"{prefix}ttt_s_median": float(np.median(times)) if len(times) else None,
+           f"{prefix}ttt_s_p90": float(np.percentile(times, 90)) if len(times) else None,
            f"{prefix}reaches_per_min": len(reached) / max(total_steps * TIME_STEP_DELTA / 60, 1e-9),
            f"{prefix}overshoot_px": float(np.mean([leg["overshoot"] for leg in reached])) if reached else None}
     settle = [leg["settle"] * TIME_STEP_DELTA for leg in reached if leg["settle"] is not None]
@@ -180,7 +180,7 @@ def aggregate(results):
     for course in FIXED_COURSES:
         eps = [r for (g, c, s), r in results.items() if g == "fixed" and c == course]
         st = _legs_stats(eps, "")
-        m[f"fixed.{course}.reached_frac"], m[f"fixed.{course}.leg_s"], m[f"fixed.{course}.crash_rate"] = st["reached_frac"], st["leg_s_median"], st["crash_rate"]
+        m[f"fixed.{course}.reached_frac"], m[f"fixed.{course}.ttt_s"], m[f"fixed.{course}.crash_rate"] = st["reached_frac"], st["ttt_s_median"], st["crash_rate"]
     for case in ROBUST_CASES:
         eps = [r for (g, c, s), r in results.items() if g == case]
         st = _legs_stats(eps, "")

@@ -22,7 +22,7 @@ def main():
         m = evaluate_run(d, a.procs)
         if (d / "meta.json").exists():
             runner.finalize_run(d, meta.get("status", "ok"))
-        print(f"{d.name}: {m['reaches_per_min']:.1f} reaches/min, crash {m['crash_rate']:.2f}, median leg {m['leg_s_median']}, tier {m['tier']} ({m['eval_seconds']}s)", flush=True)
+        print(f"{d.name}: {m['reaches_per_min']:.1f} reaches/min, crash {m['crash_rate']:.2f}, median TtT {m['ttt_s_median']}, tier {m['tier']} ({m['eval_seconds']}s)", flush=True)
     registry.build_index()
 
 

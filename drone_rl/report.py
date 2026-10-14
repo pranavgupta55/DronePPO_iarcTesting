@@ -10,7 +10,7 @@ import pandas as pd
 from drone_rl import registry
 
 OUT = registry.REPO / "docs" / "reports"
-SHORT = ["name", "group", "kind", "tier", "score", "reaches_per_min", "crash_rate", "leg_s_median", "mean_speed", "tilt_frac", "nozzle_use_deg", "train.epochs"]
+SHORT = ["name", "group", "kind", "tier", "score", "reaches_per_min", "crash_rate", "ttt_s_median", "mean_speed", "tilt_frac", "nozzle_use_deg", "train.epochs"]
 
 
 def main():

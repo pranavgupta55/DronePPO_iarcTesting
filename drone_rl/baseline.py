@@ -9,7 +9,7 @@ from drone_rl.evaluation import evaluate_run
 
 BASELINES = registry.REPO / "docs" / "baselines.json"
 RUNS = ["bang-bang-controller", "bc_feat"]
-KEYS = {"reaches_per_min": 0.20, "crash_rate": None, "leg_s_median": 0.20, "mean_speed": 0.20}  # relative tolerance; None = absolute 0.10
+KEYS = {"reaches_per_min": 0.20, "crash_rate": None, "ttt_s_median": 0.20, "mean_speed": 0.20}  # relative tolerance; None = absolute 0.10
 ABS_CRASH = 0.10
 
 

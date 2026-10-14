@@ -93,11 +93,12 @@ def test_histogram_bins_and_ranges():
     m = MenuModel(rows, [])
     m.set_tab(TABS.index("Newest"))
     assert HIST_RANGES == [10, 20, 50, 100, None]
+    assert m.hist_range == len(HIST_RANGES) - 1 and len(m.hist_rows()) == 60  # starts on "all"
     seen = []
     for _ in HIST_RANGES:
-        seen.append(len(m.hist_rows()))
         m.cycle_hist_range()
-    assert seen == [20, 50, 60, 60, 10]  # starts on 20; 100 and all both give the 60 that exist
+        seen.append(len(m.hist_rows()))
+    assert seen == [10, 20, 50, 60, 60]  # 100 and all both give the 60 that exist
     m.hist_range = 0
     assert [r["id"] for r in m.hist_rows()][:2] == ["r59", "r58"]  # the most recent first
     assert m.hist_label() == "10 most recent"

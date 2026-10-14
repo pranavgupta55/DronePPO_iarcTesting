@@ -16,7 +16,7 @@ BAR = (137, 133, 181)
 ROW_H, MARGIN, DETAIL_H = 24, 56, 150
 HIST_MIN_PANEL = 1250  # panels narrower than this have no room for the histograms
 HIST_W = 520
-BASE_COLUMNS = ["reaches_per_min", "crash_rate", "leg_s_median", "mean_speed", "train.epochs"]  # always shown in the flat tabs; the Best stat is added if it isn't one of these
+BASE_COLUMNS = ["reaches_per_min", "crash_rate", "ttt_s_median", "mean_speed", "train.epochs"]  # always shown in the flat tabs; the Best stat is added if it isn't one of these
 NAV_KEYS = (pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT, pygame.K_PAGEUP, pygame.K_PAGEDOWN)
 REPEAT_DELAY, REPEAT_LIST, REPEAT_TABS = 0.35, 0.035, 0.16  # seconds before a held key repeats, and the interval for list moves and tab switches
 

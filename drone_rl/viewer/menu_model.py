@@ -8,7 +8,7 @@ TABS = ["Groups", "Tree", "Newest", "Best", "Favorites"]
 STATS = [
     ("reaches_per_min", "reach/min", 9, "{:.1f}", True),
     ("crash_rate", "crash %", 8, "{:.0%}", False),
-    ("leg_s_median", "leg s", 7, "{:.2f}", False),
+    ("ttt_s_median", "TtT", 7, "{:.2f}", False),
     ("mean_speed", "speed", 7, "{:.0f}", True),
     ("score", "score", 7, "{:.1f}", True),
     ("fixed_reached_frac", "fixed ok", 9, "{:.0%}", True),
@@ -26,7 +26,7 @@ STAT_KEYS = [s[0] for s in STATS]
 STAT_INFO = {
     "reaches_per_min": "waypoints reached per minute of flight, random courses",
     "crash_rate": "share of random-course flights that end by leaving the world",
-    "leg_s_median": "median seconds to reach one waypoint (strict reach rule)",
+    "ttt_s_median": "TtT, time to target: median seconds from a waypoint appearing to a strict reach (incl. the 0.5 s hold); reached waypoints only",
     "mean_speed": "average speed while flying, px/s",
     "score": "reaches/min if all three gates pass, else scaled down",
     "fixed_reached_frac": "share of waypoints reached on the 5 fixed courses",
@@ -45,7 +45,7 @@ def describe(key):
 
 # histograms: how many of the runs shown in the current tab to include (the first N in the order the tab shows them), and which stats make up each page of the panel
 HIST_RANGES = [10, 20, 50, 100, None]  # None = all
-HIST_PAGES = [["reaches_per_min", "crash_rate", "leg_s_median", "mean_speed", "tilt_frac", "nozzle_use_deg"],
+HIST_PAGES = [["reaches_per_min", "crash_rate", "ttt_s_median", "mean_speed", "tilt_frac", "nozzle_use_deg"],
               ["train.epochs", "train.wall_seconds", "model.params", "mean_thrust", "robust.noise05.reached_frac", "fixed_reached_frac"]]
 HIST_BINS = 12
 
@@ -106,7 +106,7 @@ class MenuModel:
         self.collapsed = set()  # group names / run ids folded away
         self.cursor = 0
         self.top = 0
-        self.hist_range = 1  # index into HIST_RANGES
+        self.hist_range = len(HIST_RANGES) - 1  # index into HIST_RANGES; starts on 'all'
         self.hist_page = 0
 
     # ---- state changes
