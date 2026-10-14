@@ -1,0 +1,2 @@
+Staged mixture x160
+Default-weight staged reward mixture: shaping_w 50 to 8000. Tests the top weight on the time-to-go term; nozzle_w stays 0.5.

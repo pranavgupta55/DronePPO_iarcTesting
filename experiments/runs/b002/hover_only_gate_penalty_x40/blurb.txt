@@ -1,0 +1,2 @@
+Hover-only tilt gate x40
+Default-weight hover-only tilt gate: shaping_w 100 to 4000. Tests a mid weight on the time-to-go term; hover_k stays 0.5.

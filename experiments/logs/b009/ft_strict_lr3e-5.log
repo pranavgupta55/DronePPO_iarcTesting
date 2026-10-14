@@ -1,0 +1,2 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b009/ft_strict_lr3e-5/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b009/ft_strict_lr3e-5
+epoch  25/200    56s | eps 28 | ret   -3430.4 | len    983 | reaches   0 | pi -0.0028 | v 0.1187

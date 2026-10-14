@@ -1,0 +1,2 @@
+Rotational energy damping
+Time shaping plus a penalty on rising spin energy while slow. Spin that decays costs nothing, and tilt itself is not penalised.

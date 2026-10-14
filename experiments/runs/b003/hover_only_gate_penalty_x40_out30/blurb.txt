@@ -1,0 +1,2 @@
+Hover-only gate x40, out 30
+Adds outward_w 30 to the hover-only tilt penalty (shaping_w 4000). Starts from the same b002 x40 run.

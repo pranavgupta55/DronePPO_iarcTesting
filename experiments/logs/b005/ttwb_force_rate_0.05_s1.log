@@ -1,0 +1,24 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b005/ttwb_force_rate_0.05_s1/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b005/ttwb_force_rate_0.05_s1
+epoch  25/300    60s | eps 212 | ret   -3523.7 | len    155 | reaches   0 | pi -0.0274 | v 0.1740
+epoch  50/300   120s | eps 10 | ret  165372.1 | len   3050 | reaches  61 | pi -0.0205 | v 0.4077
+epoch  75/300   175s | eps  9 | ret  202596.7 | len   3340 | reaches  73 | pi 0.0281 | v 0.1424
+epoch 100/300   233s | eps  9 | ret  242153.9 | len   3845 | reaches  81 | pi 0.0241 | v 0.0615
+epoch 125/300   292s | eps  8 | ret  244093.3 | len   3746 | reaches  75 | pi 0.0294 | v 0.0611
+epoch 150/300   350s | eps  8 | ret  182816.3 | len   4096 | reaches  40 | pi -0.0378 | v 0.0583
+epoch 175/300   407s | eps  8 | ret  203303.4 | len   4096 | reaches  48 | pi -0.0077 | v 0.0860
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b005/ttwb_force_rate_0.05_s1/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b005/ttwb_force_rate_0.05_s1
+epoch  25/300    41s | eps 212 | ret   -3523.7 | len    155 | reaches   0 | pi -0.0274 | v 0.1740
+epoch  50/300    95s | eps 10 | ret  165372.1 | len   3050 | reaches  61 | pi -0.0205 | v 0.4077
+epoch  75/300   152s | eps  9 | ret  202596.7 | len   3340 | reaches  73 | pi 0.0281 | v 0.1424
+epoch 100/300   210s | eps  9 | ret  242153.9 | len   3845 | reaches  81 | pi 0.0241 | v 0.0615
+epoch 125/300   266s | eps  8 | ret  244093.3 | len   3746 | reaches  75 | pi 0.0294 | v 0.0611
+epoch 150/300   324s | eps  8 | ret  182816.3 | len   4096 | reaches  40 | pi -0.0378 | v 0.0583
+epoch 175/300   383s | eps  8 | ret  203303.4 | len   4096 | reaches  48 | pi -0.0077 | v 0.0860
+epoch 200/300   442s | eps  8 | ret  144764.9 | len   4096 | reaches  20 | pi -0.0546 | v 0.0508
+epoch 225/300   500s | eps  9 | ret  218699.5 | len   3779 | reaches  68 | pi -0.0043 | v 0.0489
+epoch 250/300   559s | eps  9 | ret  140268.5 | len   3659 | reaches  26 | pi 0.0078 | v 0.0281
+epoch 275/300   614s | eps  8 | ret  225777.5 | len   3900 | reaches  64 | pi 0.0109 | v 0.0509
+epoch 300/300   669s | eps 10 | ret  170821.4 | len   3401 | reaches  56 | pi 0.0422 | v 0.0656
+done {"epochs": 300, "wall_seconds": 669.5, "final_return": 165186.02503115687, "final_length": 3639.2635858585854, "final_reaches_per_epoch": 46.2}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b005/ttwb_force_rate_0.05_s1
+{"reaches_per_ep": 3.566666666666667, "steps_per_reach": 456.5981308411215, "crash_rate": 0.0, "mean_speed": 50.65865867159746, "mean_abs_tilt_deg": 11.682631076959039, "hover_tilt_frac": 0.21945360884412804, "tilt_streak_frac": 0.13172200520833333, "rock_rate": 0.078125, "mean_abs_ang_vel": 0.11900772004825576, "outward_frac": 0.9957356770833333, "mean_outward_deg": 33.01106462068823, "tier": 1, "score": 0.07133333333333335, "eval_seconds": 5.4}

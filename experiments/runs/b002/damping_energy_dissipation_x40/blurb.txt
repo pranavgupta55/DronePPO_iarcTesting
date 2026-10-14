@@ -1,0 +1,2 @@
+Rotational damping x40
+Rotational damping at default weights, shaping_w 100 to 4000. Tests a mid weight on the time-to-go term; damp_k stays 5.

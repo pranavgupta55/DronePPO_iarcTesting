@@ -1,0 +1,2 @@
+Thrust-weighted nozzle x40
+Default-weight thrust-weighted nozzle term: shaping_w 50 to 2000. Tests a mid weight on the time-to-go term; align_w stays 0.5.

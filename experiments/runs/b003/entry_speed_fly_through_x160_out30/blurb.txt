@@ -1,0 +1,2 @@
+Entry speed x160, out 30
+Strong outward weight 30 on the entry-speed reward at x160 (entry_k 800). From b002 x160, outward_w is the only change.

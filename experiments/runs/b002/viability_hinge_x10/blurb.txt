@@ -1,0 +1,2 @@
+Viability hinge x10
+Default-weight viability hinge: approach_w 1 to 10. Tests a light push on the approach-speed term; hinge k stays 1.

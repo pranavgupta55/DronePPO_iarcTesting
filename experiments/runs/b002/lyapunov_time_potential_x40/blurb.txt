@@ -1,0 +1,2 @@
+Lyapunov potential x40
+Like the default Lyapunov potential, except w 1 to 40. Tests a mid weight on the time-potential rate term; c_va stays 0.001.

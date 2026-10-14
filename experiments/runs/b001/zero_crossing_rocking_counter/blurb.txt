@@ -1,0 +1,2 @@
+Rocking counter
+Time shaping plus a penalty of 0.05 per step for each spin sign flip in a 60-step window, applied only while slow.

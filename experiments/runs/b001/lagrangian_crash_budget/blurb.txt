@@ -1,0 +1,2 @@
+Lagrangian crash budget
+Time shaping plus crash and wall-proximity penalties whose weight moves each episode toward a 2% crash budget.

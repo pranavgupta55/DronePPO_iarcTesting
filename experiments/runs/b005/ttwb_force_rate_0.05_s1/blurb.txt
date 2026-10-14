@@ -1,0 +1,2 @@
+Force rate 0.05, seed 1
+Thruster force_rate 0.05 on seed 1, up from 0.005 in the control. Target margin is also 10 px (control: 100).

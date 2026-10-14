@@ -1,0 +1,2 @@
+Hover-only gate x40, out 3
+Outward weight 3 on the hover-only tilt penalty at shaping_w 4000. Branches from b002 x40; only outward_w changes.

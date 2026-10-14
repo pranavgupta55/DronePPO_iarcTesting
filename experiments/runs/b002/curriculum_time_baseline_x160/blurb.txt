@@ -1,0 +1,2 @@
+Curriculum baseline x160
+Default-weight curriculum baseline: base_k 10 to 1600 and approach_w 1 to 160. Tests the top weight on the reach and approach terms.

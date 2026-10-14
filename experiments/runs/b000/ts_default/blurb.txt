@@ -1,0 +1,2 @@
+Time shaping control
+Plain time_shaping at shaping_w 2000 on seed 1, with only its time and spin penalties. The outward runs branch from this one.

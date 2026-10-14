@@ -1,0 +1,2 @@
+Outward bonus w20
+Same as outward_default with outward_w raised from 1.0 to 20.0. Tests whether a much stronger outward pull changes the nozzles.

@@ -1,0 +1,2 @@
+Progress per thrust x40
+From the default progress per thrust, k 0.1 to 4. Tests a mid weight on the distance-per-thrust term.

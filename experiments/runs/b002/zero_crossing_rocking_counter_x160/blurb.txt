@@ -1,0 +1,2 @@
+Rocking counter x160
+Like the default rocking counter, except shaping_w 100 to 16000. Tests the top weight on the time-to-go term; flip_k stays 0.05.

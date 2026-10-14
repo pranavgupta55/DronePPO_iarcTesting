@@ -1,0 +1,2 @@
+Self-record x160, out 3
+Outward weight 3 on the self-record split bonus at x160 (record_k 1600, approach_w 160). Branches from b002 x160.

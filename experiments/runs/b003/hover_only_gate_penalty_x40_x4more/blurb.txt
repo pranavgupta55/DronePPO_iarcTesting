@@ -1,0 +1,2 @@
+Hover-only gate x160, no out
+Tests shaping_w 16000, four times the x40 weight of 4000, with outward_w at 0. Branches from b002 x40.

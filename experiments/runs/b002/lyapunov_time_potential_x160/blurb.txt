@@ -1,0 +1,2 @@
+Lyapunov potential x160
+Default-weight Lyapunov potential: w 1 to 160. Tests the top weight on the time-potential rate term; c_va stays 0.001.

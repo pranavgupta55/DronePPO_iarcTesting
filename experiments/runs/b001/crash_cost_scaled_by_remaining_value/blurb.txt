@@ -1,0 +1,2 @@
+Crash cost by time left
+Time shaping plus an extra crash charge equal to time-to-go, limited to 1 to 10 s. Tests whether early crashes should cost more.

@@ -1,0 +1,2 @@
+Thrust asymmetry x10
+Thrust asymmetry at hover at default weights, shaping_w 50 to 500. Tests a light push on the time-to-go term; asym_w stays 0.5.

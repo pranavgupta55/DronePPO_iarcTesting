@@ -1,0 +1,4 @@
+[b012] 2 to run (0 skipped), parallel 2
+[b012] t1_norm_free: reaches 3.63 tier 0 score 0.04 crash 0.70 58s
+[b012] t1_norm_frozen: reaches 9.67 tier 0 score 0.10 crash 0.23 59s
+[b012] finished in 1.0 min: {'ok': 2}

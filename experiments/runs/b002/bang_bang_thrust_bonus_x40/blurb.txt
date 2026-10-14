@@ -1,0 +1,2 @@
+Bang-bang bonus x40
+From the default bang-bang bonus, approach_w 1 to 40. Tests a mid weight on the approach-speed term; bb_k stays 0.01.

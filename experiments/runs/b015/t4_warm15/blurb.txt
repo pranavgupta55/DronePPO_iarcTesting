@@ -1,0 +1,2 @@
+Critic warm-up 15 epochs
+Same as t4_warm0 with a 15-epoch critic warm-up (actor frozen).

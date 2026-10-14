@@ -1,0 +1,2 @@
+Multiplicative wall gate
+Time-optimal shaping multiplied by a sigmoid that switches it off near walls (midpoint 40 px). Time and spin penalties stay ungated.

@@ -1,0 +1,2 @@
+Time-to-wall x40, out 30
+Control for b004 to b007. Same as b002 time_to_wall_barrier_x40 except outward_w is 30.

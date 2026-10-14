@@ -1,0 +1,2 @@
+Chatter at low speed x40
+From the default chatter penalty, shaping_w 100 to 4000. Tests a mid weight on the time-to-go term; chatter_k stays 0.02.

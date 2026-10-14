@@ -1,0 +1,2 @@
+Lyapunov potential x10
+Like the default Lyapunov potential, except w 1 to 10. Tests a light push on the time-potential rate term; c_va stays 0.001.

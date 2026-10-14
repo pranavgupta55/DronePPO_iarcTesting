@@ -1,0 +1,2 @@
+Coverage bonus x40, out 30
+Adds outward_w 30 to the grid-coverage bonus (shaping_w 2000), starting from b002 x40.

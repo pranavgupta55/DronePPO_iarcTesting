@@ -1,0 +1,2 @@
+Entry speed, then stop
+Approach-speed reward plus a one-time bonus for fast entry into the 20 px radius, and a charge for speed while inside.

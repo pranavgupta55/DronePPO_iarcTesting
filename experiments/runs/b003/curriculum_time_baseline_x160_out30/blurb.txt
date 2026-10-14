@@ -1,0 +1,2 @@
+Curriculum x160, out 30
+Adds outward_w 30 to the x160 reach-time baseline (base_k 1600, approach_w 160). Starts from b002 x160.

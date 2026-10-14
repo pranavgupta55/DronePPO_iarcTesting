@@ -1,0 +1,2 @@
+Time-to-wall x160, out 3
+Outward weight 3 on the time-to-wall barrier at approach_w 160. Branches from b002 time_to_wall_barrier_x160; only outward_w changes.

@@ -1,0 +1,2 @@
+Annealed nozzle x40
+From the default annealed nozzle curriculum, shaping_w 50 to 2000. Tests a mid weight on the time-to-go term; nozzle_w stays 0.5.

@@ -1,0 +1,2 @@
+Entry speed x160, out 3
+Outward nozzle weight 3 on the entry-speed reward at x160 (entry_k 800). Branches from b002 x160; only outward_w changes.

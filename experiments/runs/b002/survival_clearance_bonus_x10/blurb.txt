@@ -1,0 +1,2 @@
+Clearance bonus x10
+Clearance bonus at default weights, shaping_w 100 to 1000. Tests a light push on the time-to-go term; clear_c stays 0.1.

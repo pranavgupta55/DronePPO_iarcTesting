@@ -1,0 +1,17 @@
+{
+ "batch": "b006",
+ "specs": [
+  {
+   "name": "ttwb_g2_rate2_std2",
+   "scheme": "time_to_wall_barrier",
+   "params": {
+    "approach_w": 40.0
+   },
+   "outward_w": 30,
+   "seed": 1,
+   "gravity_scale": 2.0,
+   "force_rate": 0.01,
+   "init_log_std": 0.1931471805599453
+  }
+ ]
+}

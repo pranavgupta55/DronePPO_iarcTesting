@@ -1,0 +1,2 @@
+Thrust-to-target projection
+Time-optimal shaping at shaping_w 50 plus a reward for thrust that pushes along the line to the target, weight 0.5.

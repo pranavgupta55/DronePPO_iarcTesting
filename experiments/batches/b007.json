@@ -1,0 +1,71 @@
+{
+ "batch": "b007",
+ "specs": [
+  {
+   "name": "ttwb_ap20_th0",
+   "scheme": "time_to_wall_barrier",
+   "params": {
+    "approach_w": 40.0
+   },
+   "outward_w": 30,
+   "seed": 1,
+   "approach_w": 20.0,
+   "thrust_w": 0.0
+  },
+  {
+   "name": "ttwb_ap20_th5",
+   "scheme": "time_to_wall_barrier",
+   "params": {
+    "approach_w": 40.0
+   },
+   "outward_w": 30,
+   "seed": 1,
+   "approach_w": 20.0,
+   "thrust_w": 5.0
+  },
+  {
+   "name": "ttwb_ap20_th25",
+   "scheme": "time_to_wall_barrier",
+   "params": {
+    "approach_w": 40.0
+   },
+   "outward_w": 30,
+   "seed": 1,
+   "approach_w": 20.0,
+   "thrust_w": 25.0
+  },
+  {
+   "name": "ttwb_ap100_th0",
+   "scheme": "time_to_wall_barrier",
+   "params": {
+    "approach_w": 40.0
+   },
+   "outward_w": 30,
+   "seed": 1,
+   "approach_w": 100.0,
+   "thrust_w": 0.0
+  },
+  {
+   "name": "ttwb_ap100_th5",
+   "scheme": "time_to_wall_barrier",
+   "params": {
+    "approach_w": 40.0
+   },
+   "outward_w": 30,
+   "seed": 1,
+   "approach_w": 100.0,
+   "thrust_w": 5.0
+  },
+  {
+   "name": "ttwb_ap100_th25",
+   "scheme": "time_to_wall_barrier",
+   "params": {
+    "approach_w": 40.0
+   },
+   "outward_w": 30,
+   "seed": 1,
+   "approach_w": 100.0,
+   "thrust_w": 25.0
+  }
+ ]
+}

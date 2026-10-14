@@ -1,0 +1,2 @@
+Thrust-weighted nozzle
+Time-optimal shaping at shaping_w 50 plus a reward for nozzle angles near 30 degrees outward, scaled by each thruster's force.

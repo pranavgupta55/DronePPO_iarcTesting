@@ -1,0 +1,2 @@
+Gravity floor barrier x10
+From the default gravity floor barrier, shaping_w 100 to 1000. Tests a light push on the time-to-go term; barrier_k stays 1e-05.

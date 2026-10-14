@@ -1,0 +1,2 @@
+Wall time barrier x40
+Wall time barrier at default weights, approach_w 1 to 40. Tests a mid weight on the approach-speed term; barrier k stays 1.

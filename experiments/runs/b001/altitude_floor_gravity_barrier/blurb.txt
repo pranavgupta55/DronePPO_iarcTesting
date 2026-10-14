@@ -1,0 +1,2 @@
+Gravity floor barrier
+Time shaping plus a penalty on downward speed near the floor, decaying over 100 px of height. Side walls and tilt are left alone.

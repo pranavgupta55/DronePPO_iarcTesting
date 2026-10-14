@@ -1,0 +1,2 @@
+Force rate 0.02, seed 1
+Thruster force_rate 0.02 instead of 0.005, the per-step thrust change rate, on seed 1. Target margin is 10 px (control: 100).

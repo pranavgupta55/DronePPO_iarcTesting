@@ -22,15 +22,18 @@ DEFAULTS = {
     "pi_lr": 3e-4, "vf_lr": 1e-3, "lr_decay_end": 0.1, "lr_schedule": "linear",
     "gamma": 0.99, "gae_lambda": 0.95, "clip": 0.2, "update_epochs": 4, "num_minibatches": 16, "init_log_std": -0.5,
     "reward_scaling": True, "obs_norm": True, "mirror": True, "torch_threads": 1,
-    "reach_reward": 10000.0, "crash_penalty": 6000.0, "outward_w": 0.0, "outward_target": 0.5235987755982988,
+    "reach_reward": 10000.0, "crash_penalty": 6000.0, "outward_w": 0.0, "force_rate": 0.005, "approach_w": 0.0, "approach_ref": 300.0, "thrust_w": 0.0, "gravity_scale": 1.0, "outward_target": 0.5235987755982988,
     "far_target_min_dist": 400.0, "far_target_fraction_end": 0.7, "curriculum_end": 0.5, "target_margin": 10.0, "ramp_end": 0.5,
+    "init_from": None, "critic_warmup_epochs": 0, "freeze_obs_norm": False,  # init_from: a run dir whose actor.pt and norm.npz start this session (behavior cloning); the actor stays frozen for critic_warmup_epochs
     "reach_speed": [50.0, 20.0], "reach_ang": [2.0, 0.5], "reach_hold": [1, 25],
 }
 NON_HYPER_KEYS = ("name", "seed", "scheme", "params")
+RETIRED_KEYS = ("bc_anchor_w",)  # saved in the spec.json of runs b012-b014 but never implemented; dropped when such a spec is loaded
 
 
 def make_spec(spec):
     """Spec with defaults filled in; unknown keys are rejected so typos in a batch file fail loudly."""
+    spec = {k: v for k, v in spec.items() if k not in RETIRED_KEYS}
     unknown = set(spec) - set(DEFAULTS)
     if unknown:
         raise KeyError(f"unknown spec keys: {sorted(unknown)}")
@@ -87,6 +90,7 @@ class DroneEnv:
         self._on_spawn = getattr(scheme, "on_target_spawn", None)
         self.target_margin = spec["target_margin"]
         self.drone = Drone((ENV_WIDTH / 2, ENV_HEIGHT / 2), DRONE_SIZE, ENV_DIAG)
+        self.drone.thruster_force_delta_rate = spec["force_rate"]  # force change per step per unit action
         self.progress = 1.0
         self.set_ramp(1.0)
 
@@ -108,8 +112,9 @@ class DroneEnv:
     def reset(self):
         d = self.drone
         d.reset()  # spawns at the centre with a small random tilt / velocity
-        d.thruster_forces = [HOVER_THRUST, HOVER_THRUST]
-        d.previous_thruster_forces = [HOVER_THRUST, HOVER_THRUST]
+        hover = HOVER_THRUST * self.spec["gravity_scale"]  # the thrust that cancels the (scaled) gravity
+        d.thruster_forces = [hover, hover]
+        d.previous_thruster_forces = [hover, hover]
         self.mirrored = self.mirror_episodes and random.random() < 0.5
         self.steps, self.reaches, self.hold_steps = 0, 0, 0
         self.prev_action = np.zeros(ACT_DIM)
@@ -170,7 +175,7 @@ class DroneEnv:
             action = mirror_action(action)  # everything below (and the scheme) lives in the physical frame
         d = self.drone
         d.apply_action(action, TIME_STEP_DELTA)
-        d.physics_move(GRAVITY, TIME_STEP_DELTA)
+        d.physics_move(GRAVITY * self.spec["gravity_scale"], TIME_STEP_DELTA)
         self.steps += 1
 
         shell = d.shell
@@ -199,6 +204,10 @@ class DroneEnv:
         c.W, c.H, c.x, c.y, c.dist_to_wall = ENV_WIDTH, ENV_HEIGHT, x, y, min(x, ENV_WIDTH - x, y, ENV_HEIGHT - y)
 
         reward = float(self.scheme.step(c))
+        if self.spec["approach_w"]:  # overlay on any scheme: speed toward the target, clipped to +/-1 at approach_ref px/s
+            reward += self.spec["approach_w"] * max(-1.0, min(1.0, c.approach_speed / self.spec["approach_ref"]))
+        if self.spec["thrust_w"]:  # overlay on any scheme: pays for a high mean thruster force (0..1)
+            reward += self.spec["thrust_w"] * (c.forces[0] + c.forces[1]) / 2
         if self.spec["outward_w"]:  # overlay on any scheme: peaked reward for both nozzles pointing outward (same shape as ppo.py's)
             t = self.spec["outward_target"]
             reward += self.spec["outward_w"] * (max(-1.0, 1 - abs(c.angles_out[0] - t) / t) + max(-1.0, 1 - abs(c.angles_out[1] - t) / t)) / 2

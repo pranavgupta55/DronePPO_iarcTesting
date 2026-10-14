@@ -1,0 +1,4 @@
+[b014] 2 to run (0 skipped), parallel 2
+[b014] t3_logstd-6: reaches 9.87 tier 0 score 0.10 crash 0.23 223s
+[b014] t3_crash30k: reaches 9.97 tier 0 score 0.10 crash 0.33 223s
+[b014] finished in 3.7 min: {'ok': 2}

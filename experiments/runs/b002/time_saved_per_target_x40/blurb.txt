@@ -1,0 +1,2 @@
+Time saved per target x40
+Default-weight time saved per target: save_k 10 to 400 and approach_w 1 to 40. Tests a mid weight on the reach and approach terms.

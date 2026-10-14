@@ -1,0 +1,2 @@
+Time shaping, out 30
+Plain time shaping with outward_w 30 added, from b000 ts_default (shaping_w 2000 by default).

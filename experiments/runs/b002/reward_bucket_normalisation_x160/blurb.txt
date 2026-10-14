@@ -1,0 +1,2 @@
+Bucket-normalised x160
+Bucket-normalised reward at default weights, w_shape 1 to 160. Tests the top weight on the shape term; other weights stay.

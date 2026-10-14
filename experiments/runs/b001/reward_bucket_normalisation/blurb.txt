@@ -1,0 +1,2 @@
+Bucket-normalised reward
+Four reward terms, each divided by its running RMS, then weighted 1, 0.2, 0.3 and 0.3. Tests whether unit scaling shifts the balance.

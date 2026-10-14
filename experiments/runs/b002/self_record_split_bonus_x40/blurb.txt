@@ -1,0 +1,2 @@
+Self-record split x40
+Default-weight self-record split: record_k 10 to 400 and approach_w 1 to 40. Tests a mid weight on the record and approach terms.

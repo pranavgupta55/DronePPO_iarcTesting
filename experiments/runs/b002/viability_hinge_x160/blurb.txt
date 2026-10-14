@@ -1,0 +1,2 @@
+Viability hinge x160
+Viability hinge at default weights, approach_w 1 to 160. Tests the top weight on the approach-speed term; hinge k stays 1.

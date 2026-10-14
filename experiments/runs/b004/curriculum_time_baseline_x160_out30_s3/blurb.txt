@@ -1,0 +1,2 @@
+Curriculum x160, out 30 s3
+Seed 3 repeat of b003 curriculum_time_baseline_x160_out30 (base_k 1600, approach_w 160, outward_w 30).

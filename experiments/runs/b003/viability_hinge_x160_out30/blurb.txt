@@ -1,0 +1,2 @@
+Viability hinge x160, out 30
+From b002 x160, the braking-feasibility hinge gets outward_w 30 and nothing else.

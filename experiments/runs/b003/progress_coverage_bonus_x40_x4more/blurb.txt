@@ -1,0 +1,2 @@
+Coverage bonus x160, no out
+Tests shaping_w 8000, four times the x40 weight, with no outward term. Branches from b002 progress_coverage_bonus_x40.

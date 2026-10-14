@@ -1,0 +1,2 @@
+Outward bonus w1
+Time shaping plus the outward-nozzle reward at outward_w 1.0, peaking at 30 degrees. Branches from ts_default.

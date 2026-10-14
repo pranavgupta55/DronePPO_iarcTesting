@@ -1,0 +1,2 @@
+Entry speed x10
+Entry speed at default weights, entry_k 5 to 50 and approach_w 0.5 to 5. Tests a light push on the entry and approach terms.

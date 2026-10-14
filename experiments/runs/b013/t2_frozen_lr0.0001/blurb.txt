@@ -1,0 +1,2 @@
+PPO with fixed normalizer, lr 1e-4
+First real PPO updates with the normalizer frozen. Beat bc_feat on reaches and speed, with more crashes.

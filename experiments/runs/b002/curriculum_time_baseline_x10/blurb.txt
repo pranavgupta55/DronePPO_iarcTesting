@@ -1,0 +1,2 @@
+Curriculum baseline x10
+Like the default curriculum baseline, except base_k 10 to 100 and approach_w 1 to 10. Tests a light push on the reach and approach terms.

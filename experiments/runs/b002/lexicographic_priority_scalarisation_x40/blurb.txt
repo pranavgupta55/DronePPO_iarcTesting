@@ -1,0 +1,2 @@
+Lexicographic x40
+Lexicographic scheme at default weights, shaping_w 50 to 2000. Tests a mid weight on the time-to-go term in the speed branch.

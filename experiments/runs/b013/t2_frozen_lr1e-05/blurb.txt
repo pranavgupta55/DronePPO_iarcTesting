@@ -1,0 +1,2 @@
+PPO with fixed normalizer, lr 1e-5
+Same as lr 1e-4 at a tenth of the learning rate. Nearly the same result.

@@ -1,0 +1,2 @@
+Thrust-to-target x160
+From the default thrust-to-target projection, shaping_w 50 to 8000 and proj_w 0.5 to 80. Tests the top weight on the shaping and projection.

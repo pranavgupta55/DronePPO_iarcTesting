@@ -1,0 +1,2 @@
+Nozzle anneal x40, out 30
+Outward weight 30 on the annealed nozzle curriculum (shaping_w 2000), from b002 x40. Only outward_w is new.

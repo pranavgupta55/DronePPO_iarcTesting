@@ -1,0 +1,2 @@
+Bang-bang bonus x160
+Like the default bang-bang bonus, except approach_w 1 to 160. Tests the top weight on the approach-speed term; bb_k stays 0.01.

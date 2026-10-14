@@ -1,0 +1,2 @@
+Viability hinge x40
+Default-weight viability hinge: approach_w 1 to 40. Tests a mid weight on the approach-speed term; hinge k stays 1.

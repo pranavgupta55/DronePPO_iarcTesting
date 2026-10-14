@@ -1,0 +1,110 @@
+{
+ "batch": "b015",
+ "specs": [
+  {
+   "scheme": "bangbang_features",
+   "params": {
+    "approach_w": 40.0
+   },
+   "force_rate": 0.5,
+   "mirror": false,
+   "init_log_std": -4.0,
+   "init_from": "/Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/bc/bc_feat",
+   "critic_warmup_epochs": 0,
+   "epochs": 150,
+   "num_envs": 2,
+   "steps_per_epoch": 16384,
+   "seed": 1,
+   "target_margin": 10.0,
+   "pi_lr": 0.0001,
+   "clip": 0.1,
+   "update_epochs": 2,
+   "ramp_end": 0.001,
+   "reach_speed": [
+    20.0,
+    20.0
+   ],
+   "reach_ang": [
+    0.5,
+    0.5
+   ],
+   "reach_hold": [
+    25,
+    25
+   ],
+   "far_target_fraction_end": 0.0,
+   "name": "t4_warm0",
+   "freeze_obs_norm": true
+  },
+  {
+   "scheme": "bangbang_features",
+   "params": {
+    "approach_w": 40.0
+   },
+   "force_rate": 0.5,
+   "mirror": false,
+   "init_log_std": -4.0,
+   "init_from": "/Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/bc/bc_feat",
+   "critic_warmup_epochs": 15,
+   "epochs": 150,
+   "num_envs": 2,
+   "steps_per_epoch": 16384,
+   "seed": 1,
+   "target_margin": 10.0,
+   "pi_lr": 0.0001,
+   "clip": 0.1,
+   "update_epochs": 2,
+   "ramp_end": 0.001,
+   "reach_speed": [
+    20.0,
+    20.0
+   ],
+   "reach_ang": [
+    0.5,
+    0.5
+   ],
+   "reach_hold": [
+    25,
+    25
+   ],
+   "far_target_fraction_end": 0.0,
+   "name": "t4_warm15",
+   "freeze_obs_norm": true
+  },
+  {
+   "scheme": "bangbang_features",
+   "params": {
+    "approach_w": 40.0
+   },
+   "force_rate": 0.5,
+   "mirror": false,
+   "init_log_std": -4.0,
+   "init_from": "/Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/bc/bc_feat",
+   "critic_warmup_epochs": 60,
+   "epochs": 150,
+   "num_envs": 2,
+   "steps_per_epoch": 16384,
+   "seed": 1,
+   "target_margin": 10.0,
+   "pi_lr": 0.0001,
+   "clip": 0.1,
+   "update_epochs": 2,
+   "ramp_end": 0.001,
+   "reach_speed": [
+    20.0,
+    20.0
+   ],
+   "reach_ang": [
+    0.5,
+    0.5
+   ],
+   "reach_hold": [
+    25,
+    25
+   ],
+   "far_target_fraction_end": 0.0,
+   "name": "t4_warm60",
+   "freeze_obs_norm": true
+  }
+ ]
+}

@@ -1,0 +1,2 @@
+Viability hinge x160, out 3
+Outward weight 3 on the braking-feasibility hinge at x160 (approach_w 160). Branches from b002 x160; only outward_w changes.

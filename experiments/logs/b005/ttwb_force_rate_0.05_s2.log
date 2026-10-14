@@ -1,0 +1,8 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b005/ttwb_force_rate_0.05_s2/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b005/ttwb_force_rate_0.05_s2
+epoch  25/300    60s | eps 292 | ret   -5235.8 | len    112 | reaches   0 | pi -0.0084 | v 0.1132
+epoch  50/300   121s | eps 10 | ret  188970.6 | len   3298 | reaches  77 | pi 0.0153 | v 0.1985
+epoch  75/300   175s | eps  9 | ret  226557.9 | len   3710 | reaches  77 | pi -0.0200 | v 0.1113
+epoch 100/300   233s | eps  8 | ret  246229.7 | len   4096 | reaches  71 | pi -0.0188 | v 0.0796
+epoch 125/300   292s | eps  9 | ret  247348.9 | len   3958 | reaches  84 | pi -0.0168 | v 0.0716
+epoch 150/300   349s | eps  9 | ret  184601.1 | len   3365 | reaches  61 | pi -0.0161 | v 0.0835
+epoch 175/300   406s | eps  9 | ret  154444.4 | len   3485 | reaches  36 | pi 0.0098 | v 0.0844

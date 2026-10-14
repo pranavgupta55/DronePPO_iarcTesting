@@ -1,0 +1,2 @@
+Wall time barrier
+Approach-speed reward plus a penalty that grows as time-to-impact with the nearest wall shrinks (tau 0.5 s).

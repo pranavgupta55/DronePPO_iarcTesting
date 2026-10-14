@@ -1,0 +1,2 @@
+Bucket-normalised x40
+Default-weight bucket-normalised reward: w_shape 1 to 40. Tests a mid weight on the shape term; other weights stay.

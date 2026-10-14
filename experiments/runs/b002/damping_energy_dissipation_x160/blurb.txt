@@ -1,0 +1,2 @@
+Rotational damping x160
+From the default rotational damping, shaping_w 100 to 16000. Tests the top weight on the time-to-go term; damp_k stays 5.

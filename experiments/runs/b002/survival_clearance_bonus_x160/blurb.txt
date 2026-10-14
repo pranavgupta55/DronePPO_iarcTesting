@@ -1,0 +1,2 @@
+Clearance bonus x160
+From the default clearance bonus, shaping_w 100 to 16000. Tests the top weight on the time-to-go term; clear_c stays 0.1.

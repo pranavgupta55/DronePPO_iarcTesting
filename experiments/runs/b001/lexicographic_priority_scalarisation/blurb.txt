@@ -1,0 +1,2 @@
+Lexicographic safety
+Own copy of time-optimal shaping at shaping_w 50. Near walls the wall penalty replaces the speed reward entirely.

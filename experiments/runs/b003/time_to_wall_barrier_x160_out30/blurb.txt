@@ -1,0 +1,2 @@
+Time-to-wall x160, out 30
+Outward weight 30 on the time-to-wall barrier at approach_w 160, from b002 x160. Only outward_w is new.

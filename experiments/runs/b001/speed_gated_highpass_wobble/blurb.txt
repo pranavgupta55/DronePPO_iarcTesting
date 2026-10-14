@@ -1,0 +1,2 @@
+High-pass wobble gate
+Time shaping plus a penalty on fast spin changes, active only below 150 px/s. Tests damping wobble in slow flight.

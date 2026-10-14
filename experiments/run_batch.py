@@ -24,6 +24,7 @@ EVAL_KEYS = ["reaches_per_ep", "steps_per_reach", "crash_rate", "mean_speed", "m
 TRAIN_KEYS = ["final_return", "final_length", "final_reaches_per_epoch"]
 COLUMNS = ["batch", "name", "status", "seed", "scheme", "params"] + HYPER_KEYS + EVAL_KEYS + TRAIN_KEYS + ["wall_seconds", "error"]
 csv_lock = threading.Lock()
+BLURBS = {}  # run name -> "short name\none or two plain sentences: what the test is for and what changed from the run it branched from"
 
 
 def run_subprocess(cmd, log, timeout):
@@ -71,6 +72,8 @@ def run_one(batch, spec, runs_root, logs_root, results):
     name = spec["name"]
     run_dir, log = runs_root / name, logs_root / f"{name}.log"
     run_dir.mkdir(parents=True, exist_ok=True)
+    if name in BLURBS:
+        (run_dir / "blurb.txt").write_text(BLURBS[name].strip() + "\n")
     row = {"batch": batch, "name": name, "seed": spec["seed"], "scheme": spec["scheme"], "params": json.dumps(spec["params"], separators=(",", ":"), sort_keys=True),
            **{k: json.dumps(spec[k], separators=(",", ":")) if isinstance(spec[k], (list, dict)) else spec[k] for k in HYPER_KEYS}}
     spec_file = run_dir / "spec_in.json"
@@ -115,6 +118,11 @@ def main():
     for i, s in enumerate(specs):
         s = dict(s)
         s.setdefault("name", f"{batch}_{i:03d}")
+        blurb = s.pop("blurb", None)  # every run needs one: "short name" on line 1, then 1-2 short sentences (purpose, and what changed from the branch point)
+        if blurb:
+            BLURBS[s["name"]] = blurb
+        elif not (runs_root / s["name"] / "blurb.txt").exists():
+            sys.exit(f"run {s['name']} has no blurb: add \"blurb\": \"short name\\nwhat it tests, what changed from the previous run\" to its spec")
         if args.workers and "num_envs" not in s:
             s["num_envs"] = args.workers
         if s["name"] in names:

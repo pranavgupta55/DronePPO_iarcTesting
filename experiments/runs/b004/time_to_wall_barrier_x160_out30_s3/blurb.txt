@@ -1,0 +1,2 @@
+Time-to-wall x160, out 30 s3
+Seed 3 repeat of b003 time_to_wall_barrier_x160_out30 (approach_w 160, outward_w 30).

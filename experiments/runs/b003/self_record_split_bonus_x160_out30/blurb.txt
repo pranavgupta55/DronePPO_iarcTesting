@@ -1,0 +1,2 @@
+Self-record x160, out 30
+Adds outward_w 30 to the x160 self-record split bonus (record_k 1600, approach_w 160), starting from b002 x160.

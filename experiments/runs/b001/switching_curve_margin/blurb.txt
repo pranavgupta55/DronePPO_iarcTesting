@@ -1,0 +1,2 @@
+Switching-curve margin
+Approach-speed reward plus a penalty whenever the drone could not brake to rest before its target at 6000 px/s^2.

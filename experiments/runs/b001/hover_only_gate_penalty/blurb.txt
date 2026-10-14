@@ -1,0 +1,2 @@
+Hover-only tilt gate
+Time shaping plus a tilt and spin penalty that applies only when slow and within 100 px of the target. Fast flight is not charged.

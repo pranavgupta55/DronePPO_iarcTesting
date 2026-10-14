@@ -1,0 +1,2 @@
+Approach 20, thrust 5
+Control plus approach-speed overlay 20 and a thrust overlay of 5, which pays for mean thruster force. Margin 10 px (control: 100).

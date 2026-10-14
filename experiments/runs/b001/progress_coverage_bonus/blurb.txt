@@ -1,0 +1,2 @@
+Coverage bonus
+Time-optimal shaping plus a payment for entering each of 48 grid cells above 60 px/s, shrinking with repeat visits.

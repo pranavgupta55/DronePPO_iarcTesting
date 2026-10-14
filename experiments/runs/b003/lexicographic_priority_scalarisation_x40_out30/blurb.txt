@@ -1,0 +1,2 @@
+Lexicographic x40, out 30
+From b002 x40 (shaping_w 2000), this adds outward_w 30 to the lexicographic safety-priority reward and nothing else.

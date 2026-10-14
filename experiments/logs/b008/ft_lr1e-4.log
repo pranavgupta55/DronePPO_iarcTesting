@@ -1,0 +1,8 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b008/ft_lr1e-4/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b008/ft_lr1e-4
+epoch  25/300    53s | eps 10 | ret  253640.6 | len   2666 | reaches 199 | pi -0.0188 | v 0.0526
+epoch  50/300   105s | eps 12 | ret  290676.2 | len   2941 | reaches 273 | pi 0.0076 | v 0.0322
+epoch  75/300   161s | eps  8 | ret  375146.2 | len   3870 | reaches 231 | pi -0.0085 | v 0.0299
+epoch 100/300   213s | eps  9 | ret  298503.5 | len   3792 | reaches 205 | pi 0.0242 | v 0.0426
+epoch 125/300   265s | eps 10 | ret  137313.0 | len   3556 | reaches 105 | pi 0.0056 | v 0.0986
+epoch 150/300   321s | eps  9 | ret    2730.7 | len   3649 | reaches   1 | pi -0.0361 | v 0.0004
+epoch 175/300   378s | eps  8 | ret    1776.2 | len   4096 | reaches   0 | pi 0.0058 | v 0.0001

@@ -1,0 +1,2 @@
+Time-to-wall x160, no out
+Tests approach_w 160, four times the x40 weight, with outward_w at 0. Same settings as b002 x160, so it repeats that result.

@@ -1,0 +1,2 @@
+Settle bonus in hold
+Time shaping plus a bonus within 20 px of the target that grows with hold time and shrinks with spin. Tests paying for a calm settle.

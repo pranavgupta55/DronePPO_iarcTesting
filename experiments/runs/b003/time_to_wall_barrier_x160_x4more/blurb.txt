@@ -1,0 +1,2 @@
+Time-to-wall x640, no out
+Tests approach_w 640, four times the x160 weight, with outward_w at 0. Branches from b002 time_to_wall_barrier_x160.

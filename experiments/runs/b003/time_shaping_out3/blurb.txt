@@ -1,0 +1,2 @@
+Time shaping, out 3
+Branches from b000 ts_default, the plain time shaping run, with outward_w 3 added.

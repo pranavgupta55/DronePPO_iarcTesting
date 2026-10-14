@@ -1,0 +1,2 @@
+Time shaping, seed 2
+Same as ts_default with seed 2 instead of 1. Shows how far one run moves from the seed alone.

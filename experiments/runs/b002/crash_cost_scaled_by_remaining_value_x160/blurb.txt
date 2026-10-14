@@ -1,0 +1,2 @@
+Crash cost by time left x160
+Default-weight crash cost by time left: shaping_w 100 to 16000. Tests the top weight on the time-to-go term; crash_k stays 1.

@@ -1,0 +1,2 @@
+Entry speed x640, no out
+Tests entry_k 3200 and approach_w 320, four times the x160 weights, with no outward term. Branches from b002 x160.

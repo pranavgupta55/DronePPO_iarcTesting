@@ -1,0 +1,2 @@
+Safety gate x160
+Like the default multiplicative wall gate, except shaping_w 50 to 8000. Tests the top weight on the time-to-go term inside the wall gate.

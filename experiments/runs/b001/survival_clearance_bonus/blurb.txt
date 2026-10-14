@@ -1,0 +1,2 @@
+Clearance bonus
+Time shaping plus a small per-step bonus for distance from the nearest wall, halved by the end of training.

@@ -1,0 +1,2 @@
+Time saved per target x10
+Default-weight time saved per target: save_k 10 to 100 and approach_w 1 to 10. Tests a light push on the reach and approach terms.

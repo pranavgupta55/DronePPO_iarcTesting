@@ -1,0 +1,2 @@
+Curriculum time baseline
+Approach-speed reward plus a reach bonus scored against a running average reach time for each 150 px distance band.

@@ -1,0 +1,4 @@
+[b013] 2 to run (0 skipped), parallel 2
+[b013] t2_frozen_lr0.0001: reaches 10.70 tier 0 score 0.11 crash 0.40 221s
+[b013] t2_frozen_lr1e-05: reaches 10.63 tier 0 score 0.11 crash 0.37 219s
+[b013] finished in 3.7 min: {'ok': 2}

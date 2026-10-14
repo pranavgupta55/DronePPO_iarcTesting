@@ -1,0 +1,2 @@
+Progress per thrust x10
+From the default progress per thrust, k 0.1 to 1. Tests a light push on the distance-per-thrust term.

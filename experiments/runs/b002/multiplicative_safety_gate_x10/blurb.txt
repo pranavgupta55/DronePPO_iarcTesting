@@ -1,0 +1,2 @@
+Safety gate x10
+From the default multiplicative wall gate, shaping_w 50 to 500. Tests a light push on the time-to-go term inside the wall gate.

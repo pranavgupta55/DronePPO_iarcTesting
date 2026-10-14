@@ -1,0 +1,2 @@
+Annealed nozzle curriculum
+Thrust-weighted nozzle alignment at weight 0.5, fading linearly to zero by 70% of training. Teaches nozzle discipline early, then drops it.

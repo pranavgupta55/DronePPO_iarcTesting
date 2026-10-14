@@ -1,0 +1,2 @@
+Nozzle alignment potential
+Time-optimal shaping at shaping_w 50 plus a potential that pulls both nozzles toward 30 degrees outward, weight 2, thrust on or off.

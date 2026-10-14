@@ -1,0 +1,2 @@
+Imitation net
+Supervised copy of the bang-bang controller (DAgger, best round 3) with 7 extra inputs. Branch point for all PPO fine-tuning.

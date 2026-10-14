@@ -1,0 +1,2 @@
+Lyapunov time potential
+Negative rate of a potential made from time-to-go plus 0.001 times approach speed, rate clipped to plus or minus 5.

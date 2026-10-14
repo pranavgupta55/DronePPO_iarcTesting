@@ -1,0 +1,2 @@
+Switching curve x160
+From the default switching curve, approach_w 1 to 160. Tests the top weight on the approach-speed term; viol_w stays 0.01.

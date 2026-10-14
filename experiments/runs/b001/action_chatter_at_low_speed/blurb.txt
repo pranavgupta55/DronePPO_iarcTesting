@@ -1,0 +1,2 @@
+Chatter at low speed
+Time shaping plus a penalty on large action changes that fades out as speed rises. Tests damping thruster chatter only while slow.

@@ -1,0 +1,2 @@
+Actor frozen, normalizer frozen
+Same as t1_norm_free with the observation normalizer fixed. Performance held, which pinned the cause.

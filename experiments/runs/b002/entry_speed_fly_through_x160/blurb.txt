@@ -1,0 +1,2 @@
+Entry speed x160
+From the default entry speed, entry_k 5 to 800 and approach_w 0.5 to 80. Tests the top weight on the entry and approach terms.

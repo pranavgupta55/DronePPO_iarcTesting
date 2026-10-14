@@ -1,0 +1,2 @@
+Settle bonus x160
+Default-weight settle bonus: shaping_w 100 to 16000 and settle_k 1 to 160. Tests the top weight on the shaping and settle bonus.

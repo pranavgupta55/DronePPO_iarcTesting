@@ -170,7 +170,7 @@ class EpisodeHandler:
             rew = np.clip(raw_rew / np.sqrt(self.ret_norm.var + 1e-8), -NORM_CLIP, NORM_CLIP).astype(np.float32)
         else:
             rew = raw_rew.astype(np.float32)
-        if self.spec["obs_norm"]:
+        if self.spec["obs_norm"] and not self.spec["freeze_obs_norm"]:  # frozen when a pretrained network expects exactly its own observation scaling
             self.obs_norm.update(raw_obs.reshape(T * N, self.obs_dim))
             self.symmetrize()
 
@@ -200,6 +200,12 @@ class TrainHandler:
         self.base_lrs = [spec["pi_lr"], spec["vf_lr"]]
         self.optimizer = torch.optim.Adam([{"params": self.actor.parameters(), "lr": self.base_lrs[0]}, {"params": self.critic.parameters(), "lr": self.base_lrs[1]}])
         self.obs_norm, self.ret_norm = RunningNorm((self.obs_dim,)), RunningNorm()
+        if spec["init_from"]:  # start from a pretrained actor and its observation statistics (the critic starts fresh)
+            source = Path(spec["init_from"])
+            state = torch.load(source / "actor.pt", map_location="cpu")
+            self.actor.net.load_state_dict({k[len("net."):]: v for k, v in state.items() if k.startswith("net.")})
+            norms = np.load(source / "norm.npz")
+            self.obs_norm.mean, self.obs_norm.var, self.obs_norm.count = norms["obs_mean"], norms["obs_var"], float(norms["obs_count"])
         self.envs = SubprocEnvs(spec)
         self.episode_handler = EpisodeHandler(spec, self.envs, self.actor, self.critic, self.obs_norm, self.ret_norm, self.obs_dim, mirror_perm, mirror_sign)
         self.rows = []
@@ -210,6 +216,8 @@ class TrainHandler:
         for group, base_lr in zip(self.optimizer.param_groups, self.base_lrs):
             factor = 1 - (1 - s["lr_decay_end"]) * progress if s["lr_schedule"] == "linear" else s["lr_decay_end"] ** progress
             group["lr"] = base_lr * factor
+        if epoch <= s["critic_warmup_epochs"]:
+            self.optimizer.param_groups[0]["lr"] = 0.0  # actor frozen while the new critic catches up
         batch, episodes = self.episode_handler.collect(progress)
         pi_loss, v_loss = self.backprop(batch)
         row = {"epoch": epoch, "time": round(time.time() - self.start_time, 2), "episodes": len(episodes),
@@ -238,7 +246,7 @@ class TrainHandler:
 
     def train(self):
         try:
-            if self.spec["obs_norm"]:
+            if self.spec["obs_norm"] and not self.spec["init_from"]:
                 self.episode_handler.warm_up()
             for epoch in range(1, self.epochs + 1):
                 self.run_epoch(epoch)

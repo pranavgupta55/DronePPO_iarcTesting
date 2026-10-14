@@ -1,0 +1,2 @@
+Curriculum x160, out 3
+Outward nozzle weight 3 on the reach-time baseline at x160. Branches from b002 x160 (base_k 1600), with outward_w added.

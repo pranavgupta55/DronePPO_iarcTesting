@@ -1,0 +1,2 @@
+Entry speed x40, out 3
+Outward weight 3 on the entry-speed reward at x40 (entry_k 200, approach_w 20). Branches from b002 x40 with outward_w added.

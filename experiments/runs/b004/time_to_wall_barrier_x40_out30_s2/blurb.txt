@@ -1,0 +1,2 @@
+Time-to-wall x40, out 30 s2
+Seed 2 repeat of the b003 control. No other spec value changes.

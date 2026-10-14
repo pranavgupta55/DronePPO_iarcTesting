@@ -1,0 +1,2 @@
+Critic warm-up 0 epochs
+Retest of critic warm-up length on the fixed normalizer (lr 1e-4, 150 epochs). No warm-up.

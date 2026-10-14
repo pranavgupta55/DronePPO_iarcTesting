@@ -1,0 +1,2 @@
+Staged reward mixture
+Speed shaping starts at 0.3 weight, full by 30% of training. Wall penalty stays on; the nozzle term fades out by 70%.

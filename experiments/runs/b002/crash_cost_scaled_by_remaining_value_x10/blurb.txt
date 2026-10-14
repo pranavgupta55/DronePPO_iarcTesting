@@ -1,0 +1,2 @@
+Crash cost by time left x10
+Like the default crash cost by time left, except shaping_w 100 to 1000. Tests a light push on the time-to-go term; crash_k stays 1.

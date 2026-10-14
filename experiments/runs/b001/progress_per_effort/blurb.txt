@@ -1,0 +1,2 @@
+Progress per thrust
+Distance closed per unit of thrust, clipped to plus or minus 5 and scaled by k 0.1. Meant to favour short full-thrust bursts.

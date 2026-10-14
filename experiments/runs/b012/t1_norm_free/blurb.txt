@@ -1,0 +1,2 @@
+Actor frozen, normalizer free
+Tests whether performance drops with no policy updates. It did, so the normalizer drift is not a PPO effect.

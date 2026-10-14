@@ -1,0 +1,2 @@
+Thrust-weighted nozzle x160
+Thrust-weighted nozzle term at default weights, shaping_w 50 to 8000. Tests the top weight on the time-to-go term; align_w stays 0.5.

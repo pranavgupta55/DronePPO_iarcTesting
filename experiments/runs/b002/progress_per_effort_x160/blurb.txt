@@ -1,0 +1,2 @@
+Progress per thrust x160
+Like the default progress per thrust, except k 0.1 to 16. Tests the top weight on the distance-per-thrust term.

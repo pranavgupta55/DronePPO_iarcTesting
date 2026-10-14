@@ -1,0 +1,2 @@
+Thrust asymmetry at hover
+Time-optimal shaping at shaping_w 50 plus a penalty on the gap between the two thrusts while slow and within 100 px.

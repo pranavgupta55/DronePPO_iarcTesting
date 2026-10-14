@@ -1,0 +1,121 @@
+[   40s] round 0: controller data 600000 samples, 708 episodes, 1593 reaches, 49 crashes
+[   41s]   label std per output [0.301 0.301 0.149 0.149] (mean [-0.011 -0.011  0.     0.   ])
+[   51s]     epoch  10 val mse per output [0.0381, 0.0391, 0.0002, 0.0002]
+[   59s]     epoch  20 val mse per output [0.0344, 0.0355, 0.0001, 0.0002]
+[   66s]     epoch  30 val mse per output [0.0334, 0.0344, 0.0001, 0.0001]
+[   74s]     epoch  40 val mse per output [0.0333, 0.0344, 0.0001, 0.0001]
+[   82s]     epoch  50 val mse per output [0.0329, 0.0343, 0.0, 0.0001]
+[   89s]     epoch  60 val mse per output [0.0328, 0.0341, 0.0, 0.0001]
+[   97s]     epoch  70 val mse per output [0.0327, 0.034, 0.0, 0.0001]
+[  106s]     epoch  80 val mse per output [0.0327, 0.034, 0.0, 0.0001]
+[  106s] round 0: closed loop reaches/ep 0.79, crash 100% (600000 samples)
+[  106s]   saved as best (score 0.00)
+[  121s] round 1: student rollouts (beta 0.5) 200000 samples, 565 reaches, 27 crashes in 250 episodes
+[  132s]     epoch  10 val mse per output [0.0394, 0.0411, 0.0, 0.0001]
+[  143s]     epoch  20 val mse per output [0.0392, 0.041, 0.0, 0.0001]
+[  153s]     epoch  30 val mse per output [0.0392, 0.0409, 0.0, 0.0]
+[  154s] round 1: closed loop reaches/ep 4.21, crash 88% (800000 samples)
+[  154s]   saved as best (score 0.53)
+[  170s] round 2: student rollouts (beta 0.35) 200000 samples, 490 reaches, 41 crashes in 249 episodes
+[  184s]     epoch  10 val mse per output [0.0468, 0.0504, 0.0, 0.0001]
+[  197s]     epoch  20 val mse per output [0.0464, 0.0504, 0.0, 0.0]
+[  211s]     epoch  30 val mse per output [0.0464, 0.0503, 0.0, 0.0]
+[  213s] round 2: closed loop reaches/ep 6.12, crash 38% (1000000 samples)
+[  213s]   saved as best (score 3.83)
+[  228s] round 3: student rollouts (beta 0.2) 200000 samples, 407 reaches, 74 crashes in 277 episodes
+[  245s]     epoch  10 val mse per output [0.0628, 0.0655, 0.0, 0.0]
+[  262s]     epoch  20 val mse per output [0.0623, 0.0652, 0.0, 0.0]
+[  278s]     epoch  30 val mse per output [0.0623, 0.0647, 0.0, 0.0]
+[  280s] round 3: closed loop reaches/ep 9.79, crash 21% (1200000 samples)
+[  280s]   saved as best (score 7.75)
+[  296s] round 4: student rollouts (beta 0.050000000000000044) 200000 samples, 294 reaches, 64 crashes in 263 episodes
+[  316s]     epoch  10 val mse per output [0.1006, 0.0917, 0.0, 0.0]
+[  334s]     epoch  20 val mse per output [0.1, 0.09, 0.0, 0.0]
+[  353s]     epoch  30 val mse per output [0.0997, 0.0899, 0.0, 0.0]
+[  355s] round 4: closed loop reaches/ep 8.79, crash 38% (1400000 samples)
+[  369s] round 5: student rollouts (beta 0.0) 200000 samples, 489 reaches, 47 crashes in 247 episodes
+[  386s]     epoch  10 val mse per output [0.1319, 0.1434, 0.0, 0.0]
+[  406s]     epoch  20 val mse per output [0.1317, 0.1423, 0.0, 0.0]
+[  426s]     epoch  30 val mse per output [0.131, 0.1427, 0.0, 0.0]
+[  428s] round 5: closed loop reaches/ep 4.79, crash 29% (1600000 samples)
+[  446s] round 6: student rollouts (beta 0.0) 200000 samples, 242 reaches, 58 crashes in 248 episodes
+[  473s]     epoch  10 val mse per output [0.195, 0.175, 0.0, 0.0]
+[  499s]     epoch  20 val mse per output [0.1945, 0.1721, 0.0, 0.0]
+[  527s]     epoch  30 val mse per output [0.1949, 0.1723, 0.0, 0.0]
+[  529s] round 6: closed loop reaches/ep 1.04, crash 17% (1800000 samples)
+[  529s] saved /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/bc/bc_feat
+n _send_bytes
+    self._send(header)
+    ~~~~~~~~~~^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/connection.py", line 400, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/pool.py", line 136, in worker
+    put((job, i, (False, wrapped)))
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/connection.py", line 206, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/connection.py", line 444, in _send_bytes
+    self._send(header + buf)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/connection.py", line 400, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+Process SpawnPoolWorker-2:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/pool.py", line 131, in worker
+    put((job, i, result))
+    ~~~^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/connection.py", line 206, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/connection.py", line 437, in _send_bytes
+    self._send(header)
+    ~~~~~~~~~~^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/connection.py", line 400, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/pool.py", line 136, in worker
+    put((job, i, (False, wrapped)))
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/connection.py", line 206, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/connection.py", line 444, in _send_bytes
+    self._send(header + buf)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/connection.py", line 400, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/resource_tracker.py:297: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-444o7eob', '/mp-pfy_bj_z', '/mp-fh99xh55', '/mp-3adpyfef', '/mp-bfk2jua4', '/mp-obhyyqv5'}
+  warnings.warn(

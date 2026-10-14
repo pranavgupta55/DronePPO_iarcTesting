@@ -1,0 +1,2 @@
+Gravity 2x, rate 0.01, std x2
+Control plus gravity_scale 2, force_rate 0.01, and init_log_std raised by ln 2 (initial action std doubled). Target margin 10 px.

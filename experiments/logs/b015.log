@@ -1,0 +1,5 @@
+[b015] 3 to run (0 skipped), parallel 2
+[b015] t4_warm0: reaches 11.40 tier 0 score 0.11 crash 0.30 327s
+[b015] t4_warm15: reaches 11.07 tier 0 score 0.11 crash 0.33 327s
+[b015] t4_warm60: reaches 10.70 tier 0 score 0.11 crash 0.40 331s
+[b015] finished in 11.0 min: {'ok': 3}

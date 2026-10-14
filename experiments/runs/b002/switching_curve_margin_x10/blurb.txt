@@ -1,0 +1,2 @@
+Switching curve x10
+Switching curve at default weights, approach_w 1 to 10. Tests a light push on the approach-speed term; viol_w stays 0.01.

@@ -1,0 +1,2 @@
+Approach 20, thrust 0
+Control plus the env approach-speed overlay at 20, thrust overlay off. Target margin is 10 px here (control: 100).

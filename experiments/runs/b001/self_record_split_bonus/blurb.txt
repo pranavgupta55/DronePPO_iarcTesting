@@ -1,0 +1,2 @@
+Self-record split bonus
+Approach-speed reward plus a bonus for beating the agent's own best time at each target index (record_k 10).

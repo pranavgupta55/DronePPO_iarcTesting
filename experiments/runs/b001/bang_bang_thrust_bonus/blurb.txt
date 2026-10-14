@@ -1,0 +1,2 @@
+Bang-bang thrust bonus
+Approach-speed reward instead of the time-to-go potential, plus a bonus for pushing thrusters to their limits while moving over 100 px/s.

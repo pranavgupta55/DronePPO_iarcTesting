@@ -1,0 +1,2 @@
+High-pass wobble gate x160
+Default-weight high-pass wobble gate: shaping_w 100 to 16000. Tests the top weight on the time-to-go term; wobble_k stays 1.

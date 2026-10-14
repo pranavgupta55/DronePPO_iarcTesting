@@ -1,0 +1,2 @@
+Thrust-to-target x10
+Thrust-to-target projection at default weights, shaping_w 50 to 500 and proj_w 0.5 to 5. Tests a light push on the shaping and projection.

@@ -1,0 +1,2 @@
+Entry speed x40, out 30
+Adds outward_w 30 to the x40 entry-speed reward (entry_k 200, approach_w 20). Starts from b002 x40.

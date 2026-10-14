@@ -1,0 +1,2 @@
+Lexicographic x160, no out
+Tests shaping_w 8000, four times the x40 weight, with outward_w at 0. Branches from b002 lexicographic_priority_scalarisation_x40.

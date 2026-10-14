@@ -1,0 +1,2 @@
+PPO from imitation, lr 1e-5
+First gentle PPO fine-tune of bc_feat. Went worse than its start; cause was the drifting observation normalizer, found later.

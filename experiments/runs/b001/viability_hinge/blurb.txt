@@ -1,0 +1,2 @@
+Viability hinge
+Approach-speed reward plus a penalty when the drone could not brake before a wall at 4000 px/s^2.

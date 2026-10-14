@@ -1,0 +1,2 @@
+Switching curve x40
+Switching curve at default weights, approach_w 1 to 40. Tests a mid weight on the approach-speed term; viol_w stays 0.01.

@@ -1,0 +1,2 @@
+Crash penalty 30000
+t2 at lr 1e-5 with the crash penalty raised from 6000 to 30000. Crashes dropped a little, within noise.

@@ -1,0 +1,2 @@
+Coverage bonus x10
+Default-weight coverage bonus: shaping_w 50 to 500. Tests a light push on the time-to-go term; cov_w stays 1.

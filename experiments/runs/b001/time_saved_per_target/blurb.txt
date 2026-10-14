@@ -1,0 +1,2 @@
+Time saved per target
+Approach-speed reward plus a payment for each reach based on seconds saved against a reference of 3.0 to 1.1 times spawn time-to-go.

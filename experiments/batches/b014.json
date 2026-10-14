@@ -1,0 +1,76 @@
+{
+ "batch": "b014",
+ "specs": [
+  {
+   "scheme": "bangbang_features",
+   "params": {
+    "approach_w": 40.0
+   },
+   "force_rate": 0.5,
+   "mirror": false,
+   "init_log_std": -6.0,
+   "init_from": "/Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/bc/bc_feat",
+   "critic_warmup_epochs": 15,
+   "epochs": 100,
+   "num_envs": 2,
+   "steps_per_epoch": 16384,
+   "seed": 1,
+   "target_margin": 10.0,
+   "pi_lr": 1e-05,
+   "clip": 0.1,
+   "update_epochs": 2,
+   "ramp_end": 0.001,
+   "reach_speed": [
+    20.0,
+    20.0
+   ],
+   "reach_ang": [
+    0.5,
+    0.5
+   ],
+   "reach_hold": [
+    25,
+    25
+   ],
+   "far_target_fraction_end": 0.0,
+   "name": "t3_logstd-6",
+   "freeze_obs_norm": true
+  },
+  {
+   "scheme": "bangbang_features",
+   "params": {
+    "approach_w": 40.0
+   },
+   "force_rate": 0.5,
+   "mirror": false,
+   "init_log_std": -4.0,
+   "init_from": "/Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/bc/bc_feat",
+   "critic_warmup_epochs": 15,
+   "epochs": 100,
+   "num_envs": 2,
+   "steps_per_epoch": 16384,
+   "seed": 1,
+   "target_margin": 10.0,
+   "pi_lr": 1e-05,
+   "clip": 0.1,
+   "update_epochs": 2,
+   "ramp_end": 0.001,
+   "reach_speed": [
+    20.0,
+    20.0
+   ],
+   "reach_ang": [
+    0.5,
+    0.5
+   ],
+   "reach_hold": [
+    25,
+    25
+   ],
+   "far_target_fraction_end": 0.0,
+   "name": "t3_crash30k",
+   "freeze_obs_norm": true,
+   "crash_penalty": 30000.0
+  }
+ ]
+}

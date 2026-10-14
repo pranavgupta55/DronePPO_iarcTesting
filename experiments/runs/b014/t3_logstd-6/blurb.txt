@@ -1,0 +1,2 @@
+Almost no exploration noise
+t2 at lr 1e-5 with log_std -6 instead of -4. Stays at the imitation level, no gain.

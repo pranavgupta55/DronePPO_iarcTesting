@@ -1,0 +1,2 @@
+Entry speed x40
+Entry speed at default weights, entry_k 5 to 200 and approach_w 0.5 to 20. Tests a mid weight on the entry and approach terms.

@@ -1,0 +1,2 @@
+PPO from imitation, lr 3e-6
+Same as lr 1e-5 but a lower learning rate. Also worse than bc_feat, same normalizer bug.

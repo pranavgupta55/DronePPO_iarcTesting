@@ -1,0 +1,2 @@
+Curriculum x640, no out
+Tests base_k 6400 and approach_w 640, four times the x160 weights. Outward term stays at 0. Branches from b002 x160.

@@ -1,0 +1,2 @@
+Approach 100, thrust 25
+Approach-speed overlay 100 and thrust overlay 25 on the control. Target margin is 10 px (control: 100).

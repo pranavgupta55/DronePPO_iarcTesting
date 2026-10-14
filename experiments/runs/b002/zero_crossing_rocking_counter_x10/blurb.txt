@@ -1,0 +1,2 @@
+Rocking counter x10
+From the default rocking counter, shaping_w 100 to 1000. Tests a light push on the time-to-go term; flip_k stays 0.05.

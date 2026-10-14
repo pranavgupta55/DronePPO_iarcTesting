@@ -1,0 +1,4 @@
+[b011] 2 to run (0 skipped), parallel 2
+[b011] ft_gentle_lr1e-05: reaches 2.73 tier 0 score 0.03 crash 0.73 208s
+[b011] ft_gentle_lr3e-06: reaches 1.90 tier 0 score 0.02 crash 0.63 208s
+[b011] finished in 3.5 min: {'ok': 2}
