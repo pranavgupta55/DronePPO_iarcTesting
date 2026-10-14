@@ -16,6 +16,8 @@ imitating a hand-written bang-bang controller and fine-tuning with PPO. Everythi
 | `report` | summary table and charts (`docs/reports/`) |
 | `bench` | training-throughput benchmark |
 
+The network drawing in the viewer is "live" by default (each connection colored and sized by the signal it carries that frame); set `LIVE_NETWORK = False` at the top of `drone_rl/viewer/app.py` for the static weights picture.
+
 Tests: `python3 -m pytest` (about 15 s: environment, every reward scheme in both world sizes, controller courses, a 2-epoch training run end to end).
 
 ## Layout

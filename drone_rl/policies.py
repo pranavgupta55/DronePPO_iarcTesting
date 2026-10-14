@@ -23,6 +23,16 @@ class NetworkPolicy:
     def act(self, env, obs):
         return self._net.mean(np.clip((obs - self.obs_mean) / self.obs_std, -NORM_CLIP, NORM_CLIP))
 
+    def trace(self, obs):
+        """Everything that flows through the network for this observation: [normalized input, hidden layer outputs..., action]. Same arithmetic as act()."""
+        x = np.clip((obs - self.obs_mean) / self.obs_std, -NORM_CLIP, NORM_CLIP)
+        values = [x]
+        for weight, bias in self.layers[:-1]:
+            x = np.tanh(weight @ x + bias)
+            values.append(x)
+        values.append(self.layers[-1][0] @ x + self.layers[-1][1])
+        return values
+
 
 class ControllerPolicy:
     def __init__(self, params=None):

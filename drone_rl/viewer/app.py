@@ -14,9 +14,11 @@ from drone_rl.env import DroneEnv, load_scheme, make_spec
 from drone_rl.policies import load_policy, network_layers
 from drone_rl.viewer.fontDict import fonts
 from drone_rl.viewer.menu import MenuView
-from drone_rl.viewer.network_draw import NeuralNetwork, draw_network, tanh, tanh_prime
+from drone_rl.viewer.network_draw import NeuralNetwork, draw_network, draw_live_network, live_layout, tanh, tanh_prime
 from drone_rl.viewer.text import drawText, wrapText
 
+LIVE_NETWORK = True  # True: the network drawing is "live", each connection colored and sized by the signal it carries this frame (weight x source activation); False: the stored weights
+LIVE_SPACING_X, LIVE_SPACING_Y = 32, 5.5  # the live drawing is a bit larger than the static one so the lines stay readable
 FPS = 60
 TARGET_MARGIN = 10
 EPISODE_SECONDS = 500
@@ -96,7 +98,13 @@ class Session:
         self.blurb = meta.get("blurb_text", "")
         layers = network_layers(run_dir)
         self.network_surface, self.network_corner = None, (0, 0)
-        if layers is not None:
+        self.live_layers = layers if LIVE_NETWORK and layers is not None else None
+        if self.live_layers is not None:
+            sizes = [layers[0][0].shape[1]] + [w.shape[0] for w, _ in layers]
+            width, height, _, _ = live_layout(sizes, LIVE_SPACING_X, LIVE_SPACING_Y)
+            self.network_surface = pygame.Surface((width, height), pygame.SRCALPHA)
+            self.network_corner = (GAUGE_MARGIN, GAUGE_MARGIN)  # the drawing is cropped tight to its first nodes, so it sits exactly GAUGE_MARGIN from the left and top edges
+        elif layers is not None:
             network = layers_to_network(layers)
             dense = [layer for layer in network.layers if hasattr(layer, "weights")]
             tallest = max(max(layer.weights.shape) for layer in dense)
@@ -106,6 +114,13 @@ class Session:
             self.network_corner = (GAUGE_MARGIN - bounds.x, GAUGE_MARGIN - bounds.y)
         self.env.reset()
         self.policy.reset(self.env)
+
+
+    def update_network(self, obs):
+        """Live mode: redraws the network with this frame's feed-forward values."""
+        if self.live_layers is not None:
+            self.network_surface.fill((0, 0, 0, 0))
+            draw_live_network(self.network_surface, self.live_layers, self.policy.trace(obs), LIVE_SPACING_X, LIVE_SPACING_Y)
 
 
 def flyable_rows():
@@ -199,6 +214,7 @@ def main():
             obs = env.observe()
             accumulator -= TIME_STEP_DELTA
 
+        session.update_network(obs)
         screen.fill(Endesga.my_blue)
         surface_ui.fill((0, 0, 0, 0))
         world.fill(Endesga.my_blue)
