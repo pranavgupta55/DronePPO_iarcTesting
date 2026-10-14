@@ -24,7 +24,7 @@ DEFAULTS = {
     "reward_scaling": True, "obs_norm": True, "mirror": True, "torch_threads": 1,
     "reach_reward": 10000.0, "crash_penalty": 6000.0, "outward_w": 0.0, "force_rate": 0.005, "approach_w": 0.0, "approach_ref": 300.0, "thrust_w": 0.0, "gravity_scale": 1.0, "outward_target": 0.5235987755982988,
     "far_target_min_dist": 400.0, "far_target_fraction_end": 0.7, "curriculum_end": 0.5, "target_margin": 10.0, "ramp_end": 0.5,
-    "init_from": None, "critic_warmup_epochs": 0, "freeze_obs_norm": False,  # init_from: a run dir whose actor.pt and norm.npz start this session (behavior cloning); the actor stays frozen for critic_warmup_epochs
+    "angle_rate": math.pi / 60, "init_from": None, "critic_warmup_epochs": 0, "freeze_obs_norm": False,  # init_from: a run dir whose actor.pt and norm.npz start this session (behavior cloning); the actor stays frozen for critic_warmup_epochs
     "reach_speed": [50.0, 20.0], "reach_ang": [2.0, 0.5], "reach_hold": [1, 25],
 }
 NON_HYPER_KEYS = ("name", "seed", "scheme", "params")
@@ -91,6 +91,7 @@ class DroneEnv:
         self.target_margin = spec["target_margin"]
         self.drone = Drone((ENV_WIDTH / 2, ENV_HEIGHT / 2), DRONE_SIZE, ENV_DIAG)
         self.drone.thruster_force_delta_rate = spec["force_rate"]  # force change per step per unit action
+        self.drone.thruster_angle_delta_rate = spec["angle_rate"]  # nozzle angle change (rad) per step per unit action
         self.progress = 1.0
         self.set_ramp(1.0)
 

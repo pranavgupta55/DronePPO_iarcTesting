@@ -1,0 +1,4 @@
+[b016] 2 to run (0 skipped), parallel 2
+[b016] t5_angle_noise: reaches 11.20 tier 0 score 0.11 crash 0.23 171s
+[b016] t5_angle_noise_fast: reaches 8.60 tier 0 score 0.09 crash 0.37 171s
+[b016] finished in 2.8 min: {'ok': 2}

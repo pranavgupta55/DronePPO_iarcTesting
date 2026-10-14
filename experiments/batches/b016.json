@@ -1,0 +1,88 @@
+{
+ "batch": "b016",
+ "specs": [
+  {
+   "scheme": "bangbang_features",
+   "params": {
+    "approach_w": 40.0
+   },
+   "force_rate": 0.5,
+   "mirror": false,
+   "init_log_std": [
+    -4.0,
+    -4.0,
+    -1.0,
+    -1.0
+   ],
+   "init_from": "/Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/bc/bc_feat",
+   "critic_warmup_epochs": 15,
+   "epochs": 100,
+   "num_envs": 2,
+   "steps_per_epoch": 16384,
+   "seed": 1,
+   "target_margin": 10.0,
+   "pi_lr": 0.0001,
+   "clip": 0.1,
+   "update_epochs": 2,
+   "ramp_end": 0.001,
+   "reach_speed": [
+    20.0,
+    20.0
+   ],
+   "reach_ang": [
+    0.5,
+    0.5
+   ],
+   "reach_hold": [
+    25,
+    25
+   ],
+   "far_target_fraction_end": 0.0,
+   "name": "t5_angle_noise",
+   "freeze_obs_norm": true,
+   "blurb": "Angle exploration noise\nt2 with the nozzle outputs given noise std 0.37 (log std -1) while the force outputs keep -4. Tests whether PPO finds a use for the nozzles."
+  },
+  {
+   "scheme": "bangbang_features",
+   "params": {
+    "approach_w": 40.0
+   },
+   "force_rate": 0.5,
+   "mirror": false,
+   "init_log_std": [
+    -4.0,
+    -4.0,
+    -1.0,
+    -1.0
+   ],
+   "init_from": "/Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/bc/bc_feat",
+   "critic_warmup_epochs": 15,
+   "epochs": 100,
+   "num_envs": 2,
+   "steps_per_epoch": 16384,
+   "seed": 1,
+   "target_margin": 10.0,
+   "pi_lr": 0.0001,
+   "clip": 0.1,
+   "update_epochs": 2,
+   "ramp_end": 0.001,
+   "reach_speed": [
+    20.0,
+    20.0
+   ],
+   "reach_ang": [
+    0.5,
+    0.5
+   ],
+   "reach_hold": [
+    25,
+    25
+   ],
+   "far_target_fraction_end": 0.0,
+   "name": "t5_angle_noise_fast",
+   "freeze_obs_norm": true,
+   "angle_rate": 0.3,
+   "blurb": "Angle noise, fast nozzles\nt5_angle_noise with one unit of angle action moving a nozzle 17 degrees (was 3). Tests the same thing with stronger nozzle actions."
+  }
+ ]
+}

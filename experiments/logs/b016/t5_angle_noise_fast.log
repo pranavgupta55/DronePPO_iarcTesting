@@ -1,0 +1,8 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 train_one.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b016/t5_angle_noise_fast/spec_in.json /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b016/t5_angle_noise_fast
+epoch  25/100    47s | eps  9 | ret   12581.1 | len   3647 | reaches   8 | pi 0.0028 | v 0.2666
+epoch  50/100    86s | eps  9 | ret  116603.2 | len   3274 | reaches  85 | pi 0.0106 | v 0.4824
+epoch  75/100   124s | eps  9 | ret  183154.2 | len   3649 | reaches 131 | pi 0.0217 | v 0.1684
+epoch 100/100   162s | eps 11 | ret  179334.0 | len   2959 | reaches 155 | pi -0.0271 | v 0.1085
+done {"epochs": 100, "wall_seconds": 161.7, "final_return": 171895.2019062632, "final_length": 2927.2745833333333, "final_reaches_per_epoch": 152.1}
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 evaluate.py /Users/pranavgupta/PycharmProjects/DronePPO_iarcTesting/experiments/runs/b016/t5_angle_noise_fast
+{"reaches_per_ep": 8.6, "steps_per_reach": 179.84496124031008, "crash_rate": 0.36666666666666664, "mean_speed": 322.0785393865088, "mean_abs_tilt_deg": 39.94545994001971, "hover_tilt_frac": 0.05592064476131432, "tilt_streak_frac": 0.0, "rock_rate": 2.0346730025773194, "mean_abs_ang_vel": 2.7307333597652304, "outward_frac": 0.056902384020618556, "mean_outward_deg": 0.10311786644074439, "tier": 0, "score": 0.086, "eval_seconds": 3.9}

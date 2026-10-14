@@ -70,7 +70,7 @@ click = False
 
 
 RUN_INDEX = 38  # which runs/run<N>/actor.pt to fly
-EXPERIMENT_RUN = "b015/t4_warm60"  # "bc/bc_feat" is the pure imitation network, "b011/ft_gentle_lr1e-05" its PPO fine-tune; a run under experiments/runs/<batch>/<name> to fly instead (the world is the experiments one, 2400x1600); "bc/bc_feat" is the network imitating the bang-bang controller; None flies RUN_INDEX
+EXPERIMENT_RUN = "b016/t5_angle_noise_fast"  # "bc/bc_feat" is the pure imitation network, "b011/ft_gentle_lr1e-05" its PPO fine-tune; a run under experiments/runs/<batch>/<name> to fly instead (the world is the experiments one, 2400x1600); "bc/bc_feat" is the network imitating the bang-bang controller; None flies RUN_INDEX
 BANG_BANG = False  # fly the hand-written bang-bang controller (experiments/bangbang_controller.py, nozzles neutral) instead of a trained network; uses the 1200x800 experiment world
 EPISODE_SECONDS = 500
 

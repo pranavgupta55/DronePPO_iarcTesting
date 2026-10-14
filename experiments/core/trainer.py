@@ -28,7 +28,7 @@ class Actor(nn.Module):
     def __init__(self, obs_dim, hidden_sizes, init_log_std):
         super().__init__()
         self.net = mlp(obs_dim, ACT_DIM, hidden_sizes)
-        self.log_std = nn.Parameter(torch.full((ACT_DIM,), float(init_log_std)))
+        self.log_std = nn.Parameter(torch.tensor([float(x) for x in init_log_std]) if isinstance(init_log_std, (list, tuple)) else torch.full((ACT_DIM,), float(init_log_std)))  # one value, or one per action: force 1, force 2, angle 1, angle 2
 
     def dist(self, obs):
         return Normal(self.net(obs), self.log_std.exp())

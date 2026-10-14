@@ -1,0 +1,2 @@
+Angle exploration noise
+t2 with the nozzle outputs given noise std 0.37 (log std -1) while the force outputs keep -4. Tests whether PPO finds a use for the nozzles.

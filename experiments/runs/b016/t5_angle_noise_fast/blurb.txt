@@ -1,0 +1,2 @@
+Angle noise, fast nozzles
+t5_angle_noise with one unit of angle action moving a nozzle 17 degrees (was 3). Tests the same thing with stronger nozzle actions.

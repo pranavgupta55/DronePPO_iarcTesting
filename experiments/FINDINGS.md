@@ -43,3 +43,7 @@ Other suspected causes: the critic warm-up claim made here earlier relied on b01
 
 ## Critic warm-up retest (b015)
 With the normalizer frozen and pi_lr 1e-4: warm-up 0 -> 11.4 reaches/ep, 30% crashes, 365 px/s; 15 -> 11.1, 33%, 363; 60 -> 10.7, 40%, 366. No benefit from warming the critic longer (it leaves fewer PPO epochs, and the trend is slightly worse).
+
+## Can the nozzles help? (controller vectoring test, b016)
+Geometry check: tilting both nozzles the same way (one outward, one inward, equal push across the stick) turns the thrust sideways with zero torque (checked in the physics: 30 deg tilt gives lateral/vertical 300/520 px/s^2). Controller with thrust vectoring (`vector_deg`, body turns only the rest of the way), 36 episodes, world 2400x1600: neutral 14.3 reaches/ep, 0% crashes; 20 deg 13.6, 11%; 35 deg 11.5, 25%; 50 deg 10.2, 36%. Single-leg traces: settle times equal or slightly worse (102 vs 102, 107 vs 113, 96 vs 100 steps). The 180-degree turns take about 0.12 s, so turning time is not what limits the controller; nozzle steering has little to save.
+PPO with exploration noise on the nozzle outputs (from the imitation net, normalizer frozen, pi_lr 1e-4, 100 epochs): angle log std -1 -> 11.2 reaches/ep, 23% crashes, nozzle outputs stay ~0 (PPO found no use for them); same with nozzles 6x faster per action (angle_rate 0.3) -> 8.6, 37%, nozzle outputs dither (std 1.2, +-20 deg) with no benefit. New spec keys: `angle_rate`, list-valued `init_log_std` (per output).

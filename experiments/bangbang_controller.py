@@ -91,7 +91,9 @@ def control(env, p):
             angle_left, angle_right, cos_left, cos_right = THRUSTER_NEUTRAL_ANGLE + t_out, THRUSTER_NEUTRAL_ANGLE + t_in, math.cos(t_out), math.cos(t_in)
         else:
             angle_left, angle_right, cos_left, cos_right = THRUSTER_NEUTRAL_ANGLE - t_in, THRUSTER_NEUTRAL_ANGLE - t_out, math.cos(t_in), math.cos(t_out)
-        targets = [min(1.0, max(0.0, f_left / cos_left)), min(1.0, max(0.0, f_right / cos_right)), angle_left, angle_right]
+        force_left, force_right = max(0.0, f_left / cos_left), max(0.0, f_right / cos_right)
+        scale = min(1.0, 1.0 / max(force_left, force_right, 1e-9))  # a tilted nozzle needs more than its share of force; scale both down together so clipping one side can't leave a torque
+        targets = [force_left * scale, force_right * scale, angle_left, angle_right]
     else:
         targets = [min(1.0, max(0.0, force_mean - diff / 2)), min(1.0, max(0.0, force_mean + diff / 2)), THRUSTER_NEUTRAL_ANGLE + out, THRUSTER_NEUTRAL_ANGLE - out]
     cur = d.thruster_forces + d.thruster_angles
