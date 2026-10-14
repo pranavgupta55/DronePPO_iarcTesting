@@ -6,7 +6,7 @@ imitating a hand-written bang-bang controller and fine-tuning with PPO. Everythi
 ## Commands (`python3 -m drone_rl <command>`)
 | command | what it does |
 |---|---|
-| `view [run]` | open the viewer; flies the newest run toward the mouse. Left/Right switch runs, Tab opens the run menu, Space hides the HUD, Esc quits. `main_screen.py` does the same. |
+| `view [run]` | open the viewer; flies the newest run toward the mouse. Left/Right switch runs, Tab opens the run menu, Space hides the HUD, Esc quits. In the menu: Up/Down move (hold to repeat, Shift = 10, the list loops), Left/Right switch tab, Enter flies a run, Space folds a group, P pins, S/R sort, T tag filter, A archive, H/G change the histogram range and stats. `main_screen.py` does the same. |
 | `batch specs/<file>.json` | train and evaluate every run in a specs file (`--parallel P --workers N`) |
 | `eval <run> ...` / `eval --all` / `eval --missing` | evaluate runs on the standard courses |
 | `imitate --name ... --group ... --tags ... --blurb ...` | behavior-clone the controller into a network (DAgger) |

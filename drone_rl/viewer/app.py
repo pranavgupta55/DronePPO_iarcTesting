@@ -1,6 +1,6 @@
 """The viewer: python3 -m drone_rl view [run id or name]   (or run main_screen.py in the repo root).
 It flies a saved run toward the mouse. With no argument it opens the newest finished run. Left / Right step to the previous / next run in the current list,
-Tab opens the run menu (menu.py), Space hides the HUD, Esc quits."""
+Tab opens the run menu (menu.py; there Left/Right switch tabs), Space hides the HUD, Esc quits."""
 import math
 import sys
 import time
@@ -171,6 +171,7 @@ def main():
                 elif event.key == pygame.K_SPACE:
                     hud = not hud
                 elif event.key == pygame.K_TAB:
+                    menu.close()
                     menu.model.current_id = current
                     menu.model.focus(current)
                     menu_open = True
@@ -182,6 +183,8 @@ def main():
                     menu.model.current_id = current
                     layout()
                     accumulator = 0.0
+        if menu_open:
+            menu.update()  # repeats held arrow keys
         env = session.env
         mouse_target = np.array([(mx - world_offset[0]) / view_scale, (my - world_offset[1]) / view_scale])
         mouse_target = np.clip(mouse_target, TARGET_MARGIN, [env.W - TARGET_MARGIN, env.H - TARGET_MARGIN])  # a target in or beyond a wall is outside what a run was built for

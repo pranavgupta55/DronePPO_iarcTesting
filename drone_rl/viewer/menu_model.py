@@ -22,15 +22,37 @@ STATS = [
 ]
 STAT_KEYS = [s[0] for s in STATS]
 
+# histograms: how many of the runs shown in the current tab to include (the first N in the order the tab shows them), and which stats make up each page of the panel
+HIST_RANGES = [10, 20, 50, 100, None]  # None = all
+HIST_PAGES = [["reaches_per_min", "crash_rate", "leg_s_median", "mean_speed", "tilt_frac", "nozzle_use_deg"],
+              ["train.epochs", "train.wall_seconds", "model.params", "mean_thrust", "robust.noise05.reached_frac", "fixed_reached_frac"]]
+HIST_BINS = 12
+
+
+def histogram(values, bins=HIST_BINS):
+    """(counts, low, high) of the numbers in values (None entries ignored); (None, None, None) when there are none."""
+    vals = [v for v in values if v is not None]
+    if not vals:
+        return None, None, None
+    low, high = min(vals), max(vals)
+    if high == low:
+        return [len(vals)] + [0] * (bins - 1), low, low + 1e-9
+    counts = [0] * bins
+    for v in vals:
+        counts[min(bins - 1, int((v - low) / (high - low) * bins))] += 1
+    return counts, low, high
+
 
 def fmt_date(row):
+    """'10-13 8:20 PM' (archived runs: '~' in front, since only their file times are known)."""
     stamp = row.get("created") or row.get("finished")
     if not stamp:
         return "built-in"
     try:
-        text = datetime.fromisoformat(stamp).strftime("%m-%d %H:%M")
+        when = datetime.fromisoformat(stamp)
     except ValueError:
         return "?"
+    text = f"{when:%m-%d} {int(when.strftime('%I'))}:{when:%M %p}"
     return "~" + text if row.get("archived") else text
 
 
@@ -63,11 +85,41 @@ class MenuModel:
         self.collapsed = set()  # group names / run ids folded away
         self.cursor = 0
         self.top = 0
+        self.hist_range = 1  # index into HIST_RANGES
+        self.hist_page = 0
 
     # ---- state changes
     def set_tab(self, index):
         self.tab = index % len(TABS)
         self.cursor = self.top = 0
+
+    def cycle_hist_range(self, step=1):
+        self.hist_range = (self.hist_range + step) % len(HIST_RANGES)
+
+    def cycle_hist_page(self):
+        self.hist_page = (self.hist_page + 1) % len(HIST_PAGES)
+
+    def view_rows(self):
+        """The distinct runs of the current tab in display order (what the histograms are computed over); archived runs only when shown."""
+        seen, rows = set(), []
+        for e in self.entries():
+            if e["kind"] == "run" and e["id"] not in seen:
+                seen.add(e["id"])
+                rows.append(e["row"])
+        return rows
+
+    def hist_rows(self):
+        limit = HIST_RANGES[self.hist_range]
+        rows = self.view_rows()
+        return rows if limit is None else rows[:limit]
+
+    def hist_label(self):
+        limit, total = HIST_RANGES[self.hist_range], len(self.view_rows())
+        n = min(limit, total) if limit else total
+        if limit is None:
+            return f"all {total} runs"
+        text = f"{n} most recent" if TABS[self.tab] == "Newest" else f"first {n} shown"
+        return text + ("" if n == limit else f" (only {total} here)")
 
     def cycle_stat(self):
         self.stat = (self.stat + 1) % len(STATS)
@@ -171,6 +223,12 @@ class MenuModel:
         return order
 
     # ---- cursor
+    def move(self, delta):
+        """Moves the cursor by delta rows, looping: past the last row comes the first and the other way round."""
+        n = len(self.entries())
+        if n:
+            self.cursor = (self.cursor + delta) % n
+
     def clamp(self, visible):
         n = len(self.entries())
         self.cursor = max(0, min(self.cursor, n - 1))
